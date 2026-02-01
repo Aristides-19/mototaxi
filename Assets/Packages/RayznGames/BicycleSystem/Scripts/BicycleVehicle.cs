@@ -407,7 +407,7 @@ namespace rayzngames
 			frontWheel.sidewaysFriction = frontSidewaysFrictionCurve;
 
 			WheelFrictionCurve rearForwardFrictionCurve = CreateFrictionCurve(0.15f, 2.25f, 0.5f, 1f, 1f);
-			WheelFrictionCurve rearSidewaysFrictionCurve = CreateFrictionCurve(0.3f, 3f, 0.5f, 1.5f, 1.7f);
+			WheelFrictionCurve rearSidewaysFrictionCurve = CreateFrictionCurve(0.3f, 3f, 0.5f, 1.5f, 1.8f);
 			rearWheel.forwardFriction = rearForwardFrictionCurve;
 			rearWheel.sidewaysFriction = rearSidewaysFrictionCurve;
 		}
