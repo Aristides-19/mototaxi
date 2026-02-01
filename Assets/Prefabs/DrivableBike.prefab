@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 3942400151416815110}
   - component: {fileID: 6566296810951583610}
   - component: {fileID: 4979506048575375128}
-  - component: {fileID: -4910307300578874539}
+  - component: {fileID: 4080209485248123321}
   m_Layer: 0
   m_Name: DrivableBike
   m_TagString: Untagged
@@ -605,7 +605,7 @@ MonoBehaviour:
   frontTrailContact: {fileID: 4572793533498878004}
   rearTrailContact: {fileID: 8419972941966337435}
   controlContact: {fileID: 5389393754310376015}
---- !u!114 &-4910307300578874539
+--- !u!114 &4080209485248123321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -614,9 +614,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829816807559460375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e349305d92773ad1bc14dfeb4dd4c0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 23c714de4473334468f9ddb30cedaff8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::rayzngames.BikeControlsExample
+  m_EditorClassIdentifier: Assembly-CSharp::DriveBikeSc
   controllingBike: 1
 --- !u!1 &3358873490257763043
 GameObject:
