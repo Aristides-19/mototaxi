@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CinemachineCamera), typeof(CinemachineThirdPersonFollow))]
 public class CameraLean : MonoBehaviour
 {
-    [Header("Configuración de Efecto")]
-    [Tooltip("Cuánto se mueve la cámara hacia el interior de la curva (Metros)")]
-    [SerializeField] float leanAmount = 2.0f;
+    [Header("Settings")]
+    [Tooltip("How much the camera moves X shoulder offset during a turn (Meters)")]
+    [SerializeField] float leanAmount = 1.5f;
 
-    [Tooltip("Tiempo en segundos para completar el movimiento. Valores más altos = más suave (0.2 a 0.5 recomendado)")]
-    [SerializeField] float smoothTime = 0.5f; // PRUEBA CON 0.3f
+    [Tooltip("Time in seconds to complete the movement. Higher values = smoother")]
+    [SerializeField] float smoothTime = 1f;
 
     CinemachineCamera cmCamera;
     CinemachineThirdPersonFollow followComponent;

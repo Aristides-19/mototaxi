@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 6566296810951583610}
   - component: {fileID: 4979506048575375128}
   - component: {fileID: 4080209485248123321}
+  - component: {fileID: 5244509145603971473}
   m_Layer: 0
   m_Name: DrivableBike
   m_TagString: Untagged
@@ -619,6 +620,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DriveBikeSc
   controllingBike: 1
+--- !u!114 &5244509145603971473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829816807559460375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e294f056d09b23499d7b68adbd0bb9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedometerSc
+  speedText: {fileID: 0}
 --- !u!1 &3358873490257763043
 GameObject:
   m_ObjectHideFlags: 0

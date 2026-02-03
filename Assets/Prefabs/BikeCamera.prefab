@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e4857c52cb19644868c45e0130b573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraLean
-  leanAmount: 1
+  leanAmount: 1.5
   smoothTime: 1
