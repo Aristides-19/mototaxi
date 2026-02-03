@@ -18,6 +18,9 @@ public class BikeControllerSc : MonoBehaviour
         bicycle = GetComponent<BicycleVehicle>();
         moveInput = InputSystem.actions.FindAction("Move");
         brakeInput = InputSystem.actions.FindAction("Brake");
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
