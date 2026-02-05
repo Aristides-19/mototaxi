@@ -380,8 +380,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.02
   m_SuspensionSpring:
-    spring: 350
-    damper: 22.5
+    spring: 38500
+    damper: 2475
     targetPosition: 0.5
   m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
@@ -395,10 +395,10 @@ WheelCollider:
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.3
-    m_ExtremumValue: 2.15
+    m_ExtremumValue: 3
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_AsymptoteValue: 1.5
+    m_Stiffness: 1.8
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1425,8 +1425,8 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.02
   m_SuspensionSpring:
-    spring: 750
-    damper: 32.5
+    spring: 82500
+    damper: 3575
     targetPosition: 0.5
   m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
