@@ -1,21 +1,21 @@
-// using rayzngames;
+using ArcadeBP_Pro;
 using TMPro;
 using UnityEngine;
 
-// [RequireComponent(typeof(BicycleVehicle))]
+[RequireComponent(typeof(ArcadeBikeControllerPro))]
 public class SpeedometerSc : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI speedText;
-    // BicycleVehicle bicycle;
+    ArcadeBikeControllerPro bikeController;
 
     void Awake()
     {
-        // bicycle = GetComponent<BicycleVehicle>();
+        bikeController = GetComponent<ArcadeBikeControllerPro>();
     }
 
     void Update()
     {
-        // float speed = bicycle.CurrentSpeed * 3.6f; // Convert unit(m)/s to km/h
-        speedText.text = Mathf.RoundToInt(33).ToString() + " km/h";
+        float speed = bikeController.localBikeVelocity.magnitude * 3.6f; // Convert unit(m)/s to km/h
+        speedText.text = Mathf.RoundToInt(speed).ToString() + " km/h";
     }
 }
