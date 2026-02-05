@@ -6947,7 +6947,7 @@ MonoBehaviour:
     driftTurnFactor: 2
     rollingResistance: 1
     gravity: 18
-    burnoutRotationSpeed: 15
+    burnoutRotationSpeed: 25
     burnoutSmoothness: 2
     maxWheelieAngle: 35
     wheelieAnimationSpeed: 3
@@ -7236,7 +7236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arcadeBikeControllerPro: {fileID: 4489940695865553839}
-  moveAction: {fileID: 0}
+  accelerateAction: {fileID: 0}
+  brakeReverseAction: {fileID: 0}
+  steeringAction: {fileID: 0}
   brakeAction: {fileID: 0}
   wheelieAction: {fileID: 0}
 --- !u!114 &5986475310613133354

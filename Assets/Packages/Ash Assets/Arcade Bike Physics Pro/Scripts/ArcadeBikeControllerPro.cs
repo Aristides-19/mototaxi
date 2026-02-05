@@ -223,6 +223,12 @@ namespace ArcadeBP_Pro
 
             [Tooltip("Speed of aligning the rotator when the bike is in the air. How fast bike align with the world up axis.")]
             public float alignRotatorSpeed_Air = 5f;
+
+            [Tooltip("Minimum speed required to perform and maintain a wheelie (m/s).")]
+            public float minWheelieSpeed = 2.0f;
+
+            [Tooltip("Maximum speed at which a wheelie can be maintained (m/s).")]
+            public float maxWheelieSpeed = 20.0f;
         }
         public BikeSettings bikeSettings;
 
@@ -1011,13 +1017,29 @@ namespace ArcadeBP_Pro
 
         #region Wheelie Animation
 
+        // Requires to unpress and press again to wheelie again
+        private bool requireWheelieReset = false;
         private void wheelieAnimation()
         {
-            if (bikeInput.Wheelie > 0 && rearWheelIsGrounded)
+            if (!(bikeInput.Wheelie > 0)) requireWheelieReset = false;
+
+            float fwdSpeed = localBikeVelocity.magnitude;
+            bool isSpeedSafe = fwdSpeed > bikeSettings.minWheelieSpeed && fwdSpeed < bikeSettings.maxWheelieSpeed;
+
+            // If speed safe and not wheelie reset required and rear wheel is grounded and wheelie button is pressed, then do wheelie
+            if (bikeInput.Wheelie > 0 && rearWheelIsGrounded && isSpeedSafe && !requireWheelieReset)
             {
                 isDoingWheelie = true;
             }
-            if (!(bikeInput.Wheelie > 0) && frontWheelIsGrounded)
+
+            // If isDoingWheelie and speed is not safe, then require wheelie reset to prevent wheelie from happening again until player releases and presses the wheelie button again
+            if (isDoingWheelie && !isSpeedSafe)
+            {
+                requireWheelieReset = true;
+            }
+
+            // Just if front wheel is grounded, then isDoingWheelie can be false
+            if (frontWheelIsGrounded && (!isSpeedSafe || !(bikeInput.Wheelie > 0)))
             {
                 isDoingWheelie = false;
             }
@@ -1039,7 +1061,7 @@ namespace ArcadeBP_Pro
 
             if (isDoingWheelie)
             {
-                if (bikeInput.Wheelie > 0)
+                if (bikeInput.Wheelie > 0 && isSpeedSafe)
                 {
                     // smooth lerp rotate wheelieTransform by maxWheelieAngle in local space (local x axis)
                     float targetAngle = -bikeSettings.maxWheelieAngle;
