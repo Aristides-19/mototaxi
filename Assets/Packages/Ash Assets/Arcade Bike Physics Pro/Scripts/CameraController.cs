@@ -31,6 +31,12 @@ namespace ArcadeBP_Pro
         public float maxFOV = 80f;
         public float FOV_smoother = 5f;
 
+        [Header("FPP Field of View (Optional)")]
+        [Tooltip("FPP Camera Index in the cameras array. Set to -1 if not used.")]
+        public int fppCameraIndex = 2;
+        public float fppMinFOV = 80f;
+        public float fppMaxFOV = 95f;
+
         private CinemachineBasicMultiChannelPerlin[] cameraNoise;
         private int currentCameraIndex = 0;
         private bool isShaking = false;
@@ -42,7 +48,9 @@ namespace ArcadeBP_Pro
         private void Awake()
         {
             transform.SetParent(null);
-            smoothFOV = minFOV;
+
+            float initialMin = (fppCameraIndex != -1 && currentCameraIndex == fppCameraIndex) ? fppMinFOV : minFOV;
+            smoothFOV = initialMin;
 
             string bikeName = bikeController != null ? RemovePrefix(bikeController.name, "ABP_Pro") : "Unknown";
             gameObject.name = $"CameraController_{bikeName}";
@@ -83,7 +91,6 @@ namespace ArcadeBP_Pro
                 StopShake();
             }
 
-            // Manejo de FOV
             UpdateFOV(bikeSpeed);
         }
 
@@ -97,7 +104,6 @@ namespace ArcadeBP_Pro
 
         void SwitchCamera()
         {
-            // En Cinemachine 3, simplemente bajamos la prioridad de la actual y subimos la nueva
             cameras[currentCameraIndex].Priority = 0;
             currentCameraIndex = (currentCameraIndex + 1) % cameras.Length;
             cameras[currentCameraIndex].Priority = 10;
@@ -112,7 +118,6 @@ namespace ArcadeBP_Pro
 
             if (currentNoise != null)
             {
-                // Usamos la velocidad máxima configurada en el script de la moto
                 float maxSpeed = bikeController.bikeSettings.maxSpeed;
                 float t = Mathf.InverseLerp(speedThresholdForShake, maxSpeed, bikeSpeed);
 
@@ -138,7 +143,17 @@ namespace ArcadeBP_Pro
         {
             float maxSpeed = bikeController.bikeSettings.maxSpeed;
             float t = Mathf.InverseLerp(0, maxSpeed, bikeSpeed);
-            float targetFOV = Mathf.Lerp(minFOV, maxFOV, t);
+
+            float currentMin = minFOV;
+            float currentMax = maxFOV;
+
+            if (fppCameraIndex != -1 && currentCameraIndex == fppCameraIndex)
+            {
+                currentMin = fppMinFOV;
+                currentMax = fppMaxFOV;
+            }
+
+            float targetFOV = Mathf.Lerp(currentMin, currentMax, t);
 
             smoothFOV = Mathf.Lerp(smoothFOV, targetFOV, Time.deltaTime * FOV_smoother);
 
