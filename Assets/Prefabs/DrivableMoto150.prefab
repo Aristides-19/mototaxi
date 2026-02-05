@@ -6967,8 +6967,8 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.06889661
       - serializedVersion: 3
-        time: 0.10415463
-        value: 0.77492553
+        time: 0.04407315
+        value: 0.7871173
         inSlope: -1.2251477
         outSlope: -1.2251477
         tangentMode: 0
@@ -6976,8 +6976,17 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.42122656
-        value: 0.3739591
+        time: 0.089407265
+        value: 0.60998297
+        inSlope: -1.4171163
+        outSlope: -1.4171163
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.24097449
+        value: 0.35720494
         inSlope: -0.77082026
         outSlope: -0.77082026
         tangentMode: 0
@@ -7170,7 +7179,7 @@ MonoBehaviour:
     minPitch: 0.2
     maxPitch: 2
     SkidSound: {fileID: 2603164515572862466}
-  gearSpeeds: 070000000d000000130000001a00000023000000
+  gearSpeeds: 070000000d00000013000000190000001e000000
   currentGear: 1
   bikeEvents:
     OnTakeOff:
@@ -7243,6 +7252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedometerSc
   speedText: {fileID: 0}
+  gearText: {fileID: 0}
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0
