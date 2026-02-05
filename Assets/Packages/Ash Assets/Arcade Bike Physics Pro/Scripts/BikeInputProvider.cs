@@ -16,6 +16,12 @@ namespace ArcadeBP_Pro
 
         private float Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie;
 
+        void Awake()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         private void Update()
         {
             SetPlayerInput();

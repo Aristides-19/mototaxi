@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 9908630773440209}
   serializedVersion: 2
   m_LocalRotation: {x: -0.013089396, y: -0, z: 0, w: 0.99991435}
-  m_LocalPosition: {x: -1.1382623e-16, y: 0.17376155, z: -0.02032566}
+  m_LocalPosition: {x: -1.1382623e-16, y: 0.17376155, z: 0.17967434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -556,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 888142147317908025}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.31, y: 1.039, z: 0.202}
+  m_LocalPosition: {x: -0.261, y: 1.039, z: 0.217}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2842,7 +2842,7 @@ Transform:
   m_GameObject: {fileID: 4466786979748150083}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.31, y: 1.039, z: 0.202}
+  m_LocalPosition: {x: 0.261, y: 1.039, z: 0.217}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5095,7 +5095,7 @@ Transform:
   m_GameObject: {fileID: 6562029267201424776}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.31, y: 1.039, z: 0.202}
+  m_LocalPosition: {x: 0.261, y: 1.039, z: 0.217}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5253,9 +5253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bikeController: {fileID: 4489940695865553839}
-  maxHipPosOffset: 0.1
+  maxHipPosOffset: -0.1
   maxHipRotOffset: 0
-  maxSpineRotOffset: -25
+  maxSpineRotOffset: -10
   maxKneeOffset: 0.05
   spineTipOffset: 10
   normalSpeedThreshold: 1
@@ -5513,7 +5513,7 @@ Transform:
   m_GameObject: {fileID: 7337955521238856249}
   serializedVersion: 2
   m_LocalRotation: {x: 1e-45, y: -3.1554436e-30, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5885,7 +5885,7 @@ Transform:
   m_GameObject: {fileID: 7962428689090017214}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 3.2753374e-17, y: 0.93300027, z: -0.29697847}
+  m_LocalPosition: {x: 0, y: 0.918, z: -0.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6929,7 +6929,7 @@ MonoBehaviour:
       m_Bits: 51
     maxSpeed: 30.5
     reverseMaxSpeed: 1.5
-    acceleration: 8
+    acceleration: 8.5
     reverseAcceleration: 2
     deceleration: 12
     handBrakeDeceleration: 8
@@ -6953,6 +6953,8 @@ MonoBehaviour:
     wheelieAnimationSpeed: 3
     alignRotatorSpeed_Ground: 15
     alignRotatorSpeed_Air: 5
+    minWheelieSpeed: 2
+    maxWheelieSpeed: 20
   bikeCurves:
     AccelerationCurve:
       serializedVersion: 2
@@ -7402,7 +7404,7 @@ Transform:
   m_GameObject: {fileID: 8899712772079060549}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.31, y: 1.039, z: 0.202}
+  m_LocalPosition: {x: -0.261, y: 1.039, z: 0.217}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
