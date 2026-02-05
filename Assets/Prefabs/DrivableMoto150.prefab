@@ -6920,39 +6920,39 @@ MonoBehaviour:
     RearWheelAngle: 0
   bikeSuspension:
     SpringForce: 150
-    DamperForce: 20
+    DamperForce: 15
     groundStickFactor: 0
     MaxCompression: 0.4
   bikeSettings:
     drivableLayerMask:
       serializedVersion: 2
       m_Bits: 51
-    maxSpeed: 60
-    reverseMaxSpeed: 3
-    acceleration: 15
-    reverseAcceleration: 5
-    deceleration: 20
-    handBrakeDeceleration: 5
-    maxTurnAngle: 30
+    maxSpeed: 30.5
+    reverseMaxSpeed: 1.5
+    acceleration: 8
+    reverseAcceleration: 2
+    deceleration: 12
+    handBrakeDeceleration: 8
+    maxTurnAngle: 35
     useLerpTurning: 1
-    turnLerpSpeed: 4
+    turnLerpSpeed: 3
     steeringAnimationSpeed: 4
     canSteerInAir: 1
     canLeanInAir: 1
     turnSpeedInAir: 70
-    maxLeanAngle: 45
+    maxLeanAngle: 40
     leaningAnimationSpeed: 4
-    frictionCoefficient: 0.5
-    driftFrictionFactor: 0.5
+    frictionCoefficient: 0.8
+    driftFrictionFactor: 0.4
     driftTurnFactor: 2
     rollingResistance: 1
-    gravity: 15
-    burnoutRotationSpeed: 60
-    burnoutSmoothness: 1
-    maxWheelieAngle: 30
+    gravity: 18
+    burnoutRotationSpeed: 15
+    burnoutSmoothness: 2
+    maxWheelieAngle: 35
     wheelieAnimationSpeed: 3
-    alignRotatorSpeed_Ground: 20
-    alignRotatorSpeed_Air: 2
+    alignRotatorSpeed_Ground: 15
+    alignRotatorSpeed_Air: 5
   bikeCurves:
     AccelerationCurve:
       serializedVersion: 2
@@ -6967,8 +6967,26 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.06889661
       - serializedVersion: 3
+        time: 0.10415463
+        value: 0.77492553
+        inSlope: -1.2251477
+        outSlope: -1.2251477
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.42122656
+        value: 0.3739591
+        inSlope: -0.77082026
+        outSlope: -0.77082026
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 1
-        value: 0.520785
+        value: 0.2
         inSlope: 0.004572676
         outSlope: 0.004572676
         tangentMode: 0
@@ -7100,7 +7118,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.037383176
+        value: 0.026396848
         inSlope: 5.31424
         outSlope: 5.31424
         tangentMode: 0
@@ -7108,8 +7126,26 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.086538464
       - serializedVersion: 3
-        time: 0.39999998
-        value: 0.9974606
+        time: 0.11265258
+        value: 0.28629747
+        inSlope: 0.31633946
+        outSlope: 0.31633946
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.277882
+        value: 0.43758512
+        inSlope: 1.8877131
+        outSlope: 1.8877131
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.67667234
+        value: 0.8105595
         inSlope: 0.04557346
         outSlope: 0.04557346
         tangentMode: 0
@@ -7134,7 +7170,7 @@ MonoBehaviour:
     minPitch: 0.2
     maxPitch: 2
     SkidSound: {fileID: 2603164515572862466}
-  gearSpeeds: 0a000000140000001e0000002800000030000000
+  gearSpeeds: 070000000d000000130000001a00000023000000
   currentGear: 1
   bikeEvents:
     OnTakeOff:
