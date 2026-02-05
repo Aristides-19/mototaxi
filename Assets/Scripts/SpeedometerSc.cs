@@ -15,7 +15,7 @@ public class SpeedometerSc : MonoBehaviour
 
     void Update()
     {
-        float speed = bicycle.currentSpeed * 3.6f; // Convert unit(m)/s to km/h
+        float speed = bicycle.CurrentSpeed * 3.6f; // Convert unit(m)/s to km/h
         speedText.text = Mathf.RoundToInt(speed).ToString() + " km/h";
     }
 }

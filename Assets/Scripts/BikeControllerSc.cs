@@ -12,12 +12,14 @@ public class BikeControllerSc : MonoBehaviour
 
     InputAction moveInput;
     InputAction brakeInput;
+    InputAction wheelieInput;
 
     void Awake()
     {
         bicycle = GetComponent<BicycleVehicle>();
         moveInput = InputSystem.actions.FindAction("Move");
         brakeInput = InputSystem.actions.FindAction("Brake");
+        wheelieInput = InputSystem.actions.FindAction("Wheelie");
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -27,10 +29,12 @@ public class BikeControllerSc : MonoBehaviour
     {
         Vector2 inputVector = moveInput.ReadValue<Vector2>();
 
-        bicycle.verticalInput = inputVector.y;
-        bicycle.horizontalInput = inputVector.x;
+        bicycle.VerticalInput = inputVector.y;
+        bicycle.HorizontalInput = inputVector.x;
 
-        bicycle.braking = brakeInput.IsPressed();
+        bicycle.Braking = brakeInput.IsPressed();
+
+        bicycle.Wheelie = wheelieInput.IsPressed();
 
         bicycle.InControl(controllingBike);
 

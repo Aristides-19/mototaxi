@@ -8,12 +8,13 @@ namespace rayzngames
 	public class BicycleVehicle : MonoBehaviour
 	{
 		//Inputs, Getters, and setters
-		public float horizontalInput { get; set; }
-		public float verticalInput { get; set; }
-		public bool braking { get; set; }
-		public bool isInControl { get; private set; }
-		public bool slipFront { get; private set; }
-		public bool slipRear { get; private set; }
+		public float HorizontalInput { get; set; }
+		public float VerticalInput { get; set; }
+		public bool Braking { get; set; }
+		public bool Wheelie { get; set; }
+		public bool IsInControl { get; private set; }
+		public bool SlipFront { get; private set; }
+		public bool SlipRear { get; private set; }
 
 		Rigidbody rb;
 
@@ -77,14 +78,14 @@ namespace rayzngames
 
 		[Header("Info")]
 		[Tooltip("The actual Steering angle in use")]
-		public float currentSteeringAngle { get; private set; }
+		public float CurrentSteeringAngle { get; private set; }
 		[Tooltip("Dynamic MAX steering angle based on the linearspeed of the RB, affected by sterReductorAmmount")]
-		public float current_maxSteeringAngle { get; private set; }
+		public float CurrentMaxSterringAngle { get; private set; }
 		[Tooltip("The current lean angle applied")]
 		[Range(-45, 45)] public float currentLeanAngle { get; private set; }
 
 		[Header("Speed M/s")]
-		public float currentSpeed { get; private set; }
+		public float CurrentSpeed { get; private set; }
 		protected private WheelHit frontInfo;
 		protected private WheelHit rearInfo;
 
@@ -111,16 +112,19 @@ namespace rayzngames
 			//To stop bike from Jittering
 			frontWheel.ConfigureVehicleSubsteps(5, 12, 15);
 			rearWheel.ConfigureVehicleSubsteps(5, 12, 15);
+
+			rb.centerOfMass = COG;
 		}
 
 
 		// Update is called once per frame
 		void FixedUpdate()
 		{
-			if (isInControl)
+			if (IsInControl)
 			{
 				HandleEngine();
 				HandleSteering();
+				// HandleWheelie();
 				LeanOnTurnLocal();
 				UpdateHandles();
 			}
@@ -131,9 +135,9 @@ namespace rayzngames
 
 		public void InControl(bool state)
 		{
-			if (isInControl != state)
+			if (IsInControl != state)
 			{
-				isInControl = state;
+				IsInControl = state;
 			}
 		}
 
@@ -156,8 +160,8 @@ namespace rayzngames
 
 		private void HandleEngine()
 		{
-			rearWheel.motorTorque = braking ? 0f : verticalInput * motorForce;
-			float force = braking ? brakeForce : 0f;
+			rearWheel.motorTorque = Braking ? 0f : VerticalInput * motorForce;
+			float force = Braking ? brakeForce : 0f;
 			ApplyBraking(force);
 		}
 		private void ApplyBraking(float brakeForce)
@@ -171,22 +175,22 @@ namespace rayzngames
 		private void MaxSteeringReductor()
 		{
 			//(30 = 108 kmh) is the value at wich currentMaxSteering will be at its minimum,			
-			float t = (rb.linearVelocity.magnitude / 30) * steerReductorAmmount;
+			float t = rb.linearVelocity.magnitude / 30 * steerReductorAmmount;
 			t = t > 1 ? 1 : t;
-			current_maxSteeringAngle = Mathf.LerpAngle(maxSteeringAngle, minSteeringAngle, t);
+			CurrentMaxSterringAngle = Mathf.LerpAngle(maxSteeringAngle, minSteeringAngle, t);
 		}
 		private void HandleSteering()
 		{
 			MaxSteeringReductor();
-			currentSteeringAngle = Mathf.Lerp(currentSteeringAngle, current_maxSteeringAngle * horizontalInput, turnSmoothing * 0.1f);
-			frontWheel.steerAngle = currentSteeringAngle;
+			CurrentSteeringAngle = Mathf.Lerp(CurrentSteeringAngle, CurrentMaxSterringAngle * HorizontalInput, turnSmoothing * 0.1f);
+			frontWheel.steerAngle = CurrentSteeringAngle;
 			//We invert Input for rotating in the correct direction
-			targetLeanAngle = maxLeanAngle * -horizontalInput;
+			targetLeanAngle = maxLeanAngle * -HorizontalInput;
 		}
 		private void UpdateHandles()
 		{
 			float currentY = handle.localEulerAngles.y;
-			float delta = Mathf.DeltaAngle(currentY, currentSteeringAngle);
+			float delta = Mathf.DeltaAngle(currentY, CurrentSteeringAngle);
 			handle.Rotate(Vector3.up, delta, Space.Self);
 		}
 
@@ -199,7 +203,7 @@ namespace rayzngames
 				currentLeanAngle = Mathf.LerpAngle(currentRot.z, 0f, 0.05f);
 			}
 			//Case: Not steering or steering a tiny amount
-			if (currentSteeringAngle < 0.5f && currentSteeringAngle > -0.5)
+			if (CurrentSteeringAngle < 0.5f && CurrentSteeringAngle > -0.5)
 			{
 				currentLeanAngle = Mathf.LerpAngle(currentRot.z, 0f, leanSmoothing * 0.1f);
 			}
@@ -254,8 +258,8 @@ namespace rayzngames
 
 			if (frontTrailContact != null) //We can get contacts
 			{
-				slipFront = SlipFront();
-				if (slipFront)
+				SlipFront = GetSlipFront();
+				if (SlipFront)
 				{
 					frontTrail.emitting = true;
 					if (!frontSmoke.isPlaying) { frontSmoke.Play(); }
@@ -269,8 +273,8 @@ namespace rayzngames
 			//We can get contacts
 			if (rearTrailContact != null)
 			{
-				slipRear = SlipRear();
-				if (slipRear)
+				SlipRear = GetSlipRear();
+				if (SlipRear)
 				{
 					rearTrail.emitting = true;
 					if (!rearSmoke.isPlaying) { rearSmoke.Play(); }
@@ -282,7 +286,7 @@ namespace rayzngames
 				}
 			}
 		}
-		bool SlipFront()
+		bool GetSlipFront()
 		{
 			if (frontTrailContact.GetContact())
 			{
@@ -301,7 +305,7 @@ namespace rayzngames
 			}
 		}
 
-		bool SlipRear()
+		bool GetSlipRear()
 		{
 			if (rearTrailContact.GetContact())
 			{
@@ -321,16 +325,13 @@ namespace rayzngames
 		}
 		private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
 		{
-			Vector3 position;
-			Quaternion rotation;
-			wheelCollider.GetWorldPose(out position, out rotation);
-			wheelTransform.rotation = rotation;
-			wheelTransform.position = position;
+			wheelCollider.GetWorldPose(out Vector3 position, out Quaternion rotation);
+			wheelTransform.SetPositionAndRotation(position, rotation);
 		}
 
 		void Speed_O_Meter()
 		{
-			currentSpeed = rb.linearVelocity.magnitude;
+			CurrentSpeed = rb.linearVelocity.magnitude;
 		}
 
 		#region  Extra Setup Functions
@@ -426,12 +427,8 @@ namespace rayzngames
 
 		private WheelFrictionCurve CreateFrictionCurve(float exSlip, float exValue, float asSlip, float asValue, float stiffness)
 		{
-			WheelFrictionCurve frictionCurve = new WheelFrictionCurve();
-			frictionCurve.asymptoteSlip = asSlip;
-			frictionCurve.asymptoteValue = asValue;
-			frictionCurve.extremumSlip = exSlip;
-			frictionCurve.extremumValue = exValue;
-			frictionCurve.stiffness = stiffness;
+			WheelFrictionCurve frictionCurve = new()
+			{ asymptoteSlip = asSlip, asymptoteValue = asValue, extremumSlip = exSlip, extremumValue = exValue, stiffness = stiffness };
 			return frictionCurve;
 		}
 
@@ -481,28 +478,19 @@ namespace rayzngames
 	//We need to extend the Editor
 	public class BicycleInspector : Editor
 	{
-		//Here we grab a reference to our component
-		BicycleVehicle bicycle;
-
-		private void OnEnable()
-		{
-			//target is by default available for you in Editor		
-			bicycle = target as BicycleVehicle;
-		}
-
 		//Here is the meat of the script
 		public override void OnInspectorGUI()
 		{
 			SetLabel("Easy Bike System", 30, FontStyle.Bold, TextAnchor.UpperLeft);
 			base.OnInspectorGUI();
-			SetLabel("", 12, FontStyle.Italic, TextAnchor.LowerRight);
-			SetLabel("Love from RayznGames", 12, FontStyle.Italic, TextAnchor.LowerRight);
+			SetLabel("", 12, FontStyle.Bold, TextAnchor.LowerRight);
+			SetLabel("Love from RayznGames", 12, FontStyle.Bold, TextAnchor.LowerRight);
 		}
 		void SetLabel(string title, int size, FontStyle style, TextAnchor alignment)
 		{
 			GUI.skin.label.alignment = alignment;
 			GUI.skin.label.fontSize = size;
-			GUI.skin.label.fontStyle = FontStyle.Bold;
+			GUI.skin.label.fontStyle = style;
 			GUILayout.Label(title);
 		}
 	}
