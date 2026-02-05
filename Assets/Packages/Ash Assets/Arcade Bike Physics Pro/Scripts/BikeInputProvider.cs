@@ -1,4 +1,3 @@
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +8,9 @@ namespace ArcadeBP_Pro
         public ArcadeBikeControllerPro arcadeBikeControllerPro;
 
         [Header("Player Actions")]
-        [SerializeField] InputActionReference moveAction;
+        [SerializeField] InputActionReference accelerateAction;
+        [SerializeField] InputActionReference brakeReverseAction;
+        [SerializeField] InputActionReference steeringAction;
         [SerializeField] InputActionReference brakeAction;
         [SerializeField] InputActionReference wheelieAction;
 
@@ -22,12 +23,12 @@ namespace ArcadeBP_Pro
 
         private void SetPlayerInput()
         {
-            UnityEngine.Vector2 moveInput = moveAction.action.ReadValue<UnityEngine.Vector2>();
+            float steering = steeringAction.action.ReadValue<float>();
 
-            Accelerate = (moveInput.y > 0) ? 1f : 0f;
-            Reverse = (moveInput.y < 0) ? 1f : 0f;
-            SteeringLeft = (moveInput.x < 0) ? 1f : 0f;
-            SteeringRight = (moveInput.x > 0) ? 1f : 0f;
+            Accelerate = accelerateAction.action.IsPressed() ? 1f : 0f;
+            Reverse = brakeReverseAction.action.IsPressed() ? 1f : 0f;
+            SteeringLeft = (steering < 0) ? 1f : 0f;
+            SteeringRight = (steering > 0) ? 1f : 0f;
 
             HandBrake = brakeAction.action.IsPressed() ? 1f : 0f;
             Wheelie = wheelieAction.action.IsPressed() ? 1f : 0f;
