@@ -31,6 +31,9 @@ namespace ArcadeBP_Pro
             [Tooltip("The float to perform a wheelie.")]
             public float Wheelie = 0;
 
+            [Tooltip("The float to perform a stoppie.")]
+            public float Stoppie = 0;
+
         }
 
         [Tooltip("The input data for the bike.")]
@@ -45,6 +48,9 @@ namespace ArcadeBP_Pro
 
             [Tooltip("The transform used for controlling the wheelie animation.")]
             public Transform WheelieTransform;
+
+            [Tooltip("The transform used for controlling the stoppie animation.")]
+            public Transform StoppieTransform;
 
             [Tooltip("The transform used for leaning the bike during turns.")]
             public Transform LeanTransform;
@@ -160,7 +166,7 @@ namespace ArcadeBP_Pro
             [Tooltip("Rate at which the bike decelerates when opposite button(to the bike move direction) is pressed. Basically brake amount. How fast the bike will reach 0 speed.")]
             public float deceleration = 40;
 
-            [Tooltip("Deceleration rate when the hand brake is applied.")]
+            [Tooltip("Deceleration rate when the hand brake is applied. It should be higher than deceleration because handbrake is stronger than normal brake. How fast the bike will reach 0 speed when handbrake is applied. It will make stoppie when hand brake input is applied + stoppie input is applied")]
             public float handBrakeDeceleration = 10;
 
             [Tooltip("Maximum angle the bike handle can turn.")]
@@ -229,6 +235,20 @@ namespace ArcadeBP_Pro
 
             [Tooltip("Maximum speed at which a wheelie can be maintained (m/s).")]
             public float maxWheelieSpeed = 20.0f;
+
+            [Tooltip("Maximum angle for performing a stoppie.")]
+            [Range(0, 60)]
+            public float maxStoppieAngle = 30f;
+
+            [Tooltip("Speed of the stoppie animation.")]
+            public float stoppieAnimationSpeed = 6f;
+
+            [Tooltip("Minimum speed required to perform a stoppie (m/s).")]
+            public float minStoppieSpeed = 8f;
+
+            [Tooltip("Multiplier for the braking force during a stoppie. Adjust this to control how strong the brake is when performing a stoppie. It will stoppie when hand brake input is applied + stoppie input is applied")]
+            [Range(0.1f, 2f)]
+            public float stoppieBrakeRate = 1.2f;
         }
         public BikeSettings bikeSettings;
 
@@ -316,7 +336,7 @@ namespace ArcadeBP_Pro
         Vector3 projectedBikeForward, projectedBikeUp;
         [HideInInspector] public float projectedForwardOffsetAngle;
         RaycastHit frontWheelHit, rearWheelHit;
-        [HideInInspector] public bool bikeIsGrounded, frontWheelIsGrounded, rearWheelIsGrounded, isDoingWheelie = false, canAccelerate = true, canTurn = true;
+        [HideInInspector] public bool bikeIsGrounded, frontWheelIsGrounded, rearWheelIsGrounded, isDoingWheelie, requireWheelieReset, isDoingStoppie, requireStoppieReset = false, canAccelerate = true, canTurn = true;
 
         float compression_f, compression_r, compression_Total;
 
@@ -444,6 +464,8 @@ namespace ArcadeBP_Pro
 
             wheelieAnimation();
 
+            stoppieAnimation();
+
             tireAnimation();
 
             UpdateEngineSound();
@@ -566,7 +588,7 @@ namespace ArcadeBP_Pro
                 projectedBikeUp = Vector3.ProjectOnPlane(sideProjectedgroundNormal, projectedBikeForward).normalized;
             }
 
-            if (rearWheelIsGrounded && isDoingWheelie)
+            if (rearWheelIsGrounded && isDoingWheelie || frontWheelIsGrounded && isDoingStoppie)
             {
                 projectedBikeForward = Vector3.ProjectOnPlane(bikeReferences.Rotator.forward, Vector3.up).normalized;
                 projectedBikeUp = Vector3.up;
@@ -791,6 +813,10 @@ namespace ArcadeBP_Pro
                 {
                     float clampedAcceleration = Mathf.Abs(currentSpeed / Time.fixedDeltaTime);
                     targetAcceleration = Mathf.Clamp(targetAcceleration, -clampedAcceleration, clampedAcceleration);
+                }
+                if (isDoingStoppie)
+                {
+                    targetAcceleration *= bikeSettings.stoppieBrakeRate;
                 }
                 Vector3 accelerationDirection = Vector3.ProjectOnPlane(projectedBikeForward, groundNormal);
                 Vector3 accelerationForce = accelerationDirection * targetAcceleration;
@@ -1017,13 +1043,11 @@ namespace ArcadeBP_Pro
 
         #region Wheelie Animation
 
-        // Requires to unpress and press again to wheelie again
-        private bool requireWheelieReset = false;
         private void wheelieAnimation()
         {
             if (!(bikeInput.Wheelie > 0)) requireWheelieReset = false;
 
-            float fwdSpeed = localBikeVelocity.magnitude;
+            float fwdSpeed = localBikeVelocity.z;
             bool isSpeedSafe = fwdSpeed > bikeSettings.minWheelieSpeed && fwdSpeed < bikeSettings.maxWheelieSpeed;
 
             // If speed safe and not wheelie reset required and rear wheel is grounded and wheelie button is pressed, then do wheelie
@@ -1096,6 +1120,86 @@ namespace ArcadeBP_Pro
 
         #endregion
 
+        #region Stoppie Animation
+
+        private void stoppieAnimation()
+        {
+            if (bikeInput.Wheelie > 0) return; // Prevent stoppie if wheelie is being done
+
+            // Just if handbrake and stoppie button is pressed, then it will make stoppie input truthful
+            bool input = bikeInput.HandBrake > 0 && bikeInput.Stoppie > 0;
+
+            if (!input) requireStoppieReset = false;
+
+            float fwdSpeed = localBikeVelocity.z;
+            bool isSpeedSafe = fwdSpeed > bikeSettings.minStoppieSpeed;
+
+            // If speed safe and not stoppie reset required and front wheel is grounded and input is valid, then do stoppie
+            if (input && frontWheelIsGrounded && isSpeedSafe && !requireStoppieReset)
+            {
+                isDoingStoppie = true;
+            }
+
+            // If isDoingStoppie and speed is not safe, then require stoppie reset to prevent stoppie from happening again until player releases and presses the stoppie button again
+            if (isDoingStoppie && !isSpeedSafe)
+            {
+                requireStoppieReset = true;
+            }
+
+            // Just if front wheel is grounded, then isDoingStoppie can be false
+            if (rearWheelIsGrounded && (!isSpeedSafe || !input))
+            {
+                isDoingStoppie = false;
+            }
+
+            float surfaceAngle_rear = Vector3.Angle(groundNormal_rear, Vector3.up);
+            float surfaceAngle_front = Vector3.Angle(groundNormal_front, Vector3.up);
+            float surfaceAngle = Vector3.Angle(groundNormal, Vector3.up);
+            float acceptableAngleForStoppie = 20f;
+
+            bool snapStoppie = false;
+
+            if (surfaceAngle > acceptableAngleForStoppie || surfaceAngle_front > acceptableAngleForStoppie || surfaceAngle_rear > acceptableAngleForStoppie)
+            {
+                if (isDoingStoppie) { snapStoppie = true; }
+                isDoingStoppie = false;
+            }
+
+            if (isDoingStoppie)
+            {
+                if (input && isSpeedSafe)
+                {
+                    // smooth lerp rotate stoppieTransform by maxStoppieAngle in local space (local x axis)
+                    float targetAngle = bikeSettings.maxStoppieAngle;
+                    float currentAngle = bikeReferences.StoppieTransform.localRotation.eulerAngles.x;
+                    float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, Time.deltaTime * bikeSettings.stoppieAnimationSpeed * 20f);
+                    bikeReferences.StoppieTransform.localRotation = Quaternion.Euler(newAngle, 0, 0);
+                }
+                else
+                {
+                    // smooth lerp rotate stoppieTransform to zero rotation in local space (local x axis)
+                    float targetAngle = 0f;
+                    float currentAngle = bikeReferences.StoppieTransform.localRotation.eulerAngles.x;
+                    float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, Time.deltaTime * bikeSettings.stoppieAnimationSpeed * 20f);
+                    bikeReferences.StoppieTransform.localRotation = Quaternion.Euler(newAngle, 0, 0);
+                }
+
+            }
+            else
+            {
+                // smooth lerp rotate stoppieTransform to zero rotation in local space (local x axis)
+                float targetAngle = 0f;
+                float currentAngle = bikeReferences.StoppieTransform.localRotation.eulerAngles.x;
+                float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, Time.deltaTime * bikeSettings.stoppieAnimationSpeed * 20f);
+                if (snapStoppie)
+                {
+                    newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, Time.deltaTime * bikeSettings.alignRotatorSpeed_Ground * 20f);
+                }
+                bikeReferences.StoppieTransform.localRotation = Quaternion.Euler(newAngle, 0, 0);
+            }
+        }
+
+        #endregion
 
         #region Gear System
 
@@ -1312,7 +1416,7 @@ namespace ArcadeBP_Pro
             bikeReferences.BikeRb.linearVelocity -= currentVelocityInSurfaceNormal * factor;
         }
 
-        public void provideInput(float accelerate, float reverse, float handBrake, float steerLeft, float steerRight, float wheelie)
+        public void provideInput(float accelerate, float reverse, float handBrake, float steerLeft, float steerRight, float wheelie, float stoppie)
         {
             bikeInput.Accelerate = accelerate;
             bikeInput.Reverse = reverse;
@@ -1320,6 +1424,7 @@ namespace ArcadeBP_Pro
             bikeInput.SteeringLeft = steerLeft;
             bikeInput.SteeringRight = steerRight;
             bikeInput.Wheelie = wheelie;
+            bikeInput.Stoppie = stoppie;
         }
 
 

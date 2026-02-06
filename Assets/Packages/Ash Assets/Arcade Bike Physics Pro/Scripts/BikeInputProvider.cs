@@ -12,8 +12,9 @@ namespace ArcadeBP_Pro
         [SerializeField] InputActionReference steeringAction;
         [SerializeField] InputActionReference brakeAction;
         [SerializeField] InputActionReference wheelieAction;
+        [SerializeField] InputActionReference stoppieAction;
 
-        private float Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie;
+        private float Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie, Stoppie;
         private ArcadeBikeControllerPro arcadeBikeControllerPro;
 
         void Awake()
@@ -39,10 +40,11 @@ namespace ArcadeBP_Pro
 
             HandBrake = brakeAction.action.IsPressed() ? 1f : 0f;
             Wheelie = wheelieAction.action.IsPressed() ? 1f : 0f;
+            Stoppie = stoppieAction.action.IsPressed() ? 1f : 0f;
 
             // Note : You can also use your custom inputs above to provide inputs to the bike controller
             // provide inputs to the bike controller
-            arcadeBikeControllerPro.provideInput(Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie);
+            arcadeBikeControllerPro.provideInput(Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie, Stoppie);
         }
 
     }

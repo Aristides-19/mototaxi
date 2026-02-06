@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 9908630773440209}
   serializedVersion: 2
   m_LocalRotation: {x: -0.013089396, y: -0, z: 0, w: 0.99991435}
-  m_LocalPosition: {x: -1.1382623e-16, y: 0.17376155, z: 0.17967434}
+  m_LocalPosition: {x: -1.1382627e-16, y: 0.1737616, z: 0.17967482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -307,13 +307,13 @@ Transform:
   m_GameObject: {fileID: 471282834976897842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.49}
+  m_LocalPosition: {x: 0, y: -0.322, z: 0.756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8955826310089183655}
   - {fileID: 391286179128417999}
-  m_Father: {fileID: 6876437703330669305}
+  m_Father: {fileID: 7957516654053495694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &523788650079877213
 GameObject:
@@ -686,7 +686,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6876437703330669305}
+  - {fileID: 2120606251925321559}
   - {fileID: 8031730780911211984}
   - {fileID: 782461286924857083}
   m_Father: {fileID: 21846492989024705}
@@ -1386,6 +1386,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1507493802043954996}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!1 &1951613702523692132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2120606251925321559}
+  m_Layer: 0
+  m_Name: Stoppie Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2120606251925321559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951613702523692132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.322, z: 0.751}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7957516654053495694}
+  m_Father: {fileID: 5554151378568747140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026083766207576403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2054,38 @@ Transform:
   m_Children:
   - {fileID: 6266699336361303667}
   m_Father: {fileID: 3847132345163377241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3002930535772485148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7957516654053495694}
+  m_Layer: 0
+  m_Name: Wheelie Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7957516654053495694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002930535772485148}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5069995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6977573531150455713}
+  m_Father: {fileID: 2120606251925321559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3058697308882464609
 GameObject:
@@ -3644,38 +3708,6 @@ Transform:
   m_Children:
   - {fileID: 9173313795570539027}
   m_Father: {fileID: 1586991842878041056}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5037285976551924906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6876437703330669305}
-  m_Layer: 0
-  m_Name: Wheelie Transform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6876437703330669305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5037285976551924906}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.49}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6977573531150455713}
-  m_Father: {fileID: 5554151378568747140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5093712929313887767
 GameObject:
@@ -5745,7 +5777,6 @@ GameObject:
   - component: {fileID: 8491113365100700062}
   - component: {fileID: 8205986607301429990}
   - component: {fileID: 5887387842292585845}
-  - component: {fileID: 4610414184867250661}
   m_Layer: 0
   m_Name: FrontSteering
   m_TagString: Untagged
@@ -5826,27 +5857,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4610414184867250661
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7545636527311757003}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.81, z: 0.1}
-  m_Center: {x: -8.466208e-17, y: -0.2176262, z: 0.047660515}
 --- !u!1 &7720177071206323462
 GameObject:
   m_ObjectHideFlags: 0
@@ -6165,8 +6175,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8157847007443616212}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09188831, y: 0.359364, z: -0.035584, w: 0.92798054}
-  m_LocalPosition: {x: -9.197664, y: 3.083032, z: 1.1472744}
+  m_LocalRotation: {x: 0.09152187, y: 0.3687775, z: -0.03651611, w: 0.92428}
+  m_LocalPosition: {x: -9.272097, y: 3.083032, z: 1.2164901}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7040,9 +7050,11 @@ MonoBehaviour:
     SteeringLeft: 97
     SteeringRight: 100
     Wheelie: 48
+    Stoppie: 0
   bikeReferences:
     Rotator: {fileID: 5554151378568747140}
-    WheelieTransform: {fileID: 6876437703330669305}
+    WheelieTransform: {fileID: 7957516654053495694}
+    StoppieTransform: {fileID: 2120606251925321559}
     LeanTransform: {fileID: 6977573531150455713}
     FrontWheelParent: {fileID: 1586991842878041056}
     RearWheelParent: {fileID: 7653005281214487225}
@@ -7079,8 +7091,8 @@ MonoBehaviour:
     reverseMaxSpeed: 1.5
     acceleration: 8.5
     reverseAcceleration: 2
-    deceleration: 12
-    handBrakeDeceleration: 8
+    deceleration: 8
+    handBrakeDeceleration: 10
     maxTurnAngle: 35
     useLerpTurning: 1
     turnLerpSpeed: 3
@@ -7103,6 +7115,10 @@ MonoBehaviour:
     alignRotatorSpeed_Air: 5
     minWheelieSpeed: 2
     maxWheelieSpeed: 20
+    maxStoppieAngle: 30
+    stoppieAnimationSpeed: 4
+    minStoppieSpeed: 8
+    stoppieBrakeRate: 1.2
   bikeCurves:
     AccelerationCurve:
       serializedVersion: 2
@@ -7346,6 +7362,9 @@ MonoBehaviour:
   frontWheelIsGrounded: 0
   rearWheelIsGrounded: 0
   isDoingWheelie: 0
+  requireWheelieReset: 0
+  isDoingStoppie: 0
+  requireStoppieReset: 0
   canAccelerate: 1
   canTurn: 1
 --- !u!114 &4787404611810661704
@@ -7360,7 +7379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98a3f7a7f78da1468f0c2f60f101cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bikeController: {fileID: 4489940695865553839}
   cameraController: {fileID: 4438738763659191158}
   dummyBikePrefab: {fileID: 24566160793819467, guid: dd9fcd6364a674c40ad7457eb3dadd7d, type: 3}
   characterRagdollPrefab: {fileID: 5862566900047247827, guid: 45bfcc4bdea4c2f42ba1ffe71b58a1f9, type: 3}
@@ -7373,6 +7391,7 @@ MonoBehaviour:
   onBikeReEnabled:
     m_PersistentCalls:
       m_Calls: []
+  bikeController: {fileID: 4489940695865553839}
 --- !u!114 &8523729865026696651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7385,12 +7404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9148a99f2e8eab043b7e89385c58a976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arcadeBikeControllerPro: {fileID: 4489940695865553839}
   accelerateAction: {fileID: 0}
   brakeReverseAction: {fileID: 0}
   steeringAction: {fileID: 0}
   brakeAction: {fileID: 0}
   wheelieAction: {fileID: 0}
+  stoppieAction: {fileID: 0}
 --- !u!114 &5986475310613133354
 MonoBehaviour:
   m_ObjectHideFlags: 0
