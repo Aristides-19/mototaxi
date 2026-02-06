@@ -4,11 +4,9 @@ using UnityEngine.Events;
 
 namespace ArcadeBP_Pro
 {
+    [RequireComponent(typeof(ArcadeBikeControllerPro), typeof(Rigidbody))]
     public class RagdollActivator : MonoBehaviour
     {
-        [Tooltip("Reference to the ArcadeBikeControllerPro script.")]
-        public ArcadeBikeControllerPro bikeController;
-
         [Tooltip("Reference to the CameraController script.")]
         public CameraController cameraController;
 
@@ -40,9 +38,11 @@ namespace ArcadeBP_Pro
         public GameObject characterRagdollInstance { get; private set; }
         private Transform hipTransform;
         private Collider bikeCollider;
+        public ArcadeBikeControllerPro bikeController;
 
         void Start()
         {
+            bikeController = GetComponent<ArcadeBikeControllerPro>();
             bikeRigidbody = GetComponent<Rigidbody>();
             bikeCollider = bikeController.bikeReferences.collider;
 

@@ -3,10 +3,9 @@ using UnityEngine.InputSystem;
 
 namespace ArcadeBP_Pro
 {
+    [RequireComponent(typeof(ArcadeBikeControllerPro))]
     public class BikeInputProvider : MonoBehaviour
     {
-        public ArcadeBikeControllerPro arcadeBikeControllerPro;
-
         [Header("Player Actions")]
         [SerializeField] InputActionReference accelerateAction;
         [SerializeField] InputActionReference brakeReverseAction;
@@ -15,9 +14,11 @@ namespace ArcadeBP_Pro
         [SerializeField] InputActionReference wheelieAction;
 
         private float Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie;
+        private ArcadeBikeControllerPro arcadeBikeControllerPro;
 
         void Awake()
         {
+            arcadeBikeControllerPro = GetComponent<ArcadeBikeControllerPro>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
