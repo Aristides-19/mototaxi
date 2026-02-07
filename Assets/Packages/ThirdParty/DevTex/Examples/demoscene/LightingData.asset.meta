@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c15d42e4bb1da5740af980fde9226e4d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176107
+  packageName: 'DevTex: Prototyping Textures'
+  packageVersion: 1.0
+  assetPath: Assets/DevTex/Examples/demoscene/LightingData.asset
+  uploadId: 469896
