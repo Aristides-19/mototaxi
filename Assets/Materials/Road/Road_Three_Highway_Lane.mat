@@ -137,7 +137,7 @@ Material:
     - _GlossyReflections: 0
     - _InvertAlpha: 0
     - _LerpOffset: 0
-    - _Metallic: 0.25
+    - _Metallic: 0
     - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
