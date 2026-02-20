@@ -1114,7 +1114,7 @@ MonoBehaviour:
       heightRange: {x: 0, y: 0}
       removeOverlap: 0
       chance: 1
-  - _editorVisible: 0
+  - _editorVisible: 1
     category: OneWay
     spawnObjectName: Marks
     spawnObjects:
@@ -2049,7 +2049,7 @@ MonoBehaviour:
       direction: 0
       maxSpeed: 50
       mirror: 1
-  - _editorVisible: 0
+  - _editorVisible: 1
     category: OneWay
     trafficLanePresetName: 
     trafficLanes:
