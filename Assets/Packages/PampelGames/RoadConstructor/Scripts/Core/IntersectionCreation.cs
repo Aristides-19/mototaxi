@@ -826,10 +826,10 @@ namespace PampelGames.RoadConstructor
 
         /********************************************************************************************************************************/
 
-        public static List<Spline> CreateRailingSplines(IntersectionObject intersection)
+        public static List<RailingSplineData> CreateRailingSplines(IntersectionObject intersection)
         {
-            var railingSplines = new List<Spline>();
-            if (intersection.RoadConnections.Count < 2) return railingSplines;
+            var railingSplinesData = new List<RailingSplineData>();
+            if (intersection.RoadConnections.Count < 2) return railingSplinesData;
 
             var roadDescr = intersection.roadDescr;
             var settings = roadDescr.settings;
@@ -863,10 +863,10 @@ namespace PampelGames.RoadConstructor
                 };
 
                 TangentCalculation.CalculateTangents(spline, settings.smoothSlope, Constants.TangentLengthIntersection, true, centerPosition);
-                railingSplines.Add(spline);
+                railingSplinesData.Add(new RailingSplineData { spline = spline, side = RailingSide.Both });
             }
 
-            return railingSplines;
+            return railingSplinesData;
         }
     }
 }

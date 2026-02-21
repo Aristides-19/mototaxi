@@ -5,13 +5,14 @@
 // ----------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace PampelGames.RoadConstructor
 {
     public static class Enums
     {
 
-        
+
     }
 
     public enum EditorDisplay
@@ -20,7 +21,7 @@ namespace PampelGames.RoadConstructor
         RoadSet,
         Integrations
     }
-    
+
     public enum OverlapType
     {
         Intersection,
@@ -36,7 +37,7 @@ namespace PampelGames.RoadConstructor
         ElevatedOnly,
         RoadEnd,
     }
-    
+
     public enum TrafficLaneType
     {
         Car,
@@ -108,7 +109,7 @@ namespace PampelGames.RoadConstructor
         Backward,
         Random
     }
-    
+
     public enum BuilderRoadType
     {
         None,
@@ -116,7 +117,7 @@ namespace PampelGames.RoadConstructor
         Roundabout,
         Ramp
     }
-    
+
     public enum BuilderOtherType
     {
         None,
@@ -124,7 +125,7 @@ namespace PampelGames.RoadConstructor
         Move,
         Reverse,
     }
-    
+
     public enum RoundaboutDesign
     {
         Default,
@@ -143,18 +144,31 @@ namespace PampelGames.RoadConstructor
         Select,
         Move
     }
-    
+
+    public enum RailingSide
+    {
+        Both,
+        Left,
+        Right
+    }
+
     public enum DrawGizmos
     {
         None,
         Selected,
         Always
     }
-    
+
     public enum DrawGizmosColor
     {
         Object,
         Lane
     }
-    
+
+    public struct RailingSplineData
+    {
+        public Spline spline;
+        public RailingSide side;
+    }
+
 }

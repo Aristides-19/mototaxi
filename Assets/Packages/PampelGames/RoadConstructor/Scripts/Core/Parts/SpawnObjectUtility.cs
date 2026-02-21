@@ -429,14 +429,20 @@ namespace PampelGames.RoadConstructor
                     checkElevation = false;
 #endif
 
-            var railingSplines = sceneObject.CreateRailingSplines();
+            var railingSplinesData = sceneObject.CreateRailingSplines();
 
-            foreach (var spline in railingSplines)
+            foreach (var railingSplineData in railingSplinesData)
             {
+                var spline = railingSplineData.spline;
                 var length = spline.GetLength();
 
                 foreach (var spawnObject in spawnObjects)
                 {
+                    if (spawnObject.railingSide != RailingSide.Both && spawnObject.railingSide != railingSplineData.side)
+                    {
+                        continue;
+                    }
+
                     if(spawnObject.railingObjectType == ObjectTypeSelection.IntersectionOnly && sceneObject is RoadObject) continue;
                     if(spawnObject.railingObjectType == ObjectTypeSelection.RoadOnly && sceneObject is IntersectionObject) continue;
                     if (checkElevation && !sceneObject.elevated && spawnObject.railingElevation == Elevation.ElevatedOnly) continue;

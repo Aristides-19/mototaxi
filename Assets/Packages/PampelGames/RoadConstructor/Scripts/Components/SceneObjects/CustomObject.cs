@@ -79,9 +79,9 @@ namespace PampelGames.RoadConstructor
             CustomObjectCreation.CreateCustomObject(constructionObjects, roadDescr, constructionSplines, connectionPoints, elevated);
         }
 
-        public override List<Spline> CreateRailingSplines()
+        public override List<RailingSplineData> CreateRailingSplines()
         {
-            return new List<Spline>();
+            return new List<RailingSplineData>();
         }
     }
 }

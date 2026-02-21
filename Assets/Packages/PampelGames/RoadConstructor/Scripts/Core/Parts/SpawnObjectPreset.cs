@@ -54,6 +54,7 @@ namespace PampelGames.RoadConstructor
         public bool railingAutoSize = true;
         public ObjectTypeSelection railingObjectType = ObjectTypeSelection.Any;
         public Elevation railingElevation = Elevation.Any;
+        public RailingSide railingSide = RailingSide.Both;
         
         // Custom
         public SpacingType spacingType = SpacingType.WorldUnits;
