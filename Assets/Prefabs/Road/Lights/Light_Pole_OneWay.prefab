@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221379668039144988}
   m_Layer: 0
-  m_Name: Light_Pole_01
+  m_Name: Light_Pole_OneWay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
