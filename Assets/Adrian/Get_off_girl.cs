@@ -8,7 +8,7 @@ public class Get_off_girl : MonoBehaviour
 
     [Tooltip("Punto exacto donde aparecerá la chica al bajar")]
     public Transform getOffDestination;
-
+    public CountPasajeros pasajero;
     private void OnTriggerEnter( Collider other )
     {
         if (other.CompareTag("Player"))
@@ -22,6 +22,7 @@ public class Get_off_girl : MonoBehaviour
                 if (chica != null)
                 {
                     BajarChica(chica);
+                    
                 }
                 else
                 {
@@ -49,6 +50,7 @@ public class Get_off_girl : MonoBehaviour
         }
 
         Debug.Log("La chica ha bajado de la moto.");
+        pasajero.SumarPasajero();
     }
 
     private Transform BuscarHijoRecursivo( Transform parent, string name )

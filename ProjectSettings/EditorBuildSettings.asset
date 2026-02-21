@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ba0572f0faccb904c98599149faa9291
+  - enabled: 1
+    path: Assets/Scenes/GreyBoxing.unity
+    guid: f627a6ec0060eb642845b3289e705512
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 7aaaa2eac4e0b5c4399ef58c6189d7ad, type: 3}
