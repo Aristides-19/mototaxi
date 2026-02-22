@@ -50,11 +50,6 @@ public class CountPasajeros : MonoBehaviour
             ActualizarInterfaz();
         }
     }
-    //public void SumarPasajero() 
-    //{
-    //    pasajero++;
-    //    ActualizarInterfaz();
-    //}
 
     public void ActualizarInterfaz() 
     {
