@@ -2219,6 +2219,31 @@ MonoBehaviour:
       heightRange: {x: 0, y: 10}
       removeOverlap: 0
       chance: 0.3
+    - objectType: 0
+      obj: {fileID: 740112426788482278, guid: 1d16f3802fbd9ae488e8ddc41eea5b42, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 12.1
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 3.5
+      heightOffset: 0.7
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.15
   - _editorVisible: 0
     category: Four_Highway
     spawnObjectName: Patches & Manholes
@@ -2323,6 +2348,31 @@ MonoBehaviour:
       heightRange: {x: 0, y: 10}
       removeOverlap: 0
       chance: 0.35
+    - objectType: 0
+      obj: {fileID: 740112426788482278, guid: 1d16f3802fbd9ae488e8ddc41eea5b42, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 12.1
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 3.5
+      heightOffset: 0.7
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.1
   trafficLanePresets:
   - _editorVisible: 0
     category: One_OneWay
