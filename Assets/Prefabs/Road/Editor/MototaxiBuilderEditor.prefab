@@ -103,7 +103,7 @@ MonoBehaviour:
     detailResolution: 15
     smartReduce: 1
     addCollider: 2
-    addColliderLayer: 6
+    addColliderLayer: 8
     roadTag: Untagged
     lodList:
     - 0.5

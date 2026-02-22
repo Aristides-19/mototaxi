@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Copilot_Seat
+  - TrafficLight
   layers:
   - Default
   - TransparentFX
@@ -12,13 +13,13 @@ TagManager:
   - Ground
   - Water
   - UI
+  - 
+  - 
   - Road
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Traffic
+  - Buildings
+  - Obstacles
+  - Player
   - 
   - 
   - 
