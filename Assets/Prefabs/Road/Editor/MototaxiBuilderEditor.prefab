@@ -1,0 +1,257 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3456482323300271056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043329143448656757}
+  - component: {fileID: 1838804622308982535}
+  m_Layer: 0
+  m_Name: Terrain Storage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043329143448656757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456482323300271056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515042479137030968}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838804622308982535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456482323300271056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438ff3b586ebdfa42ab6afa1b68d0cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 0}
+  heights: 1
+  textures: 1
+  details: 1
+  trees: 1
+  _TerrainStorage: {fileID: 0}
+--- !u!1 &4970345940215687287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2448168329951701631}
+  - component: {fileID: 988237877702994570}
+  m_Layer: 0
+  m_Name: Road Constructor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2448168329951701631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970345940215687287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515042479137030968}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &988237877702994570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970345940215687287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c8ae06e046a054fbf0bad0b635c934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DefaultReferences: {fileID: 11400000, guid: d83e0dccd59fd804f8488fd641ce85d0, type: 2}
+  _RoadSet: {fileID: 11400000, guid: 5ab4a36bf6af5fb4d8291a73dc561ca3, type: 2}
+  componentSettings:
+    integrationActive: 1
+    integrationDetectOverlap: 1
+    resolution: 5
+    detailResolution: 15
+    smartReduce: 1
+    addCollider: 0
+    addColliderLayer: 0
+    roadTag: Untagged
+    lodList:
+    - 0.5
+    - 0.999
+    baseRoadHeight: 0.1
+    grid: {x: 0, y: 0, z: 0}
+    gridOffset: {x: 0, y: 0, z: 0}
+    snapDistance: 1
+    snapHeight: 2
+    snapAngleIntersection: 0
+    minAngleIntersection: 45
+    distanceRatioAngleCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1.5
+        value: 90
+        inSlope: -57.946426
+        outSlope: -36
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.2014072
+      - serializedVersion: 3
+        time: 4
+        value: 0
+        inSlope: -36
+        outSlope: -56.45047
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.19349162
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    splineLengthUV: 1
+    tangentLength: 0.5
+    intersectionDistance: 2
+    directConnection: 0
+    roadEnd: 0
+    roadLength: {x: 5, y: 10000}
+    minOverlapDistance: 1
+    maxCurvature: 110
+    groundLayers:
+      serializedVersion: 2
+      m_Bits: 1
+    heightRange: {x: -4, y: 12}
+    elevationStartHeight: 1
+    minOverlapHeight: 3
+    elevatedIntersections: 1
+    maxSlope: 30
+    smoothSlope: 0
+    undoStorageSize: 5
+    undoResetsTerrain: 1
+    demolishResetsTerrain: 1
+    terrainSettings: 0
+    terrain: {fileID: 0}
+    terrains: []
+    removeDetails: 1
+    removeTrees: 1
+    levelHeight: 1
+    slopeTextureIndex: 2
+    slopeTextureStrength: 0.75
+    slopeSmooth: 1
+    addTrafficComponent: 1
+    updateWaypoints: 1
+    waypointDistance: {x: 2, y: 4}
+    waypointGizmos: 2
+    waypointGizmosColor: 0
+    waypointGizmoSize: 1
+    waypointConnectionsOnly: 1
+  integrations: []
+  _editorDisplay: 0
+  _editorActivePartType: 3
+  roadPreviewLength: 25
+  roadPreviewSpawnObjects: 1
+  roadPreviewElevated: 0
+--- !u!1 &5162717614758322971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5515042479137030968}
+  - component: {fileID: 2840516274870313226}
+  m_Layer: 0
+  m_Name: MototaxiBuilderEditor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5515042479137030968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162717614758322971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2448168329951701631}
+  - {fileID: 1043329143448656757}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2840516274870313226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162717614758322971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09ae876402c948458ba9ba04cf7d238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadConstructor: {fileID: 988237877702994570}
+  pointerPrefab: {fileID: 2666244793942531227, guid: 5dbedf29bb86de443864441073327b77, type: 3}
+  pointerDemolishPrefab: {fileID: 2666244793942531227, guid: 7f5ec978d368f324cb55d1ecee0d937c, type: 3}
+  roundaboutDesign: 0
+  roundAboutRadius: 10
+  parallelRoad: 0
+  parallelDistance: 0
+  increaseHeight: 101
+  decreaseHeight: 113
+  increaseRadius: 116
+  decreaseRadius: 114
+  deltaSpeed: 50
+  fixTangent1: 304
+  fixTangent2: 306
+  detachRoad: 27
+  registerSceneObjects: 1
+  continuous: 1
+  activeMenu: 
+  deltaHeight: 0
+  lastTangent01: {x: 0, y: 0, z: 0}
+  lastTangent02: {x: 0, y: 0, z: 0}
+  position01Set: 0
+  builderRoadType: 1
+  builderOtherType: 0
+  moveStatus: 0
+  movePosition: {x: 30.17044, y: 0, z: -143.81195}
+  _editorSettingsVisible: 1
+  checkExistingMeshes: 1
