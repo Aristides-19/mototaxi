@@ -3,6 +3,7 @@ using UnityEngine;
 public class Pick_up_girl : MonoBehaviour
 {
     [Header("Referencias")]
+    public CountPasajeros hud;
     public GameObject dummyRosa;
 
     private void OnTriggerEnter( Collider other )
@@ -13,6 +14,7 @@ public class Pick_up_girl : MonoBehaviour
             if (asientoCopiloto != null)
             {
                 MontarCopiloto(asientoCopiloto);
+                hud.IniciarViaje();
             }
             else
             {
