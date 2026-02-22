@@ -102,8 +102,8 @@ MonoBehaviour:
     resolution: 5
     detailResolution: 15
     smartReduce: 1
-    addCollider: 0
-    addColliderLayer: 0
+    addCollider: 2
+    addColliderLayer: 6
     roadTag: Untagged
     lodList:
     - 0.5
@@ -149,7 +149,7 @@ MonoBehaviour:
     maxCurvature: 110
     groundLayers:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 8
     heightRange: {x: -4, y: 12}
     elevationStartHeight: 1
     minOverlapHeight: 3
