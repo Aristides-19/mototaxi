@@ -536,8 +536,8 @@ namespace PampelGames.RoadConstructor
 
             if (spawnObject.scale != Vector2.one)
             {
-                var scale = Random.Range(spawnObject.scale.x, spawnObject.scale.y);
-                spawnedObj.transform.localScale = new Vector3(scale, scale, scale);
+                var scaleFactor = Random.Range(spawnObject.scale.x, spawnObject.scale.y);
+                spawnedObj.transform.localScale = spawnedObj.transform.localScale * scaleFactor;
             }
 
             var spawnedObject = spawnedObj.AddComponent<SpawnedObject>();
