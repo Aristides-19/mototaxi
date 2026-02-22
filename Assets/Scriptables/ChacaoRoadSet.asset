@@ -1121,7 +1121,7 @@ MonoBehaviour:
       heightRange: {x: 0, y: 10}
       removeOverlap: 0
       chance: 1
-  - _editorVisible: 1
+  - _editorVisible: 0
     category: Three_BothWays
     spawnObjectName: Marks
     spawnObjects:
