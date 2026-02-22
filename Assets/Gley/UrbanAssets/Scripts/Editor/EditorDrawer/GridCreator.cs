@@ -31,7 +31,7 @@ namespace Gley.UrbanSystem.Editor
             int nrOfColumns;
             int nrOfRows;
             Bounds b = new Bounds();
-            foreach (Renderer r in MonoBehaviourUtilities.FindObjectsByType<Renderer>(FindObjectsSortMode.None))
+            foreach (MeshCollider r in MonoBehaviourUtilities.FindObjectsByType<MeshCollider>(FindObjectsSortMode.None))
             {
                 if ((roadLayers.value & (1 << r.gameObject.layer)) != 0)
                 {
