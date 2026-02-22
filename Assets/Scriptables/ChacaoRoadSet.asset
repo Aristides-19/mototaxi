@@ -146,14 +146,14 @@ MonoBehaviour:
     splineEdgesEditor:
     - laneType: 1
       material: {fileID: 2100000, guid: 5a2316819e0c5934bb64d231c94bd5b3, type: 2}
-      positionX: {x: 0, y: 2}
+      positionX: {x: 0, y: 4}
       uvX: {x: 0, y: 1}
       height: 0.25
       closedEnds: 1
       invert: 0
     - laneType: 0
       material: {fileID: 2100000, guid: 79f821e75909263448d8843f059cee1f, type: 2}
-      positionX: {x: 11, y: 13}
+      positionX: {x: 13, y: 15}
       uvX: {x: 0, y: 1}
       height: 0.25
       closedEnds: 1
@@ -327,42 +327,42 @@ MonoBehaviour:
     lanes:
     - laneType: 0
       material: {fileID: 2100000, guid: d1648133431f76e4fa4803fc2d7c1dd0, type: 2}
-      positionX: {x: 2, y: 11}
+      positionX: {x: 4, y: 13}
       uvX: {x: 0, y: 1}
       height: 0
       closedEnds: 1
       invert: 0
     - laneType: 0
       material: {fileID: 2100000, guid: d1648133431f76e4fa4803fc2d7c1dd0, type: 2}
-      positionX: {x: 13, y: 22}
+      positionX: {x: 15, y: 24}
       uvX: {x: 0, y: 1}
       height: 0
       closedEnds: 1
       invert: 0
     - laneType: 2
       material: {fileID: 2100000, guid: 11792bf45378db94489c8616e6f450df, type: 2}
-      positionX: {x: 0, y: 12}
+      positionX: {x: 0, y: 14}
       uvX: {x: 0, y: 1}
       height: 0
       closedEnds: 1
       invert: 0
     - laneType: 2
       material: {fileID: 2100000, guid: 11792bf45378db94489c8616e6f450df, type: 2}
-      positionX: {x: 12, y: 24}
+      positionX: {x: 14, y: 28}
       uvX: {x: 0, y: 1}
       height: 0
       closedEnds: 1
       invert: 0
     - laneType: 3
       material: {fileID: 2100000, guid: 0c1232d99667e82449c886a32e956d65, type: 2}
-      positionX: {x: 0, y: 24}
+      positionX: {x: 0, y: 28}
       uvX: {x: 0, y: 1}
       height: 0
       closedEnds: 1
       invert: 1
     - laneType: 3
       material: {fileID: 2100000, guid: 0c1232d99667e82449c886a32e956d65, type: 2}
-      positionX: {x: 5, y: 19}
+      positionX: {x: 6, y: 22}
       uvX: {x: 0, y: 1}
       height: 0.5
       closedEnds: 1
@@ -1674,6 +1674,655 @@ MonoBehaviour:
       heightRange: {x: 0, y: 10}
       removeOverlap: 1
       chance: 1
+  - _editorVisible: 0
+    category: One_OneWay
+    spawnObjectName: Patches & Manholes
+    spawnObjects:
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 7.3
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 2.85
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.4
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 11.9
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 4.625
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.45
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 23.3
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 2.75
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.15
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 31.1
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 4.7
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.1
+  - _editorVisible: 0
+    category: Two_OneWay
+    spawnObjectName: Patches & Manholes
+    spawnObjects:
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 7.3
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 3.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.4
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 11.9
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 6.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.45
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 23.3
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 3.5
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.15
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 31.1
+      position: 1
+      positionOffsetForward: 0
+      positionOffsetRight: 6.5
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.1
+  - _editorVisible: 0
+    category: Two_BothWays
+    spawnObjectName: Patches & Manholes
+    spawnObjects:
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 7.3
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 4.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.4
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 11.9
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 7.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.45
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 23.3
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 4.5
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.15
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 31.1
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 7.5
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.1
+  - _editorVisible: 0
+    category: Three_BothWays
+    spawnObjectName: Patches & Manholes
+    spawnObjects:
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 7.3
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 5.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.4
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 11.9
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 8.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.45
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 23.3
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 5.5
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.15
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 31.1
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 8.5
+      heightOffset: -0.014
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.1
+    - objectType: 0
+      obj: {fileID: 179508, guid: 889cda707d0abae419d9197ffe553288, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 40.1
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 11.5
+      heightOffset: 0
+      rotation: 0
+      alignToNormal: 1
+      scale: {x: 1, y: 1}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.1
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 16.2
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 11.5
+      heightOffset: -0.014
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.3
+  - _editorVisible: 0
+    category: Three_Highway
+    spawnObjectName: Patches & Manholes
+    spawnObjects:
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 7.3
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 3.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.4
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 11.9
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 6.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.45
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 16.2
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 9.5
+      heightOffset: -0.014
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.3
+  - _editorVisible: 0
+    category: Four_Highway
+    spawnObjectName: Patches & Manholes
+    spawnObjects:
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 7.3
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 3.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.4
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 11.9
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 6.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.45
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 16.2
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 9.5
+      heightOffset: -0.014
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.3
+    - objectType: 0
+      obj: {fileID: 117160, guid: 149b87ed152d42244ae7df5728873992, type: 3}
+      railingSpacing: 3
+      railingOffset: {x: 0, y: 0}
+      railingAutoSize: 1
+      railingObjectType: 0
+      railingElevation: 0
+      railingSide: 0
+      spacingType: 0
+      spacing: 21.1
+      position: 2
+      positionOffsetForward: 0
+      positionOffsetRight: 12.5
+      heightOffset: 0
+      rotation: 4
+      alignToNormal: 1
+      scale: {x: 0.29861116, y: 0.3888889}
+      requiresDirection: 0
+      requiresDirectionForward: 0
+      requiresDirectionLeft: 0
+      requiresDirectionRight: 0
+      elevation: 0
+      heightRange: {x: 0, y: 10}
+      removeOverlap: 0
+      chance: 0.35
   trafficLanePresets:
   - _editorVisible: 0
     category: One_OneWay
@@ -1746,19 +2395,19 @@ MonoBehaviour:
       maxSpeed: 5
       mirror: 1
     - trafficLaneType: 0
-      position: 14.5
+      position: 16.5
       width: 3
       direction: 0
       maxSpeed: 70
       mirror: 1
     - trafficLaneType: 0
-      position: 17.5
+      position: 19.5
       width: 3
       direction: 0
       maxSpeed: 70
       mirror: 1
     - trafficLaneType: 0
-      position: 20.5
+      position: 22.5
       width: 3
       direction: 0
       maxSpeed: 70
