@@ -836,7 +836,7 @@ MonoBehaviour:
       railingOffset: {x: 1.2, y: -0.1}
       railingAutoSize: 1
       railingObjectType: 0
-      railingElevation: 0
+      railingElevation: 2
       railingSide: 0
       spacingType: 1
       spacing: 1.5
@@ -915,7 +915,7 @@ MonoBehaviour:
       railingOffset: {x: 1.2, y: -0.1}
       railingAutoSize: 1
       railingObjectType: 0
-      railingElevation: 0
+      railingElevation: 2
       railingSide: 0
       spacingType: 1
       spacing: 1.5
