@@ -1,13 +1,16 @@
 ﻿<Solution>
   <Project Path="PG.Shared.Editor.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="PG.Shared.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="PG.RoadConstructor.csproj" />
   <Project Path="AYellowpaper.SerializedCollections.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Boxophobic.Utils.Editor.csproj" />
   <Project Path="AssetUsageDetector.Editor.csproj" />
-  <Project Path="PG.Shared.Construction.csproj" />
+  <Project Path="Boxophobic.Utils.Scripts.csproj" />
   <Project Path="AYellowpaper.SerializedCollections.Editor.csproj" />
-  <Project Path="PG.Shared.Construction.Editor.csproj" />
+  <Project Path="Boxophobic.SkyboxCubemapExtended.Editor.csproj" />
+  <Project Path="PG.Shared.Construction.csproj" />
   <Project Path="PG.RoadConstructor.Editor.csproj" />
+  <Project Path="PG.Shared.Construction.Editor.csproj" />
 </Solution>
