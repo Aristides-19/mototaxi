@@ -49,7 +49,7 @@ MonoBehaviour:
   textures: 1
   details: 1
   trees: 1
-  _TerrainStorage: {fileID: 0}
+  _TerrainStorage: {fileID: 11400000, guid: 7c9d7edc2b03f914181405bc7d561b3d, type: 2}
 --- !u!1 &4970345940215687287
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,17 +155,18 @@ MonoBehaviour:
     minOverlapHeight: 3
     elevatedIntersections: 1
     maxSlope: 30
-    smoothSlope: 0
+    smoothSlope: 1
     undoStorageSize: 5
     undoResetsTerrain: 1
     demolishResetsTerrain: 1
-    terrainSettings: 0
+    terrainSettings: 1
     terrain: {fileID: 0}
-    terrains: []
+    terrains:
+    - {fileID: 0}
     removeDetails: 1
     removeTrees: 1
     levelHeight: 1
-    slopeTextureIndex: 2
+    slopeTextureIndex: 1
     slopeTextureStrength: 0.75
     slopeSmooth: 1
     addTrafficComponent: 1
