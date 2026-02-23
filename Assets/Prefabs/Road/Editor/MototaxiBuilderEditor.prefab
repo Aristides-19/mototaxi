@@ -168,7 +168,7 @@ MonoBehaviour:
     levelHeight: 1
     slopeTextureIndex: 1
     slopeTextureStrength: 0.75
-    slopeSmooth: 1
+    slopeSmooth: 4
     addTrafficComponent: 1
     updateWaypoints: 1
     waypointDistance: {x: 2, y: 4}
