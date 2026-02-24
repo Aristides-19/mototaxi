@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +23,7 @@ namespace Gley.TrafficSystem.Editor
         private GUIStyle _priorityStyle;
         private Quaternion _towardsCamera;
         private bool _colorChanged;
+        public float drawDistance = 200;
 
 
         public delegate void WaypointClicked(WaypointSettings clickedWaypoint, bool leftClick);
@@ -431,16 +432,23 @@ namespace Gley.TrafficSystem.Editor
             if (_cameraMoved)
             {
                 _cameraMoved = false;
+                Vector3 cameraPosition = Vector3.zero;
+                if (SceneView.lastActiveSceneView != null)
+                {
+                    cameraPosition = SceneView.lastActiveSceneView.camera.transform.position;
+                }
+
                 for (int i = 0; i < selectedWaypoints.Length; i++)
                 {
-                    if (GleyUtilities.IsPointInView(selectedWaypoints[i].position))
+                    if (Vector3.Distance(cameraPosition, selectedWaypoints[i].position) < drawDistance)
                     {
-                        selectedWaypoints[i].inView = true;
+                        if (GleyUtilities.IsPointInView(selectedWaypoints[i].position))
+                        {
+                            selectedWaypoints[i].inView = true;
+                            continue;
+                        }
                     }
-                    else
-                    {
-                        selectedWaypoints[i].inView = false;
-                    }
+                    selectedWaypoints[i].inView = false;
                 }
                 if (Camera.current != null)
                 {

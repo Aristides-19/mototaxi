@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -39,6 +39,7 @@ namespace Gley.TrafficSystem.Editor
 
         public override void DrawInScene()
         {
+            _waypointDrawer.drawDistance = _editorSave.drawDistance;
             for (int i = 0; i < _vehicleTypes.Count; i++)
             {
                 if (_editorSave.AgentRoutes.Active[i])
@@ -54,6 +55,15 @@ namespace Gley.TrafficSystem.Editor
         protected override void ScrollPart(float width, float height)
         {
             _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, false, false, GUILayout.Width(width - SCROLL_SPACE), GUILayout.Height(height - _scrollAdjustment));
+
+            EditorGUI.BeginChangeCheck();
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 1000);
+            EditorGUI.EndChangeCheck();
+            if (GUI.changed)
+            {
+                SceneView.RepaintAll();
+            }
+
             EditorGUILayout.LabelField("Vehicle Routes: ");
             for (int i = 0; i < _vehicleTypes.Count; i++)
             {
