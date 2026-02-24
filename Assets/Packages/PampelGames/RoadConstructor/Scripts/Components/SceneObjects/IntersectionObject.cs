@@ -88,7 +88,7 @@ namespace PampelGames.RoadConstructor
             checkHeight = false;
         }
         
-        public override List<Spline> CreateRailingSplines()
+        public override List<RailingSplineData> CreateRailingSplines()
         {
             return IntersectionCreation.CreateRailingSplines(this);
         }

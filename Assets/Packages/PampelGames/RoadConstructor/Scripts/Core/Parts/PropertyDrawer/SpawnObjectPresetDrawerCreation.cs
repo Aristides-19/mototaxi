@@ -124,8 +124,11 @@ namespace PampelGames.RoadConstructor
             var railingElevation = new EnumField("Elevation");
             railingElevation.name = nameof(railingElevation);
             railingElevation.tooltip = "Allow spawning only above or below the elevation height.";
-            
-            
+
+            var railingSide = new EnumField("Side");
+            railingSide.name = nameof(railingSide);
+            railingSide.tooltip = "Which side to spawn the railings on (left, right, or both).";
+
             /********************************************************************************************************************************/
             // Custom
 
@@ -236,6 +239,7 @@ namespace PampelGames.RoadConstructor
             RailingWrapper.Add(railingAutoSize);
             RailingWrapper.Add(railingObjectType);
             RailingWrapper.Add(railingElevation);
+            RailingWrapper.Add(railingSide); // Added this line
             
             CustomWrapper.Add(spacingWrapper);
             CustomWrapper.Add(position);
@@ -311,6 +315,9 @@ namespace PampelGames.RoadConstructor
             
             EnumField railingElevation = RailingWrapper.Q<EnumField>(nameof(railingElevation));
             railingElevation.BindProperty(objectClassItemProperty.FindPropertyRelative(nameof(SpawnObject.railingElevation)));
+
+            EnumField railingSide = RailingWrapper.Q<EnumField>(nameof(railingSide)); // Added this line
+            railingSide.BindProperty(objectClassItemProperty.FindPropertyRelative(nameof(SpawnObject.railingSide))); // Added this line
 
 
             /********************************************************************************************************************************/

@@ -107,9 +107,9 @@ namespace PampelGames.RoadConstructor
         ///     Splines that are used for object spawn railings.
         ///     The perpendicular spline tangent should look towards the inside.
         /// </summary>
-        public virtual List<Spline> CreateRailingSplines()
+        public virtual List<RailingSplineData> CreateRailingSplines()
         {
-            return new List<Spline>();
+            return new List<RailingSplineData>();
         }
 
         /// <summary>

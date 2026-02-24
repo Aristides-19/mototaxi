@@ -262,16 +262,16 @@ namespace PampelGames.RoadConstructor
                 
         /********************************************************************************************************************************/
         
-        public static List<Spline> CreateRailingSplines(RoadObject road)
+        public static List<RailingSplineData> CreateRailingSplines(RoadObject road)
         {
-            var railingSplines = new List<Spline>();
+            var railingSplines = new List<RailingSplineData>();
             var splineLeft = new Spline(road.splineContainer.Spline);
             ConstructionSplineUtility.OffsetSplineParallel(splineLeft, -road.Width * 0.5f);
-            railingSplines.Add(splineLeft);
+            railingSplines.Add(new RailingSplineData { spline = splineLeft, side = RailingSide.Left });
             var splineRight = new Spline(road.splineContainer.Spline);
             ConstructionSplineUtility.OffsetSplineParallel(splineRight, road.Width * 0.5f);
             ConstructionSplineUtility.InvertSpline(splineRight);
-            railingSplines.Add(splineRight);
+            railingSplines.Add(new RailingSplineData { spline = splineRight, side = RailingSide.Right });
             return railingSplines;
         }
     }

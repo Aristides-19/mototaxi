@@ -29,22 +29,22 @@ namespace PampelGames.RoadConstructor
             var roadObjects = sceneData.roadObjects;
             var intersectionObjects = sceneData.intersectionObjects;
             var intersectionBounds = sceneData.intersectionBounds;
-            
+
             // Removing self-overlapping intersections from the replaced roads
             // This is relevant when a road gets extended, the other side may not spawn traffic lights at intersections.
             for (var i = 0; i < roads.Count; i++)
             {
                 var newOverlapIntersectionIndexes = new List<int>(overlapIntersectionIndexes);
                 var _intersections = roads[i].IntersectionConnections;
-                
+
                 for (int j = newOverlapIntersectionIndexes.Count - 1; j >= 0; j--)
                 {
                     var overlapIntersection = intersectionObjects[newOverlapIntersectionIndexes[j]];
                     var selfOverlap = _intersections.Any(intersection => intersection.iD == overlapIntersection.iD);
-                    if(!selfOverlap) continue;
+                    if (!selfOverlap) continue;
                     newOverlapIntersectionIndexes.RemoveAt(j);
                 }
-                
+
                 ProcessRoad(roads[i], newOverlapIntersectionIndexes);
                 ProcessSceneObject(roads[i]);
             }
@@ -54,7 +54,7 @@ namespace PampelGames.RoadConstructor
                 ProcessIntersection(intersections[i], overlapIntersectionIndexes);
                 ProcessSceneObject(intersections[i]);
             }
-            
+
 
             void ProcessRoad(RoadObject _road, List<int> _overlapIntersectionIndexes)
             {
@@ -70,26 +70,26 @@ namespace PampelGames.RoadConstructor
                             roadObjects, intersectionBounds, _overlapIntersectionIndexes, overlapRoadIndexes));
                     }
                 }
-                
+
                 for (var j = 0; j < spawns.Count; j++) spawns[j].transform.SetParent(_road.transform);
             }
-            
+
             void ProcessIntersection(IntersectionObject _intersection, List<int> _overlapIntersectionIndexes)
             {
                 var spawns = new List<SpawnedObject>();
-                
-                if(_intersection is CustomObject) return;
-               
+
+                if (_intersection is CustomObject) return;
+
                 spawns.AddRange(SpawnIntersectionApproach(spawnObjectPresets, _intersection,
                     roadObjects, intersectionBounds, _overlapIntersectionIndexes, overlapRoadIndexes));
-                
+
                 spawns.AddRange(SpawnIntersectionExit(spawnObjectPresets, _intersection,
                     roadObjects, intersectionBounds, _overlapIntersectionIndexes, overlapRoadIndexes));
-                    
+
                 for (var j = 0; j < spawns.Count; j++) spawns[j].transform.SetParent(_intersection.transform);
-                
+
             }
-            
+
             void ProcessSceneObject(SceneObject sceneObject)
             {
                 var spawns = new List<SpawnedObject>();
@@ -98,7 +98,7 @@ namespace PampelGames.RoadConstructor
 
                 for (var j = 0; j < spawns.Count; j++) spawns[j].transform.SetParent(sceneObject.transform);
             }
-            
+
 
             /********************************************************************************************************************************/
             // Destroying objects also from the overlapping indexes (undo gets lost for those)
@@ -110,7 +110,7 @@ namespace PampelGames.RoadConstructor
                 tempNewRoads.Add(roads[i]);
                 tempRoadIndexes.Add(i);
             }
-            
+
             var tempIntersectionIndexes = new List<int>();
             var tempIntersectionBounds = new List<Bounds>();
             for (var i = 0; i < intersections.Count; i++)
@@ -118,13 +118,13 @@ namespace PampelGames.RoadConstructor
                 tempIntersectionIndexes.Add(i);
                 tempIntersectionBounds.Add(intersections[i].meshRenderer.bounds);
             }
-            
+
             for (var i = 0; i < overlapRoadIndexes.Count; i++)
             {
                 var overlapRoad = roadObjects[overlapRoadIndexes[i]];
-            
+
                 var spawnedObjects = overlapRoad.GetSpawnedObjects().ToList();
-            
+
                 for (var j = spawnedObjects.Count - 1; j >= 0; j--)
                 {
                     var overlapObj = spawnedObjects[j];
@@ -140,12 +140,12 @@ namespace PampelGames.RoadConstructor
                     ObjectUtility.DestroyObject(overlapObj.gameObject);
                 }
             }
-            
+
             for (var i = 0; i < overlapIntersectionIndexes.Count; i++)
             {
                 var overlapIntersection = intersectionObjects[overlapIntersectionIndexes[i]];
                 var spawnedObjects = overlapIntersection.GetSpawnedObjects().ToList();
-            
+
                 for (var j = spawnedObjects.Count - 1; j >= 0; j--)
                 {
                     var overlapObj = spawnedObjects[j];
@@ -214,7 +214,7 @@ namespace PampelGames.RoadConstructor
 
                 if (spacing > length) spacing *= 0.5f; // Try to add at least one object.
 
-                var numberOfObjects = (int) (length / spacing);
+                var numberOfObjects = (int)(length / spacing);
                 var normalizedSpacing = 1f / (numberOfObjects + 1);
                 var evaluations = new List<float>();
 
@@ -223,21 +223,21 @@ namespace PampelGames.RoadConstructor
                 for (var i = 0; i < evaluations.Count; i++)
                 {
                     if (spawnObject.chance < Random.value) continue;
-                    
+
                     var t = evaluations[i];
                     var middleT = otherSide ? 1f - t : t;
-                    
+
                     middleSpline.Evaluate(middleT, out var position, out var tangent, out var upVector);
-                    
-                    if(spawnObject.position != SpawnObjectPosition.Middle)  // Using side spline, also the height!
+
+                    if (spawnObject.position != SpawnObjectPosition.Middle)  // Using side spline, also the height!
                     {
                         _spline.Evaluate(t, out position, out tangent, out var sideUpVector);
-                        if(otherSide) tangent *= -1f;
+                        if (otherSide) tangent *= -1f;
                     }
 
                     tangent = math.normalizesafe(tangent);
                     upVector = math.normalizesafe(upVector);
-                    
+
                     var checkElevation = true;
 #if UNITY_EDITOR
                     if (road.GetType() == typeof(RoadObject))
@@ -262,7 +262,7 @@ namespace PampelGames.RoadConstructor
                     spawnedObjects.Add(spawnedObject);
                 }
             }
-            
+
             return spawnedObjects;
         }
 
@@ -272,29 +272,29 @@ namespace PampelGames.RoadConstructor
         {
             var spawnedObjects = new List<SpawnedObject>();
 
-            if(!intersection.CanSpawnIntersectionObjects()) return spawnedObjects;
-            if(intersection.GetType() == typeof(IntersectionObject) && intersection.RoadConnections.Count < 3) return spawnedObjects;
+            if (!intersection.CanSpawnIntersectionObjects()) return spawnedObjects;
+            if (intersection.GetType() == typeof(IntersectionObject) && intersection.RoadConnections.Count < 3) return spawnedObjects;
 
             var roads = intersection.RoadConnections;
-            
+
             for (int i = 0; i < roads.Count; i++)
             {
                 var road = roads[i];
-                
+
                 var _spawnObjects = GetSpawnObjects(spawnObjectPresets, road.road);
 
                 for (var j = 0; j < _spawnObjects.Count; j++)
                 {
                     var spawnObject = _spawnObjects[j];
-                    
+
                     if (spawnObject.objectType != SpawnObjectType.IntersectionApproach) continue;
-                    
+
                     if (spawnObject.elevation == Elevation.ElevatedOnly && !road.elevated) continue;
                     if (spawnObject.elevation == Elevation.GroundOnly && road.elevated) continue;
 
                     var spline = road.splineContainer.Spline;
-                
-                    if(!intersection.CanSpawnIntersectionObjects()) continue;
+
+                    if (!intersection.CanSpawnIntersectionObjects()) continue;
 
                     var nearestIndex = ConstructionSplineUtility.GetNearestKnotIndex(spline, intersection.centerPosition);
                     var t = nearestIndex == 0 ? 0f : 1f;
@@ -310,7 +310,7 @@ namespace PampelGames.RoadConstructor
                     tangent = PGTrigonometryUtility.DirectionalTangentToPointXZ(intersection.centerPosition, position, tangent);
 
                     if (!CheckDirections(road, intersection, spawnObject, tangent)) continue;
-                
+
                     var spawns = new List<SpawnedObject>();
 
                     if (spawnObject.chance >= Random.value) spawns.Add(Spawn(road.roadDescr, spawnObject, position, tangent, upVector, false, true));
@@ -327,26 +327,26 @@ namespace PampelGames.RoadConstructor
                                 ObjectUtility.DestroyObject(spawns[k].gameObject);
                                 spawns.RemoveAt(k);
                             }
-                
+
                     spawnedObjects.AddRange(spawns);
                 }
-                
+
             }
-            
+
             return spawnedObjects;
         }
 
-        private static List<SpawnedObject> SpawnIntersectionExit(List<SpawnObjectPreset> spawnObjectPresets, 
+        private static List<SpawnedObject> SpawnIntersectionExit(List<SpawnObjectPreset> spawnObjectPresets,
             IntersectionObject intersection, List<RoadObject> roadObjects, List<Bounds> intersectionBounds,
             List<int> overlapIntersectionIndexes, List<int> overlapRoadIndexes)
         {
             var settings = intersection.roadDescr.settings;
 
             var spawnedObjects = new List<SpawnedObject>();
-            
+
             if (intersection.GetType() == typeof(IntersectionObject))
             {
-                if (intersection.RoadConnections.Count < 3) return spawnedObjects;    
+                if (intersection.RoadConnections.Count < 3) return spawnedObjects;
             }
 
             var roads = intersection.RoadConnections;
@@ -354,35 +354,35 @@ namespace PampelGames.RoadConstructor
             for (int i = 0; i < roads.Count; i++)
             {
                 var road = roads[i];
-                
+
                 var _spawnObjects = GetSpawnObjects(spawnObjectPresets, road.road);
 
                 for (var j = 0; j < _spawnObjects.Count; j++)
                 {
                     var spawnObject = _spawnObjects[j];
-                    
+
                     if (spawnObject.objectType != SpawnObjectType.IntersectionExit) continue;
-                    
+
                     var spline = road.splineContainer.Spline;
-                
-                    if(!intersection.CanSpawnIntersectionObjects()) continue;
-                
+
+                    if (!intersection.CanSpawnIntersectionObjects()) continue;
+
                     if (spawnObject.elevation == Elevation.ElevatedOnly && !intersection.elevated) continue;
                     if (spawnObject.elevation == Elevation.GroundOnly && intersection.elevated) continue;
 
                     var nearestIndex = ConstructionSplineUtility.GetNearestKnotIndex(spline, intersection.centerPosition);
-                
+
                     var knot = spline.Knots.ElementAt(nearestIndex);
                     var knotOther = spline.Knots.ElementAt(nearestIndex == 0 ? 1 : 0);
                     var position = knot.Position;
-                
+
                     if (!CheckElevation(road.roadDescr.settings, position, spawnObject.heightRange, spawnObject.elevation)) continue;
 
                     var tangent = knot.TangentOut;
                     tangent = PGTrigonometryUtility.DirectionalTangentToPointXZ(knotOther.Position, knot.Position, tangent) * (-1f);
                     tangent.y = 0f;
                     tangent = math.normalizesafe(tangent);
-                
+
                     var upVector = math.up();
 
                     position += tangent * settings.intersectionDistance * 0.5f;
@@ -403,44 +403,47 @@ namespace PampelGames.RoadConstructor
                                 ObjectUtility.DestroyObject(spawns[k].gameObject);
                                 spawns.RemoveAt(k);
                             }
-                    
+
                     spawnedObjects.AddRange(spawns);
                 }
             }
-            
+
             return spawnedObjects;
         }
 
-        
+
         private static List<SpawnedObject> SpawnRailing(List<SpawnObjectPreset> spawnObjectPresets, SceneObject sceneObject)
         {
             var spawnedObjects = new List<SpawnedObject>();
 
             var roadDescr = sceneObject.roadDescr;
             var spawnObjects = GetSpawnObjects(spawnObjectPresets, sceneObject.road, SpawnObjectType.Railing);
-            
+
             if (spawnObjects.Count == 0) return spawnedObjects;
 
             var checkElevation = true;
 
 #if UNITY_EDITOR
             if (sceneObject.GetType() == typeof(RoadObject))
-                if (((RoadObject) sceneObject)!.previewObject)
+                if (((RoadObject)sceneObject)!.previewObject)
                     checkElevation = false;
 #endif
 
-            var railingSplines = sceneObject.CreateRailingSplines();
+            var railingSplinesData = sceneObject.CreateRailingSplines();
 
-            foreach (var spline in railingSplines)
+            foreach (var railingSplineData in railingSplinesData)
             {
+                var spline = railingSplineData.spline;
                 var length = spline.GetLength();
 
                 foreach (var spawnObject in spawnObjects)
                 {
-                    if(spawnObject.railingObjectType == ObjectTypeSelection.IntersectionOnly && sceneObject is RoadObject) continue;
-                    if(spawnObject.railingObjectType == ObjectTypeSelection.RoadOnly && sceneObject is IntersectionObject) continue;
+
+                    if (spawnObject.railingObjectType == ObjectTypeSelection.IntersectionOnly && sceneObject is RoadObject) continue;
+                    if (spawnObject.railingObjectType == ObjectTypeSelection.RoadOnly && sceneObject is IntersectionObject) continue;
                     if (checkElevation && !sceneObject.elevated && spawnObject.railingElevation == Elevation.ElevatedOnly) continue;
                     if (checkElevation && sceneObject.elevated && spawnObject.railingElevation == Elevation.GroundOnly) continue;
+                    if (spawnObject.railingSide != RailingSide.Both && spawnObject.railingSide != railingSplineData.side) continue;
 
                     var spacing = spawnObject.railingSpacing;
                     spacing = math.max(spacing, 0.01f);
@@ -482,8 +485,8 @@ namespace PampelGames.RoadConstructor
 
             return spawnedObjects;
         }
-        
-        
+
+
         /********************************************************************************************************************************/
 
         private static List<SpawnObject> GetSpawnObjects(List<SpawnObjectPreset> spawnObjectPresets, Road road)
@@ -494,12 +497,12 @@ namespace PampelGames.RoadConstructor
             {
                 var categoryList = spawnObjectPresets[i].category.Split(',').ToList();
                 var categoryFound = categoryList.Any(t => road.category == t);
-                if(categoryFound) spawnObjects.AddRange(spawnObjectPresets[i].spawnObjects);
+                if (categoryFound) spawnObjects.AddRange(spawnObjectPresets[i].spawnObjects);
             }
 
             return spawnObjects;
         }
-        
+
         internal static List<SpawnObject> GetSpawnObjects(List<SpawnObjectPreset> spawnObjectPresets, Road road,
             SpawnObjectType spawnObjectType)
         {
@@ -516,13 +519,13 @@ namespace PampelGames.RoadConstructor
 
             var spawnRotation = GetSpawnRotation(spawnObject, tangent, upVector);
 
-            var spawnPosition = position + (float3) positionOffset;
+            var spawnPosition = position + (float3)positionOffset;
 
             GameObject spawnedObj = default; // Needed for build!
             if (!Application.isPlaying)
             {
 #if UNITY_EDITOR
-                spawnedObj = (GameObject) PrefabUtility.InstantiatePrefab(spawnObject.obj);
+                spawnedObj = (GameObject)PrefabUtility.InstantiatePrefab(spawnObject.obj);
                 spawnedObj.transform.SetPositionAndRotation(spawnPosition, spawnRotation);
 #endif
             }
@@ -533,8 +536,8 @@ namespace PampelGames.RoadConstructor
 
             if (spawnObject.scale != Vector2.one)
             {
-                var scale = Random.Range(spawnObject.scale.x, spawnObject.scale.y);
-                spawnedObj.transform.localScale = new Vector3(scale, scale, scale);
+                var scaleFactor = Random.Range(spawnObject.scale.x, spawnObject.scale.y);
+                spawnedObj.transform.localScale = spawnedObj.transform.localScale * scaleFactor;
             }
 
             var spawnedObject = spawnedObj.AddComponent<SpawnedObject>();
@@ -548,10 +551,10 @@ namespace PampelGames.RoadConstructor
             bool roadEnd)
         {
             var positionOffset = new Vector3();
-            
+
             if (alignToNormal)
             {
-                upVector = math.normalizesafe(upVector);    
+                upVector = math.normalizesafe(upVector);
             }
             else
             {
@@ -562,20 +565,20 @@ namespace PampelGames.RoadConstructor
             if (spawnObjectPosition != SpawnObjectPosition.Middle)
             {
                 var tangentPerp = PGTrigonometryUtility.RotateTangent90ClockwiseXZ(math.normalizesafe(new float3(tangent.x, 0f, tangent.z)));
-                
+
                 if (roadEnd)
                 {
                     positionOffset = tangentPerp * width * 0.5f;
-                    positionOffset -= (Vector3) tangentPerp * spawnPositionOffsetRight;
+                    positionOffset -= (Vector3)tangentPerp * spawnPositionOffsetRight;
                 }
                 else
                 {
-                    positionOffset = (Vector3) tangentPerp * (spawnPositionOffsetRight * -1f);   
+                    positionOffset = (Vector3)tangentPerp * (spawnPositionOffsetRight * -1f);
                 }
             }
 
             var heightOffset = upVector * (baseHeight + spawnHeightOffset);
-            positionOffset += (Vector3) heightOffset;
+            positionOffset += (Vector3)heightOffset;
 
             return positionOffset;
         }
@@ -617,7 +620,7 @@ namespace PampelGames.RoadConstructor
             var forward = !spawnObject.requiresDirectionForward;
             var left = !spawnObject.requiresDirectionLeft;
             var right = !spawnObject.requiresDirectionRight;
-            
+
             if (intersection.GetType() == typeof(RoundaboutObject))
             {
                 if (!spawnObject.requiresDirection) return true;
@@ -628,7 +631,7 @@ namespace PampelGames.RoadConstructor
             for (var i = 0; i < intersection.RoadConnections.Count; i++)
             {
                 var roadConnection = intersection.RoadConnections[i];
-                if(roadConnection.road.oneWay) continue;
+                if (roadConnection.road.oneWay) continue;
                 if (road == roadConnection) continue;
                 var splineConnect = roadConnection.splineContainer.Spline;
                 var nearestIndex = ConstructionSplineUtility.GetNearestKnotIndex(splineConnect, intersection.centerPosition);
@@ -691,7 +694,7 @@ namespace PampelGames.RoadConstructor
 
             var raycastOffset = Constants.RaycastOffset(settings);
 
-            var ray = new Ray((Vector3) position + raycastOffset, Vector3.down);
+            var ray = new Ray((Vector3)position + raycastOffset, Vector3.down);
             if (Physics.Raycast(ray, out var hit, float.MaxValue, settings.groundLayers))
             {
                 var elevationHeight = position.y - hit.point.y;

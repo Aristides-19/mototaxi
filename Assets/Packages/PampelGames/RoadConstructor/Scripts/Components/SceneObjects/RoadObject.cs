@@ -112,7 +112,7 @@ namespace PampelGames.RoadConstructor
             checkHeight = true;
         }
         
-        public override List<Spline> CreateRailingSplines()
+        public override List<RailingSplineData> CreateRailingSplines()
         {
             return RoadCreation.CreateRailingSplines(this);
         }

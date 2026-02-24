@@ -78,9 +78,9 @@ namespace PampelGames.RoadConstructor
             return TrafficUtility.CreateTrafficLanesRoundabout(this);
         }
         
-        public override List<Spline> CreateRailingSplines()
+        public override List<RailingSplineData> CreateRailingSplines()
         {
-            return new List<Spline>();
+            return new List<RailingSplineData>();
         }
 
         public override SerializedSceneObject Serialize()

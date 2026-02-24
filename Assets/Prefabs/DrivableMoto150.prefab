@@ -7086,7 +7086,7 @@ MonoBehaviour:
   bikeSettings:
     drivableLayerMask:
       serializedVersion: 2
-      m_Bits: 51
+      m_Bits: 264
     maxSpeed: 30.5
     reverseMaxSpeed: 1.5
     acceleration: 8.5
