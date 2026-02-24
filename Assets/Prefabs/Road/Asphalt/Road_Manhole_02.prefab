@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3306330}
   - component: {fileID: 2375704}
   - component: {fileID: 64871171862068168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Road_Manhole_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

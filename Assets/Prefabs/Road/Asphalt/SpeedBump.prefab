@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4089921972317333315}
   - component: {fileID: 6995566743315307624}
   - component: {fileID: 4032092235126057920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpeedBump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
