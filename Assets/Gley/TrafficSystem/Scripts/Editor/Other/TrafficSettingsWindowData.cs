@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using RoutesColors = Gley.UrbanSystem.Editor.RoutesColors;
 using SettingsWindowData = Gley.UrbanSystem.Editor.SettingsWindowData;
@@ -21,10 +21,15 @@ namespace Gley.TrafficSystem.Editor
         public bool showExitWaypoints = true;
         public bool showPedestrianWaypoints = true;
         public bool showDirectionWaypoints = true;
+        public int drawDistance;
 
 
         public override SettingsWindowData Initialize()
         {
+            if (drawDistance == default)
+            {
+                drawDistance = 200;
+            }
             if (nrOfLanes == default)
             {
                 nrOfLanes = 2;

@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,11 +59,20 @@ namespace Gley.TrafficSystem.Editor
             _editorSave.EditorColors.PriorityColor = EditorGUILayout.ColorField(_editorSave.EditorColors.PriorityColor);
             EditorGUILayout.EndHorizontal();
 
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 200);
+
             EditorGUI.EndChangeCheck();
             if (GUI.changed)
             {
                 SceneView.RepaintAll();
             }
+        }
+
+
+        public override void DrawInScene()
+        {
+            _trafficWaypointDrawer.drawDistance = _editorSave.drawDistance;
+            base.DrawInScene();
         }
 
 
@@ -108,7 +117,7 @@ namespace Gley.TrafficSystem.Editor
             base.ScrollPart(width, height);
         }
 
-       
+
 
 
         protected virtual void DeleteWaypoint(WaypointSettings waypoint)

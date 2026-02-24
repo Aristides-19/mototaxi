@@ -40,6 +40,7 @@ namespace Gley.TrafficSystem.Editor
 
         public override void DrawInScene()
         {
+            _waypointDrawer.drawDistance = _editorSave.drawDistance;
             if (_showPenaltyEditedWaypoints)
             {
                 _waypointDrawer.ShowPenaltyEditedWaypoints(_editorSave.EditorColors.WaypointColor);
@@ -65,6 +66,7 @@ namespace Gley.TrafficSystem.Editor
 
             EditorGUI.BeginChangeCheck();
             _showPenaltyEditedWaypoints = EditorGUILayout.Toggle("Show Edited Waypoints", _showPenaltyEditedWaypoints);
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 1000);
 
             if (EditorGUI.EndChangeCheck())
             {
