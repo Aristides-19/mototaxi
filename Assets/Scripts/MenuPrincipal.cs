@@ -3,13 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : MonoBehaviour
 {
-    // Cajas para arrastrar tus paneles desde el Inspector
     public GameObject panelMenuPrincipal;
     public GameObject panelComoJugar;
 
     public void EmpezarJuego()
     {
-        SceneManager.LoadScene("GreyBoxing");
+        SceneManager.LoadScene("Road");
     }
 
     public void SalirDelJuego()
