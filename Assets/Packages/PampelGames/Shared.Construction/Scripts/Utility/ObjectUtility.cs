@@ -33,14 +33,14 @@ namespace PampelGames.Shared.Construction
             meshRenderer.shadowCastingMode = shadowCastingMode;
             return obj;
         }
-        
+
         public static GameObject CreateUndoObj()
         {
             var obj = new GameObject();
             obj.name = PrefixUndo + obj.GetInstanceID();
             return obj;
         }
-        
+
         public static void DestroyObject(Object obj, bool destroyMeshes = true)
         {
             if (destroyMeshes && obj is GameObject gameObject)
@@ -48,18 +48,18 @@ namespace PampelGames.Shared.Construction
                 if (gameObject.TryGetComponent<SceneObjectBase>(out var sceneObject))
                 {
                     var meshFilters = sceneObject.meshFilterLODs;
-                    if(!meshFilters.Contains(sceneObject.meshFilter)) meshFilters.Add(sceneObject.meshFilter);
+                    if (!meshFilters.Contains(sceneObject.meshFilter)) meshFilters.Add(sceneObject.meshFilter);
                     for (int i = 0; i < meshFilters.Count; i++)
                     {
                         DestroyObject(meshFilters[i].sharedMesh);
                     }
                 }
             }
-            
+
             if (Application.isPlaying)
                 Object.Destroy(obj);
             else
-                Object.DestroyImmediate(obj);
+                Object.DestroyImmediate(obj, true);
         }
 
 #if UNITY_EDITOR
