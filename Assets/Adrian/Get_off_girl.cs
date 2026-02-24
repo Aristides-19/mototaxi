@@ -5,11 +5,15 @@ public class Get_off_girl : MonoBehaviour
     [Header("Configuración")]
     public string nombreManiqui = "Rose_Mannequin";
     public string nombreAsiento = "Copilot_Seat";
+    public FlechaPuntero flecha;
 
     [Tooltip("Punto exacto donde aparecerá la chica al bajar")]
     public Transform getOffDestination;
 
-    private void OnTriggerEnter( Collider other )
+    // CAMBIO 1: Reemplazamos CountPasajeros por el nuevo HUDManager
+    public CountPasajeros hudManager;
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -31,7 +35,7 @@ public class Get_off_girl : MonoBehaviour
         }
     }
 
-    void BajarChica( Transform chica )
+    void BajarChica(Transform chica)
     {
         chica.SetParent(null);
 
@@ -49,9 +53,24 @@ public class Get_off_girl : MonoBehaviour
         }
 
         Debug.Log("La chica ha bajado de la moto.");
+
+        if (flecha != null)
+        {
+            flecha.ApagarGPS();
+        }
+
+        // CAMBIO 2: Calculamos el dinero basado en el tiempo que tardaste
+        if (hudManager != null)
+        {
+            hudManager.FinalizarViaje();
+        }
+        else
+        {
+            Debug.LogWarning("Falta asignar el HUDManager en el inspector del Get_off_girl");
+        }
     }
 
-    private Transform BuscarHijoRecursivo( Transform parent, string name )
+    private Transform BuscarHijoRecursivo(Transform parent, string name)
     {
         foreach (Transform child in parent)
         {

@@ -3,7 +3,10 @@ using UnityEngine;
 public class Pick_up_girl : MonoBehaviour
 {
     [Header("Referencias")]
+    public CountPasajeros hud;
     public GameObject dummyRosa;
+    public FlechaPuntero flecha; // Para conectar nuestra flecha
+    public Transform destinoDelPasajero; // Para decirle a dónde apuntar
 
     private void OnTriggerEnter( Collider other )
     {
@@ -13,6 +16,11 @@ public class Pick_up_girl : MonoBehaviour
             if (asientoCopiloto != null)
             {
                 MontarCopiloto(asientoCopiloto);
+                hud.IniciarViaje();
+                if (flecha != null)
+                {
+                    flecha.ActivarGPS(destinoDelPasajero);
+                }
             }
             else
             {
