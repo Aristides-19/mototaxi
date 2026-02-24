@@ -99,14 +99,16 @@ MonoBehaviour:
   componentSettings:
     integrationActive: 1
     integrationDetectOverlap: 1
-    resolution: 5
-    detailResolution: 15
+    resolution: 1
+    detailResolution: 5
     smartReduce: 1
     addCollider: 2
     addColliderLayer: 8
     roadTag: Untagged
     lodList:
+    - 0.3
     - 0.5
+    - 0.75
     - 0.999
     baseRoadHeight: 0.1
     grid: {x: 0, y: 0, z: 0}
@@ -155,7 +157,7 @@ MonoBehaviour:
     minOverlapHeight: 3
     elevatedIntersections: 1
     maxSlope: 30
-    smoothSlope: 1
+    smoothSlope: 0
     undoStorageSize: 5
     undoResetsTerrain: 1
     demolishResetsTerrain: 1
@@ -170,7 +172,7 @@ MonoBehaviour:
     slopeTextureStrength: 0.75
     slopeSmooth: 4
     addTrafficComponent: 1
-    updateWaypoints: 1
+    updateWaypoints: 0
     waypointDistance: {x: 2, y: 4}
     waypointGizmos: 2
     waypointGizmosColor: 0
