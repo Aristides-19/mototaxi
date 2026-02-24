@@ -5,6 +5,7 @@ public class Get_off_girl : MonoBehaviour
     [Header("Configuración")]
     public string nombreManiqui = "Rose_Mannequin";
     public string nombreAsiento = "Copilot_Seat";
+    public FlechaPuntero flecha;
 
     [Tooltip("Punto exacto donde aparecerá la chica al bajar")]
     public Transform getOffDestination;
@@ -52,6 +53,11 @@ public class Get_off_girl : MonoBehaviour
         }
 
         Debug.Log("La chica ha bajado de la moto.");
+
+        if (flecha != null)
+        {
+            flecha.ApagarGPS();
+        }
 
         // CAMBIO 2: Calculamos el dinero basado en el tiempo que tardaste
         if (hudManager != null)
