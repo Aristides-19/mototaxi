@@ -6979,6 +6979,7 @@ GameObject:
   - component: {fileID: 4787404611810661704}
   - component: {fileID: 8523729865026696651}
   - component: {fileID: 5986475310613133354}
+  - component: {fileID: -4678622554814529706}
   m_Layer: 0
   m_Name: DrivableMoto150
   m_TagString: Untagged
@@ -7424,6 +7425,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedometerSc
   speedText: {fileID: 0}
   gearText: {fileID: 0}
+--- !u!114 &-4678622554814529706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8813148393069372615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a80d09f570d3c4f869fd7f265e3148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrafficParticipantImplSc
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0
