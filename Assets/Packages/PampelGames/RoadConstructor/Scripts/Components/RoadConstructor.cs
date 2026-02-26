@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using PampelGames.Shared.Construction;
 using Unity.Mathematics;
@@ -211,7 +212,7 @@ namespace PampelGames.RoadConstructor
         /********************************************************************************************************************************/
         // ConstructionBase
         /********************************************************************************************************************************/
-        
+
         public override bool TryGetSceneObject(Vector3 position, float searchRadius, out SceneObjectBase sceneObject)
         {
             sceneObject = null;
@@ -904,7 +905,7 @@ namespace PampelGames.RoadConstructor
                 roadObject.previewObject = true;
 
                 if (spawnObjects)
-                    SpawnObjectUtility.SpawnObjects(_RoadSet.spawnObjectPresets, new List<RoadObject> {roadObject}, new List<IntersectionObject>(),
+                    SpawnObjectUtility.SpawnObjects(_RoadSet.spawnObjectPresets, new List<RoadObject> { roadObject }, new List<IntersectionObject>(),
                         sceneData, new List<int>(), new List<int>());
 
                 roadObject.transform.SetParent(parent);
@@ -996,6 +997,47 @@ namespace PampelGames.RoadConstructor
             constructionObjects.removableRoads.AddRange(GetRoads());
             FinalizeConstruction(constructionObjects, false, false);
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        ///     Updates the terrain for all registered road and intersection objects, regardless of terrainSettings toggle.
+        /// </summary>
+        public IEnumerator UpdateTerrainForAllRoads()
+        {
+            if (componentSettings.terrains == null || componentSettings.terrains.Count == 0)
+            {
+                Debug.LogWarning("No terrains are assigned in the Road Constructor settings.");
+                yield break;
+            }
+
+            var combinedNewObjects = GetSceneObjects();
+
+            if (combinedNewObjects.Count == 0)
+            {
+                Debug.LogWarning("No roads or intersections are registered in the system.");
+                yield break;
+            }
+
+            var _terrainUpdateSettings = componentSettings.CreateTerrainUpdateSettings();
+
+            for (var i = 0; i < combinedNewObjects.Count; i++)
+            {
+                UnityEditor.EditorUtility.DisplayProgressBar("Updating Roads Terrain", "Processing " + combinedNewObjects[i].name, (float)i / combinedNewObjects.Count);
+
+                if (componentSettings.roadEnd == RoadEnd.None && combinedNewObjects[i].IsEndObject()) continue;
+
+                combinedNewObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
+
+                for (var j = 0; j < terrainSplines.Count; j++)
+                    for (var k = 0; k < componentSettings.terrains.Count; k++)
+                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], _terrainUpdateSettings, terrainSplines[j], terrainWidths[j], checkHeight);
+
+                yield return null;
+            }
+
+            UnityEditor.EditorUtility.ClearProgressBar();
+        }
+#endif
 
 
         /********************************************************************************************************************************/
@@ -1093,7 +1135,7 @@ namespace PampelGames.RoadConstructor
                 out var roadObjectClass, out var overlap01, out var overlap02);
 
             var constructionFails = RoadValidation.ValidateRoad(componentSettings, roadData, roadObjectClass.roadDescr,
-                roadObjectClass.spline, sceneData, new List<Overlap> {overlap01, overlap02});
+                roadObjectClass.spline, sceneData, new List<Overlap> { overlap01, overlap02 });
 
             var roadObject = RoadCreation.CreateRoad(roadDescr, roadObjectClass.spline, roadData.elevated, false, 1f);
 
@@ -1207,10 +1249,10 @@ namespace PampelGames.RoadConstructor
 
             var roadData = RoadCreationData.GenerateRoadData(roadSettings, sceneData, roadDescr, position01, position02, finalize,
                 out var roadObjectClass, out var overlap01, out var overlap02);
-            
+
             var constructionFails = RoadValidation.ValidateRoad(componentSettings, roadData, roadObjectClass.roadDescr,
-                roadObjectClass.spline, sceneData, new List<Overlap> {overlap01, overlap02});
-            
+                roadObjectClass.spline, sceneData, new List<Overlap> { overlap01, overlap02 });
+
             if ((!overlap01.exists || overlap01.overlapType != OverlapType.Road) &&
                 (!overlap02.exists || overlap02.overlapType != OverlapType.Road))
             {
@@ -1218,21 +1260,21 @@ namespace PampelGames.RoadConstructor
             }
             else
             {
-                if(overlap01.overlapType == OverlapType.Road)
+                if (overlap01.overlapType == OverlapType.Road)
                     constructionFails.AddRange(IntersectionValidation.ValidateNewRamp(roadDescr, overlap01));
-                if(overlap02.overlapType == OverlapType.Road)
-                    constructionFails.AddRange(IntersectionValidation.ValidateNewRamp(roadDescr, overlap02));    
+                if (overlap02.overlapType == OverlapType.Road)
+                    constructionFails.AddRange(IntersectionValidation.ValidateNewRamp(roadDescr, overlap02));
             }
 
             var roadObject = RoadCreation.CreateRoad(roadDescr, roadObjectClass.spline, roadData.elevated, true, 1f);
 
             constructionObjects.newRoads.Add(roadObject);
 
-            if(overlap01.overlapType != OverlapType.Road)
+            if (overlap01.overlapType != OverlapType.Road)
                 TryAddRoadToOverlap(constructionObjects, constructionFails, roadObject, roadData, overlap01, finalize);
-            if(overlap02.overlapType != OverlapType.Road)
+            if (overlap02.overlapType != OverlapType.Road)
                 TryAddRoadToOverlap(constructionObjects, constructionFails, roadObject, roadData, overlap02, finalize);
-            
+
             var result = new ConstructionResultRamp(roadData, overlap01.overlapType == OverlapType.Road ? overlap01 : overlap02)
             {
                 constructionFails = constructionFails
@@ -1246,8 +1288,8 @@ namespace PampelGames.RoadConstructor
 
             if (constructionFails.Count == 0)
             {
-                if(overlap01.overlapType == OverlapType.Road) RampCreation.CreateNewRamp(constructionObjects, overlap01, roadObject);
-                if(overlap02.overlapType == OverlapType.Road) RampCreation.CreateNewRamp(constructionObjects, overlap02, roadObject);
+                if (overlap01.overlapType == OverlapType.Road) RampCreation.CreateNewRamp(constructionObjects, overlap01, roadObject);
+                if (overlap02.overlapType == OverlapType.Road) RampCreation.CreateNewRamp(constructionObjects, overlap02, roadObject);
             }
 
             result.newRoads.AddRange(constructionObjects.newRoads);
@@ -1281,7 +1323,7 @@ namespace PampelGames.RoadConstructor
 
             RemoveRoadObjects(constructionObjects.removableRoads);
             RemoveIntersectionObjects(constructionObjects.removableIntersections);
-            
+
             if (updateTerrain && componentSettings.terrainSettings)
             {
                 var combinedNewObjects = constructionObjects.CombinedNewObjects;
@@ -1292,9 +1334,9 @@ namespace PampelGames.RoadConstructor
                     combinedNewObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
 
                     for (var j = 0; j < terrainSplines.Count; j++)
-                    for (var k = 0; k < componentSettings.terrains.Count; k++)
-                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
-                            checkHeight);
+                        for (var k = 0; k < componentSettings.terrains.Count; k++)
+                            TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
+                                checkHeight);
                 }
             }
 
@@ -1318,8 +1360,8 @@ namespace PampelGames.RoadConstructor
                 for (var i = 0; i < newSceneObjects.Count; i++) TrafficUtility.AddTrafficComponent(newSceneObjects[i]);
                 for (var i = 0; i < newSceneObjects.Count; i++) newSceneObjects[i].traffic.trafficLanes = newSceneObjects[i].CreateTrafficLanes();
                 for (var i = 0; i < newSceneObjects.Count; i++)
-                for (var j = 0; j < newSceneObjects[i].traffic.trafficLanes.Count; j++)
-                    newSceneObjects[i].traffic.splineContainer.AddSpline(newSceneObjects[i].traffic.trafficLanes[j].spline);
+                    for (var j = 0; j < newSceneObjects[i].traffic.trafficLanes.Count; j++)
+                        newSceneObjects[i].traffic.splineContainer.AddSpline(newSceneObjects[i].traffic.trafficLanes[j].spline);
 
                 if (componentSettings.updateWaypoints)
                 {
@@ -1637,9 +1679,9 @@ namespace PampelGames.RoadConstructor
                     combinedDemolishObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
 
                     for (var j = 0; j < terrainSplines.Count; j++)
-                    for (var k = 0; k < componentSettings.terrains.Count(); k++)
-                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
-                            checkHeight, true, undoTerrains[k]);
+                        for (var k = 0; k < componentSettings.terrains.Count(); k++)
+                            TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
+                                checkHeight, true, undoTerrains[k]);
                 }
             }
 
@@ -1666,9 +1708,9 @@ namespace PampelGames.RoadConstructor
                     combinedNewObjects[i].CreateTerrainUpdateSplines(out var terrainSplines, out var terrainWidths, out var checkHeight);
 
                     for (var j = 0; j < terrainSplines.Count; j++)
-                    for (var k = 0; k < componentSettings.terrains.Count(); k++)
-                        TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
-                            checkHeight, true, undoTerrains[k]);
+                        for (var k = 0; k < componentSettings.terrains.Count(); k++)
+                            TerrainUpdate.UpdateTerrainInternal(componentSettings.terrains[k], terrainUpdateSettings, terrainSplines[j], terrainWidths[j],
+                                checkHeight, true, undoTerrains[k]);
                 }
             }
             /********************************************************************************************************************************/

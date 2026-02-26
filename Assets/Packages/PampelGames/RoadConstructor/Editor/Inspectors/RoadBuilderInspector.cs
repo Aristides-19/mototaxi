@@ -5,7 +5,6 @@
 // ----------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using PampelGames.Shared;
 using PampelGames.Shared.Editor;
 using PampelGames.Shared.Utility;
@@ -13,6 +12,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Unity.EditorCoroutines.Editor;
 
 namespace PampelGames.RoadConstructor.Editor
 {
@@ -43,6 +43,7 @@ namespace PampelGames.RoadConstructor.Editor
         private Button exportButton;
         private Button cleanUpConnectionsButton;
         private Button recreateRoadSystemButton;
+        private Button recreateTerrainButton;
 
         private ToolbarToggle road;
         private ToolbarToggle roundabout;
@@ -52,7 +53,7 @@ namespace PampelGames.RoadConstructor.Editor
         private ToolbarToggle move;
         private ToolbarToggle reverseDirection;
         private Label constructionInfoLabel;
-        
+
         private FloatField deltaHeight;
         private EnumField roundAboutDesign;
         private FloatField roundAboutRadius;
@@ -117,6 +118,7 @@ namespace PampelGames.RoadConstructor.Editor
             updateLayersTagsButton = root.Q<Button>(nameof(updateLayersTagsButton));
             cleanUpConnectionsButton = root.Q<Button>(nameof(cleanUpConnectionsButton));
             recreateRoadSystemButton = root.Q<Button>(nameof(recreateRoadSystemButton));
+            recreateTerrainButton = root.Q<Button>(nameof(recreateTerrainButton));
 
             road = root.Q<ToolbarToggle>(nameof(road));
             roundabout = root.Q<ToolbarToggle>(nameof(roundabout));
@@ -160,7 +162,7 @@ namespace PampelGames.RoadConstructor.Editor
 
             roadConstructorSetup.PGSetupBindProperty(serializedObject, nameof(RoadBuilder._editorSettingsVisible));
             roadConstructor.PGSetupBindProperty(serializedObject, nameof(roadConstructor));
-            
+
             deltaHeight.PGSetupBindProperty(serializedObject, nameof(deltaHeight));
             roundAboutDesign.PGSetupBindProperty(serializedObject, nameof(RoadBuilder.roundaboutDesign));
             roundAboutRadius.PGSetupBindProperty(serializedObject, nameof(roundAboutRadius));
@@ -219,6 +221,7 @@ namespace PampelGames.RoadConstructor.Editor
             updateLayersTagsButton.tooltip = "Update layers and tags for registered objects based on the component settings.";
             cleanUpConnectionsButton.tooltip = "Clears missing connections, which can occur if roads are manually removed from the scene.";
             recreateRoadSystemButton.tooltip = "Recreates the entire road system based on the construction set and settings.";
+            recreateTerrainButton.tooltip = "Updates the terrain for all registered roads, even if Terrain Settings is disabled.";
 
             detachRoad.tooltip = "Resets the positions, which disconnects the displayed roads.\n" +
                                  "Also applicable with right-mouse click.";
@@ -242,7 +245,7 @@ namespace PampelGames.RoadConstructor.Editor
         private void FocusSceneView()
         {
             if (SceneView.sceneViews.Count <= 0) return;
-            var sceneView = (SceneView) SceneView.sceneViews[0];
+            var sceneView = (SceneView)SceneView.sceneViews[0];
             sceneView.Focus();
         }
 
@@ -300,9 +303,9 @@ namespace PampelGames.RoadConstructor.Editor
                 return;
             }
 
-            deltaTime = (float) EditorApplication.timeSinceStartup - lastTime;
+            deltaTime = (float)EditorApplication.timeSinceStartup - lastTime;
             deltaTime *= _roadBuilder.deltaSpeed;
-            lastTime = (float) EditorApplication.timeSinceStartup;
+            lastTime = (float)EditorApplication.timeSinceStartup;
 
             if (Event.current.type == EventType.KeyDown) // Can be used for road construction or move intersection
             {
@@ -318,13 +321,13 @@ namespace PampelGames.RoadConstructor.Editor
             }
 
             constructionInfoLabel.PGDisplayStyleFlex(false);
-            
+
             /********************************************************************************************************************************/
             // Move Intersection
             if (_roadBuilder.IsMoveActive())
             {
                 constructionInfoLabel.PGDisplayStyleFlex(true);
-                
+
                 _roadBuilder.SetPointerActive(true);
                 pointerPosition = _roadBuilder.SnapPointer(hit.point);
 
@@ -361,22 +364,22 @@ namespace PampelGames.RoadConstructor.Editor
 
                 return;
             }
-            
+
             /********************************************************************************************************************************/
             // Reverse
             if (_roadBuilder.IsReverseDirectionActive())
             {
                 constructionInfoLabel.PGDisplayStyleFlex(true);
-                
+
                 _roadBuilder.SetPointerActive(true);
                 pointerPosition = _roadBuilder.SnapPointer(hit.point);
-                
+
                 _roadBuilder.movePosition = pointerPosition;
 
                 if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
                 {
                     _roadBuilder.roadConstructor.ReverseRoadDirection(_roadBuilder.movePosition, _roadBuilder.GetDefaultRadius(), out var reversedRoad);
-                        
+
                     _roadBuilder.SetReverseDirectionActive(false);
                     _roadBuilder.SetPointerActive(false);
                     SetConstructionButtonsInactive();
@@ -444,14 +447,14 @@ namespace PampelGames.RoadConstructor.Editor
 
             if (result.isValid && result.GetType() == typeof(ConstructionResultRoad))
             {
-                var roadResult = (ConstructionResultRoad) result;
+                var roadResult = (ConstructionResultRoad)result;
                 if (!roadSettings.setTangent01) _roadBuilder.lastTangent01 = roadResult.roadData.tangent01;
                 if (!roadSettings.setTangent02) _roadBuilder.lastTangent02 = roadResult.roadData.tangent02;
             }
 
             if (result.isValid && result.GetType() == typeof(ConstructionResultRamp))
             {
-                var rampResult = (ConstructionResultRamp) result;
+                var rampResult = (ConstructionResultRamp)result;
                 if (!roadSettings.setTangent01) _roadBuilder.lastTangent01 = rampResult.roadData.tangent01;
                 if (!roadSettings.setTangent02) _roadBuilder.lastTangent02 = rampResult.roadData.tangent02;
             }
@@ -649,47 +652,55 @@ namespace PampelGames.RoadConstructor.Editor
                 }
             };
 
+            recreateTerrainButton.clicked += () =>
+            {
+                if (EditorUtility.DisplayDialog("Recreate Terrain", "Are you sure you want to recreate the terrain for all registered roads? This may take a moment depending on the number of roads.", "Ok", "Cancel"))
+                {
+                    EditorCoroutineUtility.StartCoroutineOwnerless(_roadBuilder.roadConstructor.UpdateTerrainForAllRoads());
+                }
+            };
+
             /********************************************************************************************************************************/
             // Builder Road Types
-            
+
             road.SetValueWithoutNotify(_roadBuilder.builderRoadType == BuilderRoadType.Road);
             road.RegisterValueChangedCallback(evt =>
             {
                 CallbackBuilderRoadType(road, BuilderRoadType.Road);
             });
-            
+
             roundabout.SetValueWithoutNotify(_roadBuilder.builderRoadType == BuilderRoadType.Roundabout);
             roundabout.RegisterValueChangedCallback(evt =>
             {
                 CallbackBuilderRoadType(roundabout, BuilderRoadType.Roundabout);
             });
-            
+
             ramp.SetValueWithoutNotify(_roadBuilder.builderRoadType == BuilderRoadType.Ramp);
             ramp.RegisterValueChangedCallback(evt =>
             {
                 CallbackBuilderRoadType(ramp, BuilderRoadType.Ramp);
             });
-            
+
             void CallbackBuilderRoadType(ToolbarToggle toolbarToggle, BuilderRoadType _builderRoadType)
             {
                 _roadBuilder.builderOtherType = BuilderOtherType.None;
                 _roadBuilder.builderRoadType = _builderRoadType;
                 EditorUtility.SetDirty(_roadBuilder);
-                
+
                 var _active = toolbarToggle.value;
                 SetConstructionButtonsInactive();
                 toolbarToggle.SetValueWithoutNotify(_active);
-                
+
                 constructionInfoLabel.PGDisplayStyleFlex(false);
-                
+
                 RoadTypeVisibility();
                 FocusSceneView();
             }
-            
-            
+
+
             /********************************************************************************************************************************/
             // Builder Other Types
-            
+
             undo.clicked += () =>
             {
                 if (_roadBuilder.roadConstructor) _roadBuilder.roadConstructor.UndoLastConstruction();
@@ -709,7 +720,7 @@ namespace PampelGames.RoadConstructor.Editor
                 var _active = move.value;
                 _roadBuilder.SetMoveActive(_active);
                 CallbackBuilderOtherType(move);
-                
+
                 constructionInfoLabel.PGDisplayStyleFlex(_roadBuilder.IsMoveActive());
                 constructionInfoLabel.text = "Select an intersection in the scene";
             });
@@ -720,35 +731,35 @@ namespace PampelGames.RoadConstructor.Editor
                 var _active = reverseDirection.value;
                 _roadBuilder.SetReverseDirectionActive(_active);
                 CallbackBuilderOtherType(reverseDirection);
-                
+
                 constructionInfoLabel.PGDisplayStyleFlex(_roadBuilder.IsReverseDirectionActive());
                 constructionInfoLabel.text = "Select a road in the scene to invert";
             });
-            
+
             void CallbackBuilderOtherType(ToolbarToggle toolbarToggle)
             {
                 var _active = toolbarToggle.value;
 
                 _roadBuilder.builderRoadType = BuilderRoadType.None;
                 EditorUtility.SetDirty(_roadBuilder);
-                
+
                 SetRoadButtonsInactive();
                 SetConstructionButtonsInactive();
                 toolbarToggle.SetValueWithoutNotify(_active);
-                
+
                 FocusSceneView();
             }
-            
+
             /********************************************************************************************************************************/
-            
+
             RoadTypeVisibility();
-            
+
             parallelRoad.RegisterValueChangedCallback(evt =>
             {
                 parallelDistance.PGDisplayStyleFlex(_roadBuilder.builderRoadType == BuilderRoadType.Road && _roadBuilder.parallelRoad);
             });
         }
-        
+
         private void RoadTypeVisibility()
         {
             roundAboutRadius.PGDisplayStyleFlex(_roadBuilder.builderRoadType == BuilderRoadType.Roundabout);
@@ -756,16 +767,16 @@ namespace PampelGames.RoadConstructor.Editor
             RoadTypeSettings.PGDisplayStyleFlex(_roadBuilder.builderRoadType == BuilderRoadType.Road);
             parallelDistance.PGDisplayStyleFlex(_roadBuilder.parallelRoad);
         }
-        
+
 
         private void SetConstructionButtonsInactive()
         {
-            if(_roadBuilder.builderRoadType != BuilderRoadType.Road) road.SetValueWithoutNotify(false);
-            if(_roadBuilder.builderRoadType != BuilderRoadType.Roundabout) roundabout.SetValueWithoutNotify(false);
-            if(_roadBuilder.builderRoadType != BuilderRoadType.Ramp) ramp.SetValueWithoutNotify(false);
-            if(_roadBuilder.builderOtherType != BuilderOtherType.Demolish) demolish.SetValueWithoutNotify(false);
-            if(_roadBuilder.builderOtherType != BuilderOtherType.Move) move.SetValueWithoutNotify(false);
-            if(_roadBuilder.builderOtherType != BuilderOtherType.Reverse) reverseDirection.SetValueWithoutNotify(false);
+            if (_roadBuilder.builderRoadType != BuilderRoadType.Road) road.SetValueWithoutNotify(false);
+            if (_roadBuilder.builderRoadType != BuilderRoadType.Roundabout) roundabout.SetValueWithoutNotify(false);
+            if (_roadBuilder.builderRoadType != BuilderRoadType.Ramp) ramp.SetValueWithoutNotify(false);
+            if (_roadBuilder.builderOtherType != BuilderOtherType.Demolish) demolish.SetValueWithoutNotify(false);
+            if (_roadBuilder.builderOtherType != BuilderOtherType.Move) move.SetValueWithoutNotify(false);
+            if (_roadBuilder.builderOtherType != BuilderOtherType.Reverse) reverseDirection.SetValueWithoutNotify(false);
 
             constructionInfoLabel.PGDisplayStyleFlex(false);
         }

@@ -49,6 +49,7 @@
                     <ui:Button text="Update Layers/Tags" parse-escape-sequences="true" display-tooltip-when-elided="true" name="updateLayersTagsButton" style="height: 17px;" />
                     <ui:Button text="Clean Up Connections" parse-escape-sequences="true" display-tooltip-when-elided="true" name="cleanUpConnectionsButton" style="height: 17px; margin-top: 6px;" />
                     <ui:Button text="Recreate Road System" parse-escape-sequences="true" display-tooltip-when-elided="true" name="recreateRoadSystemButton" style="height: 17px; margin-top: 6px;" />
+                    <ui:Button text="Recreate Terrain for Roads" parse-escape-sequences="true" display-tooltip-when-elided="true" name="recreateTerrainButton" style="height: 17px; margin-top: 6px;" />
                 </ui:Foldout>
                 <ui:Foldout text="Export Mesh" name="ExportFoldout" value="false" style="margin-bottom: 3px; margin-top: 3px;">
                     <ui:Toggle label="Check For Existing" name="checkExistingMeshes" />
