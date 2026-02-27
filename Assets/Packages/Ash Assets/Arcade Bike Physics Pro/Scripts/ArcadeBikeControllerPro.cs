@@ -481,7 +481,7 @@ namespace ArcadeBP_Pro
 
         private void FixedUpdate()
         {
-            localBikeVelocity = bikeReferences.Rotator.InverseTransformDirection(bikeReferences.BikeRb.linearVelocity);
+            SetLocalBikeVelocity(bikeReferences.Rotator.InverseTransformDirection(bikeReferences.BikeRb.linearVelocity));
 
             AddGravity();
 
@@ -496,6 +496,24 @@ namespace ArcadeBP_Pro
 
             UpdateGearShift();
 
+        }
+
+        #endregion
+
+        #region Variable Events
+        public static event Action<Vector3> OnLocalVelocityChange;
+        public static event Action<int> OnCurrentGearChange;
+
+        private void SetCurrentGear(int gear)
+        {
+            currentGear = gear;
+            OnCurrentGearChange?.Invoke(gear);
+        }
+
+        private void SetLocalBikeVelocity(Vector3 velocity)
+        {
+            localBikeVelocity = velocity;
+            OnLocalVelocityChange?.Invoke(velocity);
         }
 
         #endregion
@@ -1211,7 +1229,7 @@ namespace ArcadeBP_Pro
             {
                 if (bikeSpeed > gearSpeeds[i])
                 {
-                    currentGear = i + 1;
+                    SetCurrentGear(i + 1);
                 }
                 else break;
             }

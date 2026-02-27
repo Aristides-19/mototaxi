@@ -7215,7 +7215,7 @@ MonoBehaviour:
     alignRotatorSpeed_Ground: 15
     alignRotatorSpeed_Air: 5
     minWheelieSpeed: 2
-    maxWheelieSpeed: 20
+    maxWheelieSpeed: 28
     maxStoppieAngle: 30
     stoppieAnimationSpeed: 4
     minStoppieSpeed: 8

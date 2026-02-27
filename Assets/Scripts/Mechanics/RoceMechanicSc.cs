@@ -31,7 +31,6 @@ namespace Mototaxi.Mechanics
                 // Just register a roce if the raycast hits the traffic collider and the player is moving fast enough
                 if (hit.collider == other && !collidedTraffic.Contains(other) && playerRigidbody.linearVelocity.magnitude > GameData.RoceSettings.MinVelocity)
                 {
-                    Debug.DrawRay(transform.position, direction, Color.red);
                     collidedTraffic.Add(other);
                     ScoreManagerSc.AddScore(GameData.RoceSettings.ScoreMultiplier / Mathf.Max(hit.distance, 0.1f));
                 }
