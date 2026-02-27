@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mototaxi.Core
 {
-    [CreateAssetMenu(fileName = "GameSettings", menuName = "Mototaxi/GameSettings", order = 0)]
+    [CreateAssetMenu(fileName = "GameData", menuName = "Mototaxi/GameData", order = 0)]
     public class GameDataSc : ScriptableObject
     {
         public LayerMask TrafficLayer = 1 << 9;

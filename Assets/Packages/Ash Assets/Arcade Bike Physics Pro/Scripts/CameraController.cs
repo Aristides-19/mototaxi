@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using Mototaxi.Player;
 
 namespace ArcadeBP_Pro
 {
@@ -24,7 +25,7 @@ namespace ArcadeBP_Pro
         public float shakeFrequency = 2.0f;
 
         [Header("Controls")]
-        public InputActionReference switchCameraAction;
+        public InputActionsSc input;
 
         [Header("Field of View")]
         public float minFOV = 60f;
@@ -96,7 +97,7 @@ namespace ArcadeBP_Pro
 
         private void HandleInput()
         {
-            if (switchCameraAction.action.WasPressedThisFrame())
+            if (input.switchCameraAction.action.WasPressedThisFrame())
             {
                 SwitchCamera();
             }
