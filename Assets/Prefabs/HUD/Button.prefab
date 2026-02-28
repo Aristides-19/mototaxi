@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jugar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 66184f0fbbf99224f8b0f8e965e51b88, type: 2}
+  m_sharedMaterial: {fileID: 1256491745428130056, guid: 66184f0fbbf99224f8b0f8e965e51b88, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4950576205626799432}
   - component: {fileID: 5299407365571700615}
   m_Layer: 5
-  m_Name: UI_Boton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ RectTransform:
   m_GameObject: {fileID: 4383124634362600865}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1336.3127}
-  m_LocalScale: {x: 0.9175, y: 0.9175, z: 0.9175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6834799403507155163}
@@ -235,11 +235,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.21568629, g: 0.23529413, b: 0.33333334, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.7553123, b: 0.17295581, a: 1}
-    m_PressedColor: {r: 0.20784315, g: 0.23137257, b: 0.31764707, a: 1}
-    m_SelectedColor: {r: 0.20784315, g: 0.23137257, b: 0.31764707, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.78431374}
+    m_HighlightedColor: {r: 0.99607843, g: 0.8039216, b: 0.16470589, a: 1}
+    m_PressedColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.78431374}
+    m_SelectedColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.78431374}
+    m_DisabledColor: {r: 0.10980393, g: 0.14901961, b: 0.18823531, a: 0.78431374}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.05
   m_SpriteState:
