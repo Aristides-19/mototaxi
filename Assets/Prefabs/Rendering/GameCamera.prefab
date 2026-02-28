@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5972403261061765376}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07752959, y: 0.000000012307375, z: -9.570665e-10, w: 0.9969901}
+  m_LocalRotation: {x: 0.07752822, y: 0, z: 0, w: 0.99699014}
   m_LocalPosition: {x: 222.85655, y: 7.9000063, z: 74.37102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 8.893, y: -0.02, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.893, y: 0, z: 0}
 --- !u!20 &177040833255456868
 Camera:
   m_ObjectHideFlags: 0
@@ -184,11 +184,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Rendering.LayerCullingSc
   gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
-  GroundDistance: 200
-  MountainDistance: 2000
-  RoadDistance: 200
-  TrafficDistance: 200
-  BuildingsDistance: 200
-  ObstaclesDistance: 100
+  GroundDistance: 150
+  MountainDistance: 1500
+  RoadDistance: 150
+  TrafficDistance: 150
+  BuildingsDistance: 150
+  ObstaclesDistance: 150
   PlayerDistance: 200
-  LayerDefaultDistance: 200
+  LayerDefaultDistance: 150
