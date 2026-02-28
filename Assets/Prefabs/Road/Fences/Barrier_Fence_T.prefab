@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4646394721296835720}
   - component: {fileID: 2662114060399484582}
   - component: {fileID: 322971403356218424}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BarrierFence_T2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4658209016039886621}
   - component: {fileID: 1830944655580321876}
   - component: {fileID: 2927335045990993246}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BarrierFence_T1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

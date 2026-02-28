@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6599449206244667124}
   - component: {fileID: 6264146751303270289}
   - component: {fileID: 8653753857215400817}
+  - component: {fileID: 7923684745540065840}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: MainCamera
@@ -67,7 +68,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 200
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -170,3 +171,24 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &7923684745540065840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972403261061765376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6f2550018047346b6ec0061abb3185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Rendering.LayerCullingSc
+  gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
+  GroundDistance: 200
+  MountainDistance: 2000
+  RoadDistance: 200
+  TrafficDistance: 200
+  BuildingsDistance: 200
+  ObstaclesDistance: 100
+  PlayerDistance: 200
+  LayerDefaultDistance: 200
