@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7773920385327052105}
   - component: {fileID: 2216327959616670920}
   - component: {fileID: 2103605723819393232}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crossing_Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}

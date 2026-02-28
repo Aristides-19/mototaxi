@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1225297511855151917}
   - component: {fileID: 6902778311892554294}
   - component: {fileID: 7618111537403382137}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Road_Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
