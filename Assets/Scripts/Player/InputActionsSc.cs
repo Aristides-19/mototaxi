@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Mototaxi.Player
 {
-    [CreateAssetMenu(fileName = "InputActions", menuName = "Mototaxi/Player/InputActions", order = 1)]
+    [CreateAssetMenu(fileName = "InputActions", menuName = "Mototaxi/Player/InputActions", order = 0)]
     public class InputActionsSc : ScriptableObject
     {
         public InputActionReference accelerateAction;
