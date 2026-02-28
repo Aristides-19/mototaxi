@@ -3,10 +3,16 @@ using UnityEngine;
 
 namespace Mototaxi.Core
 {
-    [CreateAssetMenu(fileName = "GameData", menuName = "Mototaxi/GameData", order = 0)]
+    [CreateAssetMenu(fileName = "GameData", menuName = "Mototaxi/Core/GameData", order = 0)]
     public class GameDataSc : ScriptableObject
     {
+        public LayerMask GroundLayer = 1 << 3;
+        public LayerMask MountainLayer = 1 << 7;
+        public LayerMask RoadLayer = 1 << 8;
         public LayerMask TrafficLayer = 1 << 9;
+        public LayerMask BuildingsLayer = 1 << 10;
+        public LayerMask ObstaclesLayer = 1 << 11;
+        public LayerMask PlayerLayer = 1 << 12;
 
         public RoceData RoceSettings = new();
     }
