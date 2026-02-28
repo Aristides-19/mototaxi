@@ -14,6 +14,8 @@ namespace Mototaxi.HUD
             {
                 Debug.LogError("Score TextMeshProUGUI reference is missing in ScoreSc.");
             }
+
+            UpdateScore(Core.ScoreManagerSc.CurrentScore);
         }
         private void OnEnable()
         {
@@ -27,7 +29,7 @@ namespace Mototaxi.HUD
 
         private void UpdateScore(float score)
         {
-            scoreText.text = "Bs. " + MathF.Round(score, 2).ToString();
+            scoreText.text = $"Bs. <size=+20>{MathF.Round(score, 2)}</size>";
         }
     }
 }

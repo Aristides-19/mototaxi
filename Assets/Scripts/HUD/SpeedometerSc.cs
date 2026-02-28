@@ -35,12 +35,12 @@ namespace Mototaxi.HUD
 
         private void UpdateGearText(int gear)
         {
-            gearText.text = "Cambio: " + gear.ToString();
+            gearText.text = $"Cambio <size=+20>{gear}</size>";
         }
 
         private void UpdateSpeedText(Vector3 speed)
         {
-            speedText.text = Mathf.RoundToInt(speed.magnitude * 3.6f).ToString() + " km/h";
+            speedText.text = $"<size=+20>{Mathf.RoundToInt(speed.magnitude * 3.6f)}</size> km/h";
         }
     }
 }
