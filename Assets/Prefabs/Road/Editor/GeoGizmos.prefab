@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5897345864571994016}
-  - component: {fileID: 4530021960512327370}
+  - component: {fileID: 8807974591156244761}
   m_Layer: 0
   m_Name: GeoGizmos
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4530021960512327370
+--- !u!114 &8807974591156244761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5d8bd2daf8a8f46beb48c41621876c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AYellowpaper.SerializedCollections.GeoJsonToGizmosSc
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Road.GeoJsonToGizmosSc
   geoJsonFile: {fileID: 4900000, guid: 7666b3b73010e8a41a13382397484042, type: 3}
   showNodes: 1
   pathColor: {r: 1, g: 0, b: 0, a: 1}
