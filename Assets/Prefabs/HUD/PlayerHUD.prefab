@@ -153,6 +153,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 711459151389731062, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8664028170207487569, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
     - target: {fileID: 2461314215743936606, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
       propertyPath: m_Name
       value: Speedometer
@@ -281,6 +285,14 @@ PrefabInstance:
     - target: {fileID: 711459151389731062, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
       propertyPath: m_fontStyle
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 711459151389731062, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8664028170207487569, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
+    - target: {fileID: 711459151389731062, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2461314215743936606, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
       propertyPath: m_Name
@@ -435,6 +447,10 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 711459151389731062, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8664028170207487569, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
     - target: {fileID: 2461314215743936606, guid: 70849a8fc15c51d47a1fe22ee7f89573, type: 3}
       propertyPath: m_Name
       value: Gear
