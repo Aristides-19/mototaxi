@@ -6,18 +6,22 @@ namespace Mototaxi.Core
     {
         public static float CurrentScore { get; private set; } = 0f;
 
-        public static event Action<float> OnScoreChanged;
+        /// <summary>
+        /// Event triggered when the score changes. Provides the new score and the change amount.
+        /// </summary>
+        public static event Action<float, float> OnScoreChanged;
 
-        public static void AddScore(float score)
+        public static void AddScore(float change)
         {
-            CurrentScore += score;
-            OnScoreChanged?.Invoke(CurrentScore);
+            CurrentScore += change;
+            OnScoreChanged?.Invoke(CurrentScore, change);
         }
 
         public static void ResetScore()
         {
+            float lastScore = CurrentScore;
             CurrentScore = 0f;
-            OnScoreChanged?.Invoke(CurrentScore);
+            OnScoreChanged?.Invoke(CurrentScore, -lastScore);
         }
     }
 }
