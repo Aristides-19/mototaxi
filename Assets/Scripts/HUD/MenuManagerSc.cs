@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mototaxi.Core;
-using Mototaxi.HUD;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

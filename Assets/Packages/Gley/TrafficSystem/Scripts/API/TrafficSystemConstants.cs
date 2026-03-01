@@ -15,10 +15,10 @@ namespace Gley.TrafficSystem
 
         public const string TrafficHolderName = "TrafficHolder";
         public const string layerSetupData = "LayerSetupData";
-        public const string layerPath = "Assets/Gley/TrafficSystem/Resources/LayerSetupData.asset";
+        public const string layerPath = "Assets/Packages/Gley/TrafficSystem/Resources/LayerSetupData.asset";
         public const string trafficNamespaceEditor = "Gley.TrafficSystem.Editor";
         public const string trafficNamespace = "Gley.TrafficSystem";
-        public const string windowSettingsPath = "Assets/Gley/TrafficSystem/EditorSave/SettingsWindowData.asset";
+        public const string windowSettingsPath = "Assets/Packages/Gley/TrafficSystem/EditorSave/SettingsWindowData.asset";
         public const string agentTypesPath = "/Gley/TrafficSystem/Scripts/API/Data";
         public const string DebugOptionsPath = "EditorSave";
         public const string DebugOptionsName = "DebugOptions";

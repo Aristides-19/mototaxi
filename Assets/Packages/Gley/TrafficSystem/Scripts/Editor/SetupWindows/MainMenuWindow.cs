@@ -80,8 +80,8 @@ namespace Gley.TrafficSystem.Editor
 
                         if (fileContent.Contains("GLEY_TRAFFIC_SYSTEM"))
                         {
-                            MoveFileToDestination("Assets/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs",
-                                                  "Assets/Gley/TrafficSystem/Scripts/API/Data/VehicleTypes.cs");
+                            MoveFileToDestination("Assets/Packages/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs",
+                                                  "Assets/Packages/Gley/TrafficSystem/Scripts/API/Data/VehicleTypes.cs");
                         }
                         else
                         {
@@ -271,8 +271,8 @@ namespace Gley.TrafficSystem.Editor
 
                             if (fileContent.Contains("GLEY_TRAFFIC_SYSTEM"))
                             {
-                                MoveFileToDestination("Assets/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs",
-                                                      "Assets/Gley/TrafficSystem/Scripts/API/Data/VehicleTypes.cs");
+                                MoveFileToDestination("Assets/Packages/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs",
+                                                      "Assets/Packages/Gley/TrafficSystem/Scripts/API/Data/VehicleTypes.cs");
                             }
                             else
                             {

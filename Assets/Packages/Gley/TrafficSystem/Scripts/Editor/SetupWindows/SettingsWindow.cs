@@ -12,7 +12,7 @@ namespace Gley.TrafficSystem.Editor
     public class SettingsWindow : SettingsWindowBase
     {
         private const string WINDOW_NAME = "Traffic System - v.";
-        private const string PATH = "Assets/Gley/TrafficSystem/Scripts/Version.txt";
+        private const string PATH = "Assets/Packages/Gley/TrafficSystem/Scripts/Version.txt";
         private const int MIN_WIDTH = 400;
         private const int MIN_HEIGHT = 500;
 
