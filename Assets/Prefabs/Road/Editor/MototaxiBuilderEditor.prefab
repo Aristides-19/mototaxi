@@ -149,8 +149,8 @@ MonoBehaviour:
     maxCurvature: 110
     groundLayers:
       serializedVersion: 2
-      m_Bits: 8
-    heightRange: {x: -4, y: 24}
+      m_Bits: 136
+    heightRange: {x: -20, y: 24}
     elevationStartHeight: 50
     minOverlapHeight: 3
     elevatedIntersections: 1
@@ -162,6 +162,14 @@ MonoBehaviour:
     terrainSettings: 0
     terrain: {fileID: 0}
     terrains:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     removeDetails: 1
     removeTrees: 0
