@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7605206305410559158}
   - component: {fileID: 1509641905495877225}
   - component: {fileID: 4209999773212019867}
+  - component: {fileID: 4302579169778634232}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Untagged
@@ -90,6 +91,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4302579169778634232
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051307659634985740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8116138440861595531, guid: 9fc243ebaffb89347ad5670ce458ffc1, type: 3}
 --- !u!1 &4892747336606596603
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +157,7 @@ GameObject:
   - component: {fileID: 3846150950292480676}
   - component: {fileID: 4130783015957193675}
   - component: {fileID: 5881751571677337270}
+  - component: {fileID: 3388713590244694892}
   m_Layer: 8
   m_Name: Holder
   m_TagString: Untagged
@@ -213,3 +237,25 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3388713590244694892
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631445336931900792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9090457421139725384, guid: 9fc243ebaffb89347ad5670ce458ffc1, type: 3}
