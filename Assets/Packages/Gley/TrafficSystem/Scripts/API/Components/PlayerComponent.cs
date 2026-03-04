@@ -22,7 +22,7 @@ namespace Gley.TrafficSystem
         private bool _initialized;
 #if GLEY_TRAFFIC_SYSTEM
         private List<TrafficWaypoint> _allWaypoints;
-        private List<Vector2Int> _cellNeighbors;     
+        private List<Vector2Int> _cellNeighbors;
 
         private GridData _gridData;
         private CellData _currentCell;
@@ -31,7 +31,7 @@ namespace Gley.TrafficSystem
         private TrafficWaypoint _proposedTarget;
         private TrafficWaypoint _currentTarget;
         private Vector3 _playerPosition;
-        
+
         private bool _targetChanged;
 
 
@@ -189,7 +189,7 @@ namespace Gley.TrafficSystem
 
         public float GetCurrentSpeedMS()
         {
-            if(!_initialized)
+            if (!_initialized)
             {
                 return 0f;
             }

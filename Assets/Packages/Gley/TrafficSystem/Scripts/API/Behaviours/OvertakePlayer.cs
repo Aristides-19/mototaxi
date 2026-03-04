@@ -9,7 +9,7 @@ namespace Gley.TrafficSystem
     public class OvertakePlayer : VehicleBehaviour
     {
 #if GLEY_TRAFFIC_SYSTEM
-        private const float _minOvertakeSpeed = 2;
+        private const float _minOvertakeSpeed = 0.1f;
 
         private bool _checkWaypoint;
 #endif

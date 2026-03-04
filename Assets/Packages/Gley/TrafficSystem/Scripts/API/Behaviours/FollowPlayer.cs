@@ -9,8 +9,8 @@ namespace Gley.TrafficSystem
     public class FollowPlayer : VehicleBehaviour
     {
 #if GLEY_TRAFFIC_SYSTEM
-        private const float _minFollowSpeed = 2;
-        private const float _overtakeTime = 2;
+        private const float _minFollowSpeed = 0.1f;
+        private const float _overtakeTime = 0.2f;
 
         private float _followTime;
         private float _stationaryTime;
@@ -41,15 +41,8 @@ namespace Gley.TrafficSystem
                 {
                     if (_stationaryTime > _overtakeTime)
                     {
-                        if (!knownWaypointsList.HasStopWaypoints() && !knownWaypointsList.HasGiveWayWaypoints())
-                        {
-                            API.StartVehicleBehaviour<OvertakeStationaryPlayer>(VehicleIndex);
-                            Stop();
-                        }
-                        else
-                        {
-                            _stationaryTime = 0;
-                        }
+                        API.StartVehicleBehaviour<OvertakeStationaryPlayer>(VehicleIndex);
+                        Stop();
                     }
                 }
             }

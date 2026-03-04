@@ -9,8 +9,8 @@ namespace Gley.TrafficSystem
     public class FollowVehicle : VehicleBehaviour
     {
 #if GLEY_TRAFFIC_SYSTEM
-        private float _minFollowSpeed = 3;
-        private float _overtakeTime = 5;
+        private float _minFollowSpeed = 0.2f;
+        private float _overtakeTime = 0.5f;
         private float _followTime;
         private bool _disableOvertake;
         private bool _stopped;

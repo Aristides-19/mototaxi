@@ -9,7 +9,7 @@ namespace Gley.TrafficSystem
     public class Overtake : VehicleBehaviour
     {
 #if GLEY_TRAFFIC_SYSTEM
-        private const float _minOvertakeSpeed = 2;
+        private const float _minOvertakeSpeed = 0.1f;
 
         private bool _checkWaypoint;
         private bool _ignoreTime;
@@ -68,7 +68,7 @@ namespace Gley.TrafficSystem
                 var waypoint = TrafficWaypointsData.GetWaypointFromIndex(knownWaypointsList.GetWaypointIndex(0));
                 if (waypoint.OtherLanes.Length > 0)
                 {
-                    int index = GetOvertakeIndex(waypoint.OtherLanes,VehicleComponent.VehicleType);
+                    int index = GetOvertakeIndex(waypoint.OtherLanes, VehicleComponent.VehicleType);
                     if (index != TrafficSystemConstants.INVALID_VEHICLE_INDEX)
                     {
                         Blink(index);

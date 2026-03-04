@@ -131,7 +131,7 @@ namespace Gley.TrafficSystem.Internal
                     float otherDistance = Vector3.SqrMagnitude(_allVehiclesData.AllVehicles[i].FrontPosition.position - waypoint.Position);
                     float otherTimeToReachDestination = _allVehiclesData.AllVehicles[i].GetTimeToCoverDistance(Mathf.Sqrt(otherDistance));
                     //Debug.Log($"Other Vehicle {i} time: {otherTimeToReachDestination} current vehicle {vehicleIndexThatMadeTheRequest} time {timeToReachDestination}");
-                    if (otherTimeToReachDestination + 2 < timeToReachDestination)
+                    if (otherTimeToReachDestination + 0.1f < timeToReachDestination)
                     {
 
                         if (vehicle.AllColliders.Contains(_allVehiclesData.AllVehicles[i].MovementInfo.ClosestObstacle.Collider))
@@ -161,7 +161,7 @@ namespace Gley.TrafficSystem.Internal
                 //Debug.Log($"Other Vehicle {closestVehicleIndex} time: {otherTimeToReachDestination} current vehicle {vehicleIndexThatMadeTheRequest} time {timeToReachDestination}");
                 // if the coming vehicle will arrive later than the give way vehicle, allow th give way vehicle to pass
                 // 2 is an additional 2 seconds time to avoid crashes if they both will arrive close to one another. 
-                if (otherTimeToReachDestination + 2 < timeToReachDestination)
+                if (otherTimeToReachDestination + 0.3f < timeToReachDestination)
                 {
                     if (vehicle.AllColliders.Contains(otherVehicle.MovementInfo.ClosestObstacle.Collider))
                     {
