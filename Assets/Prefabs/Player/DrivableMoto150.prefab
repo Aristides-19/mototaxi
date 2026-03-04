@@ -7079,7 +7079,7 @@ GameObject:
   - component: {fileID: 4489940695865553839}
   - component: {fileID: 4787404611810661704}
   - component: {fileID: 8523729865026696651}
-  - component: {fileID: -4678622554814529706}
+  - component: {fileID: 1143769984044031999}
   m_Layer: 0
   m_Name: DrivableMoto150
   m_TagString: Untagged
@@ -7506,7 +7506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 64aca7d54c0882348b7df677c33730fc, type: 2}
---- !u!114 &-4678622554814529706
+--- !u!114 &1143769984044031999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7515,9 +7515,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8813148393069372615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a80d09f570d3c4f869fd7f265e3148, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b1e1fec8065ed8418c4f8fcc0057130, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrafficParticipantImplSc
+  m_EditorClassIdentifier: Assembly-CSharp::Gley.TrafficSystem.PlayerComponent
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0
