@@ -10,14 +10,20 @@ namespace Mototaxi.HUD
         [Header("Score Display")]
         [SerializeField] TextMeshProUGUI scoreText;
 
-        [Header("Score Change")]
+        [Header("Opacity Settings")]
         [SerializeField] TextMeshProUGUI scoreChangeText;
         [SerializeField] float fadeDuration = 0.5f;
         [SerializeField] float displayDuration = 1f;
         [SerializeField] float maxAlpha = 1f;
 
+        [Header("Punch Scale Settings")]
+        [SerializeField] float punchScale = 1.3f;
+        [SerializeField] float punchDuration = 0.1f;
+
+        private Vector3 originalScale;
         private float currentScoreChange;
         private Coroutine fadeCoroutine;
+        private Coroutine punchCoroutine;
 
         private void Awake()
         {
@@ -25,6 +31,8 @@ namespace Mototaxi.HUD
             {
                 Debug.LogError("Score TextMeshProUGUI reference is missing in ScoreSc.");
             }
+
+            originalScale = scoreChangeText.transform.localScale;
 
             UpdateScoreChangeTextAlpha(0f);
             HandleScore(Core.ScoreManagerSc.CurrentScore, 0f);
@@ -62,6 +70,33 @@ namespace Mototaxi.HUD
 
             if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
             fadeCoroutine = StartCoroutine(ScoreFadeRoutine());
+
+            if (punchCoroutine != null) StopCoroutine(punchCoroutine);
+            punchCoroutine = StartCoroutine(PunchScaleRoutine());
+        }
+
+        private IEnumerator PunchScaleRoutine()
+        {
+            float elapsed = 0f;
+            Vector3 targetScale = originalScale * punchScale;
+
+            while (elapsed < punchDuration)
+            {
+                elapsed += Time.deltaTime;
+                scoreChangeText.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / punchDuration);
+                yield return null;
+            }
+
+            elapsed = 0f;
+            while (elapsed < punchDuration)
+            {
+                elapsed += Time.deltaTime;
+                scoreChangeText.transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / punchDuration);
+                yield return null;
+            }
+
+            scoreChangeText.transform.localScale = originalScale;
+            punchCoroutine = null;
         }
 
         private IEnumerator ScoreFadeRoutine()
