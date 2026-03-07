@@ -66,12 +66,12 @@ namespace Gley.TrafficSystem.Editor
             EditorGUILayout.Space();
             if (GUILayout.Button("Enable Traffic System"))
             {
-                string targetFilePath = $"{Application.dataPath}{TrafficSystemConstants.agentTypesPath}/VehicleTypes.cs";
+                string targetFilePath = $"{Application.dataPath}/Packages/{TrafficSystemConstants.agentTypesPath}/VehicleTypes.cs";
 
                 // Check if the file already exists at the target location
                 if (!File.Exists(targetFilePath))
                 {
-                    string sourceFilePath = $"{Application.dataPath}/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs";
+                    string sourceFilePath = $"{Application.dataPath}/Packages/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs";
 
                     if (File.Exists(sourceFilePath))
                     {
@@ -258,12 +258,12 @@ namespace Gley.TrafficSystem.Editor
             switch (_step)
             {
                 case 0:
-                    string targetFilePath = $"{Application.dataPath}{TrafficSystemConstants.agentTypesPath}/VehicleTypes.cs";
+                    string targetFilePath = $"{Application.dataPath}/Packages/{TrafficSystemConstants.agentTypesPath}/VehicleTypes.cs";
 
                     // Check if the file already exists at the target location
                     if (!File.Exists(targetFilePath))
                     {
-                        string sourceFilePath = $"{Application.dataPath}/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs";
+                        string sourceFilePath = $"{Application.dataPath}/Packages/Gley/TrafficSystem/Scripts/ToUse/VehicleTypes.cs";
 
                         if (File.Exists(sourceFilePath))
                         {

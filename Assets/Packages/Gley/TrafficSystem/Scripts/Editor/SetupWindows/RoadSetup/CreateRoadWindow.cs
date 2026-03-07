@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -81,6 +81,14 @@ namespace Gley.TrafficSystem.Editor
         {
             EditorGUI.BeginChangeCheck();
 
+            _editorSave.nrOfLanes = EditorGUILayout.IntField("Nr of Lanes", _editorSave.nrOfLanes);
+            _editorSave.LaneWidth = EditorGUILayout.FloatField("Lane Width", _editorSave.LaneWidth);
+            _editorSave.centerOffset = EditorGUILayout.FloatField("Center Offset (m)", _editorSave.centerOffset);
+            _editorSave.WaypointDistance = EditorGUILayout.FloatField("Waypoint Distance", _editorSave.WaypointDistance);
+            _editorSave.maxSpeed = EditorGUILayout.IntField("Max Speed", _editorSave.maxSpeed);
+
+            EditorGUILayout.Space();
+
             EditorGUILayout.BeginHorizontal();
             _editorSave.ViewOtherRoads = EditorGUILayout.Toggle("View Other Roads", _editorSave.ViewOtherRoads, GUILayout.Width(TOGGLE_WIDTH));
             _editorSave.EditorColors.RoadColor = EditorGUILayout.ColorField(_editorSave.EditorColors.RoadColor);
@@ -155,7 +163,8 @@ namespace Gley.TrafficSystem.Editor
                 _editorSave.maxSpeed, 
                 System.Enum.GetValues(typeof(VehicleTypes)).Length, 
                 _editorSave.leftSideTraffic,
-                _editorSave.otherLaneLinkDistance);
+                _editorSave.otherLaneLinkDistance,
+                _editorSave.centerOffset);
             SettingsWindow.SetSelectedRoad(selectedRoad);
             _window.SetActiveWindow(typeof(EditRoadWindow), false);
             _firstClick = Vector3.zero;

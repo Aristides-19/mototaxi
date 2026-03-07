@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -231,8 +231,13 @@ namespace Gley.TrafficSystem.Editor
 
                 for (int j = 0; j < helpingPoints.Count - 1; j++)
                 {
-                    waypointPosition = helpingPoints[j].position + (startPosition + laneModifier * road.laneWidth) * helpingPoints[j].right;
-                    if (PositionIsValid(helpingPoints, waypointPosition, Mathf.Abs(startPosition + laneModifier * road.laneWidth) - 0.1f))
+                    float currentLanePos = startPosition + laneModifier * road.laneWidth;
+                    float finalOffset = currentLanePos;
+                    if (currentLanePos > 0.01f) finalOffset += road.centerOffset / 2f;
+                    else if (currentLanePos < -0.01f) finalOffset -= road.centerOffset / 2f;
+
+                    waypointPosition = helpingPoints[j].position + finalOffset * helpingPoints[j].right;
+                    if (PositionIsValid(helpingPoints, waypointPosition, Mathf.Abs(finalOffset) - 0.1f))
                     {
                         waypointPosition = PutWaypointOnRoad(waypointPosition, helpingPoints[j].up, roadLayerMask);
                         if (PositionIsValid(finalPoints, waypointPosition, road.waypointDistance))
@@ -246,7 +251,12 @@ namespace Gley.TrafficSystem.Editor
                 //add last point from the list
                 if (!road.path.IsClosed)
                 {
-                    waypointPosition = helpingPoints[helpingPoints.Count - 1].position + (startPosition + laneModifier * road.laneWidth) * helpingPoints[helpingPoints.Count - 1].right;
+                    float currentLanePos = startPosition + laneModifier * road.laneWidth;
+                    float finalOffset = currentLanePos;
+                    if (currentLanePos > 0.01f) finalOffset += road.centerOffset / 2f;
+                    else if (currentLanePos < -0.01f) finalOffset -= road.centerOffset / 2f;
+
+                    waypointPosition = helpingPoints[helpingPoints.Count - 1].position + finalOffset * helpingPoints[helpingPoints.Count - 1].right;
                     waypointPosition = PutWaypointOnRoad(waypointPosition, helpingPoints[helpingPoints.Count - 1].up, roadLayerMask);
                     waypointName = road.name + "-" + UrbanSystemConstants.LaneNamePrefix + i + "-" + UrbanSystemConstants.WaypointNamePrefix + helpingPoints.Count;
                     finalPoints.Add(_waypointCreator.CreateWaypoint(laneHolder, waypointPosition, waypointName, road.GetAllowedCars(i), road.lanes[i].laneSpeed, road.laneWidth));

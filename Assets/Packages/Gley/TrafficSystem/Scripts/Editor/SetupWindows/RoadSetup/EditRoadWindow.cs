@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -98,6 +98,7 @@ namespace Gley.TrafficSystem.Editor
             }
 
             _selectedRoad.laneWidth = EditorGUILayout.FloatField("Lane width (m)", _selectedRoad.laneWidth);
+            _selectedRoad.centerOffset = EditorGUILayout.FloatField("Center Offset (m)", _selectedRoad.centerOffset);
             _selectedRoad.waypointDistance = EditorGUILayout.FloatField("Waypoint distance ", _selectedRoad.waypointDistance);
 
             EditorGUI.BeginChangeCheck();

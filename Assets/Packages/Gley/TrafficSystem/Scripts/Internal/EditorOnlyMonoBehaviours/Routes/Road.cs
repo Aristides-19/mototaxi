@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 using RoadBase = Gley.UrbanSystem.Internal.RoadBase;
@@ -15,6 +15,7 @@ namespace Gley.TrafficSystem.Internal
     {
         public List<Lane> lanes;
         public int otherLaneLinkDistance;
+        public float centerOffset;
 
 
         public void SetDefaults(int nrOfLanes, float laneWidth, float waypointDistance, int otherLaneLinkDistance)

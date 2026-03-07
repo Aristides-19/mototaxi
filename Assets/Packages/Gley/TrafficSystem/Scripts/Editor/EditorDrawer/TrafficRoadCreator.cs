@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Gley.TrafficSystem.Editor
         {
         }
 
-        public Road Create(int nrOfLanes, float laneWidth, float waypointDistance, string prefix, Vector3 firstClick, Vector3 secondClick, int globalMaxSpeed, int nrOfAgents, bool leftSideTraffic, int otherLaneLinkDistance)
+        public Road Create(int nrOfLanes, float laneWidth, float waypointDistance, string prefix, Vector3 firstClick, Vector3 secondClick, int globalMaxSpeed, int nrOfAgents, bool leftSideTraffic, int otherLaneLinkDistance, float centerOffset)
         {
             Transform roadParent = MonoBehaviourUtilities.GetOrCreateSceneInstance<ConnectionPool>(TrafficSystemConstants.EditorWaypointsHolder, true).transform;
             int roadNumber = GleyUtilities.GetFreeRoadNumber(roadParent);
@@ -21,6 +21,7 @@ namespace Gley.TrafficSystem.Editor
             roadHolder.transform.SetSiblingIndex(roadNumber);
             var road = roadHolder.AddComponent<Road>();
             road.SetDefaults(nrOfLanes, laneWidth, waypointDistance, otherLaneLinkDistance);
+            road.centerOffset = centerOffset;
             road.CreatePath(firstClick, secondClick);
             road.SetRoadProperties(globalMaxSpeed, nrOfAgents, leftSideTraffic);
             road.justCreated = true;

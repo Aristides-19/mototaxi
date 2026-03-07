@@ -22,6 +22,7 @@ namespace Gley.TrafficSystem.Editor
         public bool showPedestrianWaypoints = true;
         public bool showDirectionWaypoints = true;
         public int drawDistance;
+        public float centerOffset;
 
 
         public override SettingsWindowData Initialize()
@@ -50,6 +51,11 @@ namespace Gley.TrafficSystem.Editor
             if (otherLaneLinkDistance == default)
             {
                 otherLaneLinkDistance = 1;
+            }
+
+            if (centerOffset == default)
+            {
+                centerOffset = 0;
             }
             return this;
         }
