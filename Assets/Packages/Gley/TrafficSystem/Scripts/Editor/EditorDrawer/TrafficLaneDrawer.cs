@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ namespace Gley.TrafficSystem.Editor
         private TrafficLaneData laneData;
         private WaypointSettings waypointScript;
         private Quaternion up = Quaternion.LookRotation(Vector3.up);
+        public float drawDistance = 200;
 
 
         public TrafficLaneDrawer (TrafficLaneData laneData):base(laneData)
@@ -36,6 +37,13 @@ namespace Gley.TrafficSystem.Editor
 
         private void DrawSingleLane(UrbanSystem.Editor.LaneHolder<WaypointSettings> laneHolder, Color laneColor, bool drawWaypoints, Color waypointColor, bool drawLaneChange, Color laneChangeColor, bool drawLabels, Color labelsColor, Color disconnectedColor)
         {
+            UrbanSystem.Editor.GleyUtilities.SetCamera();
+            Vector3 cameraPosition = Vector3.zero;
+            if (SceneView.lastActiveSceneView != null)
+            {
+                cameraPosition = SceneView.lastActiveSceneView.camera.transform.position;
+            }
+
             Vector3[] positions = new Vector3[laneHolder.Waypoints.Length];
             for (int i = 0; i < laneHolder.Waypoints.Length; i++)
             {
@@ -43,28 +51,34 @@ namespace Gley.TrafficSystem.Editor
 
                 if (drawWaypoints)
                 {
-                    waypointScript = laneHolder.Waypoints[i];
-
-                    if (waypointScript.neighbors.Count == 0 || waypointScript.prev.Count == 0)
+                    if (Vector3.Distance(cameraPosition, positions[i]) < drawDistance)
                     {
-                        Handles.color = disconnectedColor;
-                        DrawUnconnectedWaypoint(waypointScript.position);
-                    }
-
-                    if (drawLaneChange)
-                    {
-                        Handles.color = laneChangeColor;
-                        for (int j = 0; j < waypointScript.otherLanes.Count; j++)
+                        if (UrbanSystem.Editor.GleyUtilities.IsPointInView(positions[i]))
                         {
-                            Handles.DrawLine(waypointScript.position, waypointScript.otherLanes[j].position);
-                            DrawTriangle(waypointScript.position, waypointScript.otherLanes[j].position);
-                        }
-                    }
+                            waypointScript = laneHolder.Waypoints[i];
 
-                    Handles.color = waypointColor;
-                    for (int j = 0; j < waypointScript.neighbors.Count; j++)
-                    {
-                        DrawTriangle(waypointScript.position, waypointScript.neighbors[j].position);
+                            if (waypointScript.neighbors.Count == 0 || waypointScript.prev.Count == 0)
+                            {
+                                Handles.color = disconnectedColor;
+                                DrawUnconnectedWaypoint(waypointScript.position);
+                            }
+
+                            if (drawLaneChange)
+                            {
+                                Handles.color = laneChangeColor;
+                                for (int j = 0; j < waypointScript.otherLanes.Count; j++)
+                                {
+                                    Handles.DrawLine(waypointScript.position, waypointScript.otherLanes[j].position);
+                                    DrawTriangle(waypointScript.position, waypointScript.otherLanes[j].position);
+                                }
+                            }
+
+                            Handles.color = waypointColor;
+                            for (int j = 0; j < waypointScript.neighbors.Count; j++)
+                            {
+                                DrawTriangle(waypointScript.position, waypointScript.neighbors[j].position);
+                            }
+                        }
                     }
                 }
             }

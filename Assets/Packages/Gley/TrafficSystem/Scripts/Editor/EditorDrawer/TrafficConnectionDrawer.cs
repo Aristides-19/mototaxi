@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -13,6 +13,7 @@ namespace Gley.TrafficSystem.Editor
     {
         private List<ConnectionCurve> _selectedConnections = new List<ConnectionCurve>();
         private TrafficConnectionEditorData _connectionData;
+        public float drawDistance = 200;
 
         public delegate void WaypointClicked(Road road, int lane);
         public event WaypointClicked onWaypointClicked;
@@ -103,6 +104,13 @@ namespace Gley.TrafficSystem.Editor
 
         private void DrawWaypoints(ConnectionCurve connectionCurve)
         {
+            GleyUtilities.SetCamera();
+            Vector3 cameraPosition = Vector3.zero;
+            if (SceneView.lastActiveSceneView != null)
+            {
+                cameraPosition = SceneView.lastActiveSceneView.camera.transform.position;
+            }
+
             var allWaypoints = _connectionData.GetWaypoints(connectionCurve);
             Vector3[] positions = new Vector3[allWaypoints.Length + 2];
             positions[0] = connectionCurve.GetOutConnector().transform.position;
@@ -110,9 +118,21 @@ namespace Gley.TrafficSystem.Editor
             for (int i = 0; i < allWaypoints.Length; i++)
             {
                 positions[i + 1] = allWaypoints[i].position;
-                DrawTriangle(positions[i], positions[i + 1]);
+                if (Vector3.Distance(cameraPosition, positions[i + 1]) < drawDistance)
+                {
+                    if (GleyUtilities.IsPointInView(positions[i + 1]))
+                    {
+                        DrawTriangle(positions[i], positions[i + 1]);
+                    }
+                }
             }
-            DrawTriangle(positions[positions.Length - 2], positions[positions.Length - 1]);
+            if (Vector3.Distance(cameraPosition, positions[positions.Length - 1]) < drawDistance)
+            {
+                if (GleyUtilities.IsPointInView(positions[positions.Length - 1]))
+                {
+                    DrawTriangle(positions[positions.Length - 2], positions[positions.Length - 1]);
+                }
+            }
             Handles.DrawPolyLine(positions);
         }
 

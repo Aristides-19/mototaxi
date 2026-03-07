@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -14,9 +14,9 @@ namespace Gley.TrafficSystem.Editor
 {
     public class ViewRoadsWindow : TrafficSetupWindow
     {
-        private readonly float _nothingSelectedValue = 220;
-        private readonly float _viewLanesValue = 230;
-        private readonly float _viewWaypointsValue = 260;
+        private readonly float _nothingSelectedValue = 240;
+        private readonly float _viewLanesValue = 250;
+        private readonly float _viewWaypointsValue = 280;
 
         private List<Road> _roadsOfInterest;
         private TrafficRoadCreator _trafficRoadCreator;
@@ -64,6 +64,7 @@ namespace Gley.TrafficSystem.Editor
             }
             if (_editorSave.ViewRoadLanes)
             {
+                _trafficLaneDrawer.drawDistance = _editorSave.drawDistance;
                 for (int i = 0; i < _nrOfRoads; i++)
                 {
                     _trafficLaneDrawer.DrawAllLanes(_roadsOfInterest[i], _editorSave.ViewRoadWaypoints, _editorSave.viewRoadLaneChanges, _editorSave.ViewLabels, _editorSave.EditorColors.LaneColor, _editorSave.EditorColors.WaypointColor, _editorSave.EditorColors.DisconnectedColor, _editorSave.EditorColors.LaneChangeColor, _editorSave.EditorColors.LabelColor);
@@ -93,6 +94,7 @@ namespace Gley.TrafficSystem.Editor
             }
 
             EditorGUI.BeginChangeCheck();
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 1000);
             _editorSave.EditorColors.RoadColor = EditorGUILayout.ColorField("Road Color", _editorSave.EditorColors.RoadColor);
 
             if (_editorSave.ViewLabels)

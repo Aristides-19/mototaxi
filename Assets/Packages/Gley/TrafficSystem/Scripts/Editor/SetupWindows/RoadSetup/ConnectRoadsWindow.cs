@@ -1,4 +1,4 @@
-﻿using Gley.TrafficSystem.Internal;
+using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -13,8 +13,8 @@ namespace Gley.TrafficSystem.Editor
 {
     public class ConnectRoadsWindow : TrafficSetupWindow
     {
-        private readonly float _maxValue = 404;
-        private readonly float _minValue = 284;
+        private readonly float _maxValue = 424;
+        private readonly float _minValue = 304;
 
         private List<ConnectionCurve> _connectionsOfInterest;
         private List<Road> _roadsOfInterest;
@@ -80,11 +80,13 @@ namespace Gley.TrafficSystem.Editor
                 SettingsWindowBase.TriggerRefreshWindowEvent();
             }
 
+            _laneDrawer.drawDistance = _editorSave.drawDistance;
             for (int i = 0; i < _nrOfRoads; i++)
             {
                 _laneDrawer.DrawAllLanes(_roadsOfInterest[i], _editorSave.ViewRoadWaypoints, _editorSave.viewRoadLaneChanges, _editorSave.ViewLabels, _editorSave.EditorColors.LaneColor, _editorSave.EditorColors.WaypointColor, _editorSave.EditorColors.DisconnectedColor, _editorSave.EditorColors.LaneChangeColor, _editorSave.EditorColors.LabelColor);
             }
 
+            _connectionDrawer.drawDistance = _editorSave.drawDistance;
             _connectionsOfInterest = _connectionDrawer.ShowAllConnections(_roadsOfInterest, _editorSave.ViewLabels, _editorSave.EditorColors.ConnectorLaneColor, _editorSave.EditorColors.AnchorPointColor,
                _editorSave.EditorColors.RoadConnectorColor, _editorSave.EditorColors.SelectedRoadConnectorColor, _editorSave.EditorColors.DisconnectedColor, _editorSave.WaypointDistance, _editorSave.EditorColors.LabelColor, _editorSave.EditorColors.WaypointColor,
                _drawOutConnectors, _clickedRoad, _clickedLane);
@@ -123,6 +125,7 @@ namespace Gley.TrafficSystem.Editor
             }
 
             EditorGUI.BeginChangeCheck();
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 1000);
             if (_showCustomizations == false)
             {
                 _scrollAdjustment = _minValue;

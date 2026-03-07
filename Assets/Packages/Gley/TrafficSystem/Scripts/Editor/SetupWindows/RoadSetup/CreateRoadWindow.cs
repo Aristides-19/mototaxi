@@ -55,6 +55,7 @@ namespace Gley.TrafficSystem.Editor
                 }
                 if(_editorSave.ViewRoadLanes)
                 {
+                    _trafficLaneDrawer.drawDistance = _editorSave.drawDistance;
                     for (int i = 0; i < _nrOfRoads; i++)
                     {
                         _trafficLaneDrawer.DrawAllLanes(_roadsOfInterest[i], _editorSave.ViewRoadWaypoints, _editorSave.viewRoadLaneChanges, _editorSave.ViewLabels, _editorSave.EditorColors.LaneColor, _editorSave.EditorColors.WaypointColor, _editorSave.EditorColors.DisconnectedColor, _editorSave.EditorColors.LaneChangeColor, _editorSave.EditorColors.LabelColor);
@@ -74,6 +75,7 @@ namespace Gley.TrafficSystem.Editor
             EditorGUILayout.LabelField("If you are not able to draw, make sure your ground/road is on the layer marked as Road inside Layer Setup");
             EditorGUILayout.Space();
             _editorSave.leftSideTraffic = EditorGUILayout.Toggle("LeftSideTraffic", _editorSave.leftSideTraffic);
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 1000);
         }
 
 

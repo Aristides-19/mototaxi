@@ -72,6 +72,7 @@ namespace Gley.TrafficSystem.Editor
             }
 
             _roadDrawer.DrawPath(_selectedRoad, _moveTool,_editorSave.EditorColors.RoadColor, _editorSave.EditorColors.AnchorPointColor, _editorSave.EditorColors.ControlPointColor, _editorSave.EditorColors.LabelColor, true);
+            _laneDrawer.drawDistance = _editorSave.drawDistance;
             _laneDrawer.DrawAllLanes(_selectedRoad, _editorSave.ViewRoadWaypoints, _editorSave.viewRoadLaneChanges, _editorSave.ViewLabels, _editorSave.EditorColors.LaneColor, _editorSave.EditorColors.WaypointColor, _editorSave.EditorColors.DisconnectedColor, _editorSave.EditorColors.LaneChangeColor, _editorSave.EditorColors.LabelColor);
 
             base.DrawInScene();
@@ -100,6 +101,7 @@ namespace Gley.TrafficSystem.Editor
             _selectedRoad.laneWidth = EditorGUILayout.FloatField("Lane width (m)", _selectedRoad.laneWidth);
             _selectedRoad.centerOffset = EditorGUILayout.FloatField("Center Offset (m)", _selectedRoad.centerOffset);
             _selectedRoad.waypointDistance = EditorGUILayout.FloatField("Waypoint distance ", _selectedRoad.waypointDistance);
+            _editorSave.drawDistance = EditorGUILayout.IntSlider("Draw Distance", _editorSave.drawDistance, 10, 1000);
 
             EditorGUI.BeginChangeCheck();
             _moveTool = (MoveTools)EditorGUILayout.EnumPopup("Select move tool ", _moveTool);
