@@ -10,7 +10,7 @@ namespace Gley.TrafficSystem
     public class TempStop : VehicleBehaviour
     {
 #if GLEY_TRAFFIC_SYSTEM
-        const float _maxStopTime = 10;
+        const float _maxStopTime = 2;
 
         private float _stopTime;
         private float _currentTime;

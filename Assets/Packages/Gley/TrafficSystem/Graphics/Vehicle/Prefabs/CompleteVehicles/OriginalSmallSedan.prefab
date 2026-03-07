@@ -265,11 +265,11 @@ MonoBehaviour:
   vehicleType: 0
   minPossibleSpeed: 20
   maxPossibleSpeed: 110
-  accelerationTime: 15
-  brakeTime: 10
+  accelerationTime: 2
+  brakeTime: 2
   steeringTime: 1.5
-  distanceToStop: 1
-  triggerLength: 4
+  distanceToStop: 2
+  triggerLength: 2
   updateTrigger: 1
   maxTriggerLength: 10
   trailer: {fileID: 0}

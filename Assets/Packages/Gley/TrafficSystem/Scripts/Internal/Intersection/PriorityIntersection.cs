@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -47,7 +47,7 @@ namespace Gley.TrafficSystem.Internal
             InitializePedestrianWaypoints(pedestrianWaypointsDataHandler);
 
             _carsInIntersection = new List<int>();
-            _requiredTime = 3;
+            _requiredTime = 0;
             _waypointsToCkeck = new List<int>();
             _waypointColor = new List<Color>();
             _nrOfRoads = _priorityIntersectionData.StopWaypoints.Length;
