@@ -34,7 +34,7 @@ namespace Mototaxi.Mechanics
             {
                 if (hit.collider == other && playerRigidbody.linearVelocity.magnitude > GameData.RoceSettings.MinVelocity)
                 {
-                    ScoreManagerSc.AddScore(GameData.RoceSettings.ScoreMultiplier / Mathf.Max(hit.distance, 0.1f));
+                    ScoreManagerSc.AddScore(GameData.RoceSettings.ScoreMultiplier / Mathf.Max(hit.distance, 0.1f), ScoreSource.Roce);
                 }
             }
         }

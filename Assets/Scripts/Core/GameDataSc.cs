@@ -15,7 +15,7 @@ namespace Mototaxi.Core
         public LayerMask PlayerLayer = 1 << 12;
 
         public RoceData RoceSettings = new();
-        // Añadimos la configuración del wheelie
+
         public WheelieData WheelieSettings = new();
     }
 
@@ -34,11 +34,11 @@ namespace Mototaxi.Core
     [Serializable]
     public class WheelieData
     {
-        [Tooltip("Puntos otorgados por cada segundo en wheelie")]
+        [Tooltip("Points per second while performing a wheelie")]
         public float PointsPerSecond = 10f;
-        [Tooltip("Velocidad mínima requerida para registrar el wheelie en m/s")]
+        [Tooltip("Minimum velocity required to register a wheelie in m/s")]
         public float MinVelocity = 5f;
-        [Tooltip("Ángulo mínimo de inclinación para empezar a sumar puntos (ej. 20)")]
+        [Tooltip("Minimum incline angle to start earning points (e.g., 20)")]
         public float MinInclineAngle = 20f;
     }
 }

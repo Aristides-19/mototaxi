@@ -1,5 +1,4 @@
 using Mototaxi.Core;
-using Mototaxi.Mechanics;
 using UnityEngine;
 using TMPro;
 using ArcadeBP_Pro;
@@ -14,7 +13,7 @@ namespace Mototaxi.Mechanics
 
         [Header("UI Visuals")]
         [SerializeField] TextMeshProUGUI wheelieText;
-        [SerializeField] Transform modeloVisualMoto; // Volvemos a pedir el modelo 3D
+        [SerializeField] Transform modeloVisualMoto;
 
         private ArcadeBikeControllerPro bikeController;
         private float currentWheeliePoints = 0f;
@@ -35,21 +34,19 @@ namespace Mototaxi.Mechanics
             float speed = playerRigidbody.linearVelocity.magnitude;
             bool estaHaciendoWheelie = bikeController.isDoingWheelie;
 
-            // Calculamos el ángulo real de la moto
             float currentIncline = Mathf.Asin(modeloVisualMoto.forward.y) * Mathf.Rad2Deg;
 
-            // AHORA EXIGIMOS LAS 3 COSAS: El wheelie de Arístides + Velocidad + Ángulo de altura
             if (estaHaciendoWheelie && speed > GameData.WheelieSettings.MinVelocity && currentIncline >= GameData.WheelieSettings.MinInclineAngle)
             {
                 float pointsEarned = GameData.WheelieSettings.PointsPerSecond * Time.deltaTime;
 
-                ScoreManagerSc.AddScore(pointsEarned);
+                ScoreManagerSc.AddScore(pointsEarned, ScoreSource.Wheelie);
                 currentWheeliePoints += pointsEarned;
 
                 if (wheelieText != null)
                 {
                     wheelieText.gameObject.SetActive(true);
-                    wheelieText.text = "¡CABALLITO! +" + Mathf.FloorToInt(currentWheeliePoints).ToString();
+                    wheelieText.text = "ï¿½CABALLITO! +" + Mathf.FloorToInt(currentWheeliePoints).ToString();
                 }
             }
             else
