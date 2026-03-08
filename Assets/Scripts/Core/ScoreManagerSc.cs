@@ -1,27 +1,24 @@
 using System;
+using UnityEngine;
 
 namespace Mototaxi.Core
 {
-    public static class ScoreManagerSc
+    public class ScoreManagerSc : MonoBehaviour
     {
-        public static float CurrentScore { get; private set; } = 0f;
+        public static float TotalScore { get; private set; } = 0f;
 
-        /// <summary>
-        /// Event triggered when the score changes. Provides the new score and the change amount.
-        /// </summary>
-        public static event Action<float, float> OnScoreChanged;
+        public static event Action<float> OnScoreUpdated;
+        public static event Action<string, int> OnTrickUpdated;
 
-        public static void AddScore(float change)
+        public static void AddScore(float amount)
         {
-            CurrentScore += change;
-            OnScoreChanged?.Invoke(CurrentScore, change);
+            TotalScore += amount;
+            OnScoreUpdated?.Invoke(TotalScore);
         }
 
-        public static void ResetScore()
+        public static void UpdateTrickUI(string trickName, int currentPoints)
         {
-            float lastScore = CurrentScore;
-            CurrentScore = 0f;
-            OnScoreChanged?.Invoke(CurrentScore, -lastScore);
+            OnTrickUpdated?.Invoke(trickName, currentPoints);
         }
     }
 }

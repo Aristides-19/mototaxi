@@ -1,127 +1,56 @@
-using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using Mototaxi.Core;
 
-namespace Mototaxi.HUD
+namespace Mototaxi.UI
 {
-    class ScoreSc : MonoBehaviour
+    public class ScoreSc : MonoBehaviour
     {
-        [Header("Score Display")]
-        [SerializeField] TextMeshProUGUI scoreText;
+        private TextMeshProUGUI scoreText;
 
-        [Header("Opacity Settings")]
-        [SerializeField] TextMeshProUGUI scoreChangeText;
-        [SerializeField] float fadeDuration = 0.5f;
-        [SerializeField] float displayDuration = 1f;
-        [SerializeField] float maxAlpha = 1f;
-
-        [Header("Punch Scale Settings")]
-        [SerializeField] float punchScale = 1.3f;
-        [SerializeField] float punchDuration = 0.1f;
-
-        private Vector3 originalScale;
-        private float currentScoreChange;
-        private Coroutine fadeCoroutine;
-        private Coroutine punchCoroutine;
-
-        private void Awake()
+        void Awake()
         {
+            // 1. Primero intenta buscar el componente de texto en el mismo objeto
+            scoreText = GetComponent<TextMeshProUGUI>();
+
+            // 2. Si no lo encuentra, lo busca adentro (en sus hijos)
             if (scoreText == null)
             {
-                Debug.LogError("Score TextMeshProUGUI reference is missing in ScoreSc.");
+                scoreText = GetComponentInChildren<TextMeshProUGUI>();
             }
 
-            originalScale = scoreChangeText.transform.localScale;
-
-            UpdateScoreChangeTextAlpha(0f);
-            HandleScore(Core.ScoreManagerSc.CurrentScore, 0f);
-
-        }
-        private void OnEnable()
-        {
-            Core.ScoreManagerSc.OnScoreChanged += HandleScore;
-        }
-
-        private void OnDisable()
-        {
-            Core.ScoreManagerSc.OnScoreChanged -= HandleScore;
-        }
-
-        private void HandleScore(float score, float change)
-        {
-            UpdateScore(score);
-            AddScoreChange(change);
-        }
-
-        private void UpdateScore(float score)
-        {
-            scoreText.text = $"Bs. <size=+20>{MathF.Round(score, 2)}</size>";
-        }
-
-        private void AddScoreChange(float change)
-        {
-            if (change <= 0) return;
-
-            currentScoreChange += change;
-            scoreChangeText.text = $"+{MathF.Round(currentScoreChange, 2)}";
-
-            UpdateScoreChangeTextAlpha(maxAlpha);
-
-            if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-            fadeCoroutine = StartCoroutine(ScoreFadeRoutine());
-
-            if (punchCoroutine != null) StopCoroutine(punchCoroutine);
-            punchCoroutine = StartCoroutine(PunchScaleRoutine());
-        }
-
-        private IEnumerator PunchScaleRoutine()
-        {
-            float elapsed = 0f;
-            Vector3 targetScale = originalScale * punchScale;
-
-            while (elapsed < punchDuration)
+            // 3. Aviso de seguridad por si de plano no hay ningún texto
+            if (scoreText == null)
             {
-                elapsed += Time.deltaTime;
-                scoreChangeText.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / punchDuration);
-                yield return null;
+                Debug.LogError("Falta TextMeshProUGUI: El script ScoreSc no encuentra el texto para actualizar los Bs.");
             }
-
-            elapsed = 0f;
-            while (elapsed < punchDuration)
-            {
-                elapsed += Time.deltaTime;
-                scoreChangeText.transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / punchDuration);
-                yield return null;
-            }
-
-            scoreChangeText.transform.localScale = originalScale;
-            punchCoroutine = null;
         }
 
-        private IEnumerator ScoreFadeRoutine()
+        void OnEnable()
         {
-            yield return new WaitForSeconds(displayDuration);
-
-            float elapsed = 0f;
-
-            while (elapsed < fadeDuration)
-            {
-                elapsed += Time.deltaTime;
-                float newAlpha = Mathf.Lerp(maxAlpha, 0f, elapsed / fadeDuration);
-
-                UpdateScoreChangeTextAlpha(newAlpha);
-                yield return null;
-            }
-
-            currentScoreChange = 0;
-            fadeCoroutine = null;
+            // Nos suscribimos al evento del Manager
+            ScoreManagerSc.OnScoreUpdated += UpdateScoreText;
         }
 
-        private void UpdateScoreChangeTextAlpha(float alpha)
+        void OnDisable()
         {
-            Color color = scoreChangeText.color;
-            scoreChangeText.color = new Color(color.r, color.g, color.b, alpha);
+            // Nos desuscribimos para evitar errores de memoria
+            ScoreManagerSc.OnScoreUpdated -= UpdateScoreText;
+        }
+
+        void Start()
+        {
+            // Al iniciar el juego, mostramos el dinero actual (ej. Bs. 0.00)
+            UpdateScoreText(ScoreManagerSc.TotalScore);
+        }
+
+        private void UpdateScoreText(float newScore)
+        {
+            // La validación final que evita el error rojo de NullReferenceException
+            if (scoreText != null)
+            {
+                scoreText.text = $"Bs. {newScore:F2}";
+            }
         }
     }
 }

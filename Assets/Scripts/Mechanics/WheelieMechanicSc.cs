@@ -1,7 +1,5 @@
 using Mototaxi.Core;
-using Mototaxi.Mechanics;
 using UnityEngine;
-using TMPro;
 using ArcadeBP_Pro;
 
 namespace Mototaxi.Mechanics
@@ -11,13 +9,11 @@ namespace Mototaxi.Mechanics
     {
         [SerializeField] Rigidbody playerRigidbody;
         [SerializeField] GameDataSc GameData;
-
-        [Header("UI Visuals")]
-        [SerializeField] TextMeshProUGUI wheelieText;
-        [SerializeField] Transform modeloVisualMoto; // Volvemos a pedir el modelo 3D
+        [SerializeField] Transform modeloVisualMoto;
 
         private ArcadeBikeControllerPro bikeController;
         private float currentWheeliePoints = 0f;
+        private bool isTrickActive = false;
 
         void Awake()
         {
@@ -25,7 +21,6 @@ namespace Mototaxi.Mechanics
 
             if (playerRigidbody == null) Debug.LogError("Falta Rigidbody.");
             if (GameData == null) Debug.LogError("Falta asignar el GameData.");
-            if (wheelieText != null) wheelieText.gameObject.SetActive(false);
         }
 
         void Update()
@@ -35,29 +30,25 @@ namespace Mototaxi.Mechanics
             float speed = playerRigidbody.linearVelocity.magnitude;
             bool estaHaciendoWheelie = bikeController.isDoingWheelie;
 
-            // Calculamos el ángulo real de la moto
             float currentIncline = Mathf.Asin(modeloVisualMoto.forward.y) * Mathf.Rad2Deg;
 
-            // AHORA EXIGIMOS LAS 3 COSAS: El wheelie de Arístides + Velocidad + Ángulo de altura
             if (estaHaciendoWheelie && speed > GameData.WheelieSettings.MinVelocity && currentIncline >= GameData.WheelieSettings.MinInclineAngle)
             {
                 float pointsEarned = GameData.WheelieSettings.PointsPerSecond * Time.deltaTime;
 
                 ScoreManagerSc.AddScore(pointsEarned);
                 currentWheeliePoints += pointsEarned;
+                isTrickActive = true;
 
-                if (wheelieText != null)
-                {
-                    wheelieText.gameObject.SetActive(true);
-                    wheelieText.text = "¡CABALLITO! +" + Mathf.FloorToInt(currentWheeliePoints).ToString();
-                }
+                ScoreManagerSc.UpdateTrickUI("¡CABALLITO!", Mathf.FloorToInt(currentWheeliePoints));
             }
             else
             {
-                if (wheelieText != null && wheelieText.gameObject.activeSelf)
+                if (isTrickActive)
                 {
-                    wheelieText.gameObject.SetActive(false);
+                    ScoreManagerSc.UpdateTrickUI("", 0);
                     currentWheeliePoints = 0f;
+                    isTrickActive = false;
                 }
             }
         }

@@ -1112,7 +1112,6 @@ GameObject:
   m_Component:
   - component: {fileID: 144286588145958821}
   - component: {fileID: 5983282166390657964}
-  - component: {fileID: 47352583557192888}
   m_Layer: 0
   m_Name: RoceTrigger
   m_TagString: Untagged
@@ -1156,20 +1155,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1, z: 2.2311945}
   m_Center: {x: 0, y: 0, z: -0.013072491}
---- !u!114 &47352583557192888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476877188779893330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad78bf58ef12ff439e8176505ed2106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Mechanics.RoceMechanicSc
-  playerRigidbody: {fileID: 634073462167855606}
-  GameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
 --- !u!1 &1610995463383632888
 GameObject:
   m_ObjectHideFlags: 0
@@ -7533,7 +7518,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Mechanics.WheelieMechanicSc
   playerRigidbody: {fileID: 634073462167855606}
   GameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
-  wheelieText: {fileID: 0}
   modeloVisualMoto: {fileID: 7957516654053495694}
 --- !u!1 &8852984484448740169
 GameObject:
