@@ -4,15 +4,14 @@ using UnityEngine;
 
 namespace Mototaxi.HUD
 {
-    static class TMPUtilsSc
+    static class UtilsSc
     {
-        public static void SetTextAlpha(TextMeshProUGUI text, float alpha)
+        public static void SetCanvasAlpha(CanvasGroup canvas, float alpha)
         {
-            Color color = text.color;
-            text.color = new Color(color.r, color.g, color.b, alpha);
+            canvas.alpha = alpha;
         }
 
-        public static IEnumerator FadeRoutine(float displayDuration, float fadeDuration, float maxAlpha, TextMeshProUGUI textTMP, System.Action onFadeComplete)
+        public static IEnumerator FadeRoutine(float displayDuration, float fadeDuration, float maxAlpha, CanvasGroup canvas, System.Action onComplete)
         {
             yield return new WaitForSeconds(displayDuration);
 
@@ -23,14 +22,14 @@ namespace Mototaxi.HUD
                 elapsed += Time.deltaTime;
                 float newAlpha = Mathf.Lerp(maxAlpha, 0f, elapsed / fadeDuration);
 
-                SetTextAlpha(textTMP, newAlpha);
+                SetCanvasAlpha(canvas, newAlpha);
                 yield return null;
             }
 
-            onFadeComplete?.Invoke();
+            onComplete?.Invoke();
         }
 
-        public static IEnumerator PunchScaleRoutine(Vector3 originalScale, float punchScale, float punchDuration, TextMeshProUGUI textTMP, System.Action onPunchComplete)
+        public static IEnumerator PunchScaleRoutine(Vector3 originalScale, float punchScale, float punchDuration, Transform transform, System.Action onComplete)
         {
             float elapsed = 0f;
             Vector3 targetScale = originalScale * punchScale;
@@ -38,7 +37,7 @@ namespace Mototaxi.HUD
             while (elapsed < punchDuration)
             {
                 elapsed += Time.deltaTime;
-                textTMP.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / punchDuration);
+                transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / punchDuration);
                 yield return null;
             }
 
@@ -46,12 +45,12 @@ namespace Mototaxi.HUD
             while (elapsed < punchDuration)
             {
                 elapsed += Time.deltaTime;
-                textTMP.transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / punchDuration);
+                transform.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / punchDuration);
                 yield return null;
             }
 
-            textTMP.transform.localScale = originalScale;
-            onPunchComplete?.Invoke();
+            transform.localScale = originalScale;
+            onComplete?.Invoke();
         }
     }
 }

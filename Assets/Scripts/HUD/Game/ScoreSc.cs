@@ -9,8 +9,8 @@ namespace Mototaxi.HUD
     {
         [Header("Score Display")]
         [SerializeField] TextMeshProUGUI scoreText;
-        [SerializeField] TextMeshProUGUI scoreChangeText;
-        [SerializeField] TextMeshProUGUI scoreSourceText;
+        [SerializeField] TMPCanvasSc scoreChangeText;
+        [SerializeField] TMPCanvasSc scoreSourceText;
 
         [Header("Opacity Settings")]
         [SerializeField] float fadeDuration = 0.5f;
@@ -39,8 +39,8 @@ namespace Mototaxi.HUD
 
             originalScoreChangeScale = scoreChangeText.transform.localScale;
 
-            TMPUtilsSc.SetTextAlpha(scoreChangeText, 0f);
-            TMPUtilsSc.SetTextAlpha(scoreSourceText, 0f);
+            UtilsSc.SetCanvasAlpha(scoreChangeText.canvasGroup, 0f);
+            UtilsSc.SetCanvasAlpha(scoreSourceText.canvasGroup, 0f);
             HandleScore(ScoreManagerSc.CurrentScore, 0f, ScoreSource.None);
 
         }
@@ -73,17 +73,17 @@ namespace Mototaxi.HUD
 
             float roundedChange = MathF.Round(change, 2);
 
-            scoreSourceText.text = source switch
+            scoreSourceText.tmp.text = source switch
             {
                 ScoreSource.Roce => $"+{roundedChange} ROCE",
                 ScoreSource.Wheelie => $"+{roundedChange} CABALLITO",
                 _ => ""
             };
 
-            TMPUtilsSc.SetTextAlpha(scoreSourceText, maxAlpha);
+            UtilsSc.SetCanvasAlpha(scoreSourceText.canvasGroup, maxAlpha);
 
             if (fadeScoreSourceCoroutine != null) StopCoroutine(fadeScoreSourceCoroutine);
-            fadeScoreSourceCoroutine = StartCoroutine(TMPUtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreSourceText, () => fadeScoreSourceCoroutine = null));
+            fadeScoreSourceCoroutine = StartCoroutine(UtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreSourceText.canvasGroup, () => fadeScoreSourceCoroutine = null));
         }
 
         private void AddScoreChange(float change)
@@ -91,19 +91,19 @@ namespace Mototaxi.HUD
             if (change <= 0) return;
 
             currentScoreChange += change;
-            scoreChangeText.text = $"+{MathF.Round(currentScoreChange, 2)}";
+            scoreChangeText.tmp.text = $"+{MathF.Round(currentScoreChange, 2)}";
 
-            TMPUtilsSc.SetTextAlpha(scoreChangeText, maxAlpha);
+            UtilsSc.SetCanvasAlpha(scoreChangeText.canvasGroup, maxAlpha);
 
             if (fadeScoreChangeCoroutine != null) StopCoroutine(fadeScoreChangeCoroutine);
-            fadeScoreChangeCoroutine = StartCoroutine(TMPUtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreChangeText, () =>
+            fadeScoreChangeCoroutine = StartCoroutine(UtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreChangeText.canvasGroup, () =>
             {
                 currentScoreChange = 0;
                 fadeScoreChangeCoroutine = null;
             }));
 
             if (punchScoreChangeCoroutine != null) StopCoroutine(punchScoreChangeCoroutine);
-            punchScoreChangeCoroutine = StartCoroutine(TMPUtilsSc.PunchScaleRoutine(originalScoreChangeScale, punchScale, punchDuration, scoreChangeText, () => punchScoreChangeCoroutine = null));
+            punchScoreChangeCoroutine = StartCoroutine(UtilsSc.PunchScaleRoutine(originalScoreChangeScale, punchScale, punchDuration, scoreChangeText.transform, () => punchScoreChangeCoroutine = null));
         }
     }
 }
