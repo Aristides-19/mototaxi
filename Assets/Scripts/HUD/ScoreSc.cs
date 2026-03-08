@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Mototaxi.Core;
 using TMPro;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ namespace Mototaxi.HUD
             originalScale = scoreChangeText.transform.localScale;
 
             UpdateScoreChangeTextAlpha(0f);
-            HandleScore(Core.ScoreManagerSc.CurrentScore, 0f);
+            HandleScore(Core.ScoreManagerSc.CurrentScore, 0f, ScoreSource.None);
 
         }
         private void OnEnable()
@@ -48,7 +49,7 @@ namespace Mototaxi.HUD
             Core.ScoreManagerSc.OnScoreChanged -= HandleScore;
         }
 
-        private void HandleScore(float score, float change)
+        private void HandleScore(float score, float change, ScoreSource source)
         {
             UpdateScore(score);
             AddScoreChange(change);

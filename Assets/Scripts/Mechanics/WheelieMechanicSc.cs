@@ -1,61 +1,38 @@
 using Mototaxi.Core;
 using UnityEngine;
-using TMPro;
 using ArcadeBP_Pro;
 
 namespace Mototaxi.Mechanics
 {
-    [RequireComponent(typeof(ArcadeBikeControllerPro))]
+    [RequireComponent(typeof(ArcadeBikeControllerPro), typeof(Rigidbody))]
     public class WheelieMechanicSc : MonoBehaviour
     {
-        [SerializeField] Rigidbody playerRigidbody;
+        [Header("References")]
         [SerializeField] GameDataSc GameData;
 
-        [Header("UI Visuals")]
-        [SerializeField] TextMeshProUGUI wheelieText;
-        [SerializeField] Transform modeloVisualMoto;
-
         private ArcadeBikeControllerPro bikeController;
-        private float currentWheeliePoints = 0f;
+        private Rigidbody rb;
+        private Transform wheelieTransform;
 
         void Awake()
         {
             bikeController = GetComponent<ArcadeBikeControllerPro>();
+            rb = GetComponent<Rigidbody>();
+            wheelieTransform = bikeController.bikeReferences.WheelieTransform;
 
-            if (playerRigidbody == null) Debug.LogError("Falta Rigidbody.");
-            if (GameData == null) Debug.LogError("Falta asignar el GameData.");
-            if (wheelieText != null) wheelieText.gameObject.SetActive(false);
+            if (GameData == null) Debug.LogError("GameData reference is missing in WheelieMechanicSc.");
+            if (wheelieTransform == null) Debug.LogError("Wheelie Transform reference is missing in ArcadeBikeControllerPro.");
         }
 
         void Update()
         {
-            if (GameData == null || bikeController == null || modeloVisualMoto == null) return;
+            float currentAngle = Mathf.DeltaAngle(0, wheelieTransform.localEulerAngles.x);
 
-            float speed = playerRigidbody.linearVelocity.magnitude;
-            bool estaHaciendoWheelie = bikeController.isDoingWheelie;
-
-            float currentIncline = Mathf.Asin(modeloVisualMoto.forward.y) * Mathf.Rad2Deg;
-
-            if (estaHaciendoWheelie && speed > GameData.WheelieSettings.MinVelocity && currentIncline >= GameData.WheelieSettings.MinInclineAngle)
+            if (bikeController.isDoingWheelie &&
+                rb.linearVelocity.magnitude > GameData.WheelieSettings.MinVelocity &&
+                currentAngle <= -GameData.WheelieSettings.MinInclineAngle)
             {
-                float pointsEarned = GameData.WheelieSettings.PointsPerSecond * Time.deltaTime;
-
-                ScoreManagerSc.AddScore(pointsEarned, ScoreSource.Wheelie);
-                currentWheeliePoints += pointsEarned;
-
-                if (wheelieText != null)
-                {
-                    wheelieText.gameObject.SetActive(true);
-                    wheelieText.text = "�CABALLITO! +" + Mathf.FloorToInt(currentWheeliePoints).ToString();
-                }
-            }
-            else
-            {
-                if (wheelieText != null && wheelieText.gameObject.activeSelf)
-                {
-                    wheelieText.gameObject.SetActive(false);
-                    currentWheeliePoints = 0f;
-                }
+                ScoreManagerSc.AddScore(GameData.WheelieSettings.PointsPerSecond * Time.deltaTime, ScoreSource.Wheelie);
             }
         }
     }
