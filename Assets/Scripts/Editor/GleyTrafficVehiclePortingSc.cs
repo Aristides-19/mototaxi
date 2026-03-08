@@ -117,7 +117,7 @@ public class GleyTrafficVehiclePortingSc : EditorWindow
         // Instantiate temporary instance of the source prefab
         GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(source);
         PrefabUtility.UnpackPrefabInstance(instance, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
-        instance.name = source.name + "_Gley";
+        instance.name = source.name + "_Traffic";
 
         // Setup rigidbody properties
         Rigidbody rb = instance.GetComponent<Rigidbody>();
