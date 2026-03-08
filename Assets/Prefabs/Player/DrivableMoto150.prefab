@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 9908630773440209}
   serializedVersion: 2
   m_LocalRotation: {x: -0.013089396, y: -0, z: 0, w: 0.99991435}
-  m_LocalPosition: {x: -1.1382627e-16, y: 0.1737616, z: 0.17967482}
+  m_LocalPosition: {x: -1.1382613e-16, y: 0.17376137, z: 0.17967482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3137,8 +3137,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4514369340261970231}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.077529736, y: 0.000000012307375, z: -9.570646e-10, w: 0.9969901}
-  m_LocalPosition: {x: -5.830139, y: 2.7770321, z: -0.18681209}
+  m_LocalRotation: {x: 0.07752979, y: -0.000000095308955, z: 0.000000006596638, w: 0.9969901}
+  m_LocalPosition: {x: -5.830139, y: 2.7770324, z: -0.18681304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5559,7 +5559,7 @@ Transform:
   m_GameObject: {fileID: 7092861582532206556}
   serializedVersion: 2
   m_LocalRotation: {x: 0.27563748, y: -9.028103e-17, z: -3.148476e-16, w: 0.9612617}
-  m_LocalPosition: {x: -5.830139, y: 2.521031, z: 4.1851873}
+  m_LocalPosition: {x: -5.830139, y: 2.5210311, z: 4.1851883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6276,8 +6276,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8157847007443616212}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09152187, y: 0.3687775, z: -0.03651611, w: 0.92428}
-  m_LocalPosition: {x: -9.272097, y: 3.083032, z: 1.2164901}
+  m_LocalRotation: {x: 0.07770738, y: 0.6119076, z: -0.060590707, w: 0.78476715}
+  m_LocalPosition: {x: -10.679272, y: 3.0830312, z: 3.624209}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7080,6 +7080,7 @@ GameObject:
   - component: {fileID: 4787404611810661704}
   - component: {fileID: 8523729865026696651}
   - component: {fileID: 1143769984044031999}
+  - component: {fileID: 9093110284227515893}
   m_Layer: 0
   m_Name: DrivableMoto150
   m_TagString: Untagged
@@ -7518,6 +7519,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1e1fec8065ed8418c4f8fcc0057130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gley.TrafficSystem.PlayerComponent
+--- !u!114 &9093110284227515893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8813148393069372615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddb27d36a288364eaeb811e2b4e2ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Mechanics.WheelieMechanicSc
+  playerRigidbody: {fileID: 634073462167855606}
+  GameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
+  wheelieText: {fileID: 0}
+  modeloVisualMoto: {fileID: 7957516654053495694}
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0
