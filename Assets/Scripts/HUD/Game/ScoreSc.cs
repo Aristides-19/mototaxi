@@ -7,6 +7,7 @@ namespace Mototaxi.HUD
 {
     class ScoreSc : MonoBehaviour
     {
+        #region Inspector Settings
         [Header("Score Display")]
         [SerializeField] TextMeshProUGUI scoreText;
         [SerializeField] TMPCanvasSc scoreChangeText;
@@ -20,40 +21,29 @@ namespace Mototaxi.HUD
         [Header("Punch Scale Settings")]
         [SerializeField] float punchScale = 1.3f;
         [SerializeField] float punchDuration = 0.1f;
+        #endregion
 
-        // ANCHOR: Score Change Related
-        private Vector3 originalScoreChangeScale;
-        private float currentScoreChange;
-        private Coroutine fadeScoreChangeCoroutine;
-        private Coroutine punchScoreChangeCoroutine;
-
-        // ANCHOR: Score Source Related
-        private Coroutine fadeScoreSourceCoroutine;
-
+        #region Init Settings
         private void Awake()
         {
-            if (scoreText == null)
-            {
-                Debug.LogError("Score TextMeshProUGUI reference is missing in ScoreSc.");
-            }
+            if (scoreText == null) Debug.LogError("Score TextMeshProUGUI reference is missing in ScoreSc.");
 
+            // Score Change
             originalScoreChangeScale = scoreChangeText.transform.localScale;
-
             UtilsSc.SetCanvasAlpha(scoreChangeText.canvasGroup, 0f);
+
+            // Score Source
             UtilsSc.SetCanvasAlpha(scoreSourceText.canvasGroup, 0f);
+
+            // Init score display with current score just in case
             HandleScore(ScoreManagerSc.CurrentScore, 0f, ScoreSource.None);
 
         }
-        private void OnEnable()
-        {
-            ScoreManagerSc.OnScoreChanged += HandleScore;
-        }
+        private void OnEnable() => ScoreManagerSc.OnScoreChanged += HandleScore;
+        private void OnDisable() => ScoreManagerSc.OnScoreChanged -= HandleScore;
+        #endregion
 
-        private void OnDisable()
-        {
-            ScoreManagerSc.OnScoreChanged -= HandleScore;
-        }
-
+        #region Score Handling
         private void HandleScore(float score, float change, ScoreSource source)
         {
             UpdateScore(score);
@@ -66,7 +56,10 @@ namespace Mototaxi.HUD
         {
             scoreText.text = $"Bs. <size=+20>{MathF.Round(score, 2)}</size>";
         }
+        #endregion
 
+        #region Score Source
+        private Coroutine fadeScoreSourceCoroutine;
         private void AddScoreSource(float change, ScoreSource source)
         {
             if (change <= 0) return;
@@ -85,7 +78,13 @@ namespace Mototaxi.HUD
             if (fadeScoreSourceCoroutine != null) StopCoroutine(fadeScoreSourceCoroutine);
             fadeScoreSourceCoroutine = StartCoroutine(UtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreSourceText.canvasGroup, () => fadeScoreSourceCoroutine = null));
         }
+        #endregion
 
+        #region Score Change
+        private Vector3 originalScoreChangeScale;
+        private float currentScoreChange;
+        private Coroutine fadeScoreChangeCoroutine;
+        private Coroutine punchScoreChangeCoroutine;
         private void AddScoreChange(float change)
         {
             if (change <= 0) return;
@@ -105,5 +104,6 @@ namespace Mototaxi.HUD
             if (punchScoreChangeCoroutine != null) StopCoroutine(punchScoreChangeCoroutine);
             punchScoreChangeCoroutine = StartCoroutine(UtilsSc.PunchScaleRoutine(originalScoreChangeScale, punchScale, punchDuration, scoreChangeText.transform, () => punchScoreChangeCoroutine = null));
         }
+        #endregion
     }
 }
