@@ -9,7 +9,7 @@ using Gley.UrbanSystem.Editor;
 
 namespace Gley.TrafficSystem.Editor
 {
-    [CustomEditor(typeof(VehicleComponent))]
+    [CustomEditor(typeof(VehicleComponent)), CanEditMultipleObjects]
     public class VehicleComponentEditor : UnityEditor.Editor
     {
         const string _carHolderName = "CarHolder";
@@ -486,9 +486,9 @@ namespace Gley.TrafficSystem.Editor
             Transform wheelsHolder = targetScript.carHolder.Find(_wheelsHolderName);
             if (wheelsHolder == null)
             {
-                if(targetScript.allWheels == null || targetScript.allWheels.Length==0)
+                if (targetScript.allWheels == null || targetScript.allWheels.Length == 0)
                 {
-                    LogError(ref correct, "A GameObject named " + _wheelsHolderName + " was not found under " + targetScript.name+". Manually assign the wheels.");
+                    LogError(ref correct, "A GameObject named " + _wheelsHolderName + " was not found under " + targetScript.name + ". Manually assign the wheels.");
                     return;
                 }
                 for (int i = 0; i < targetScript.allWheels.Length; i++)
