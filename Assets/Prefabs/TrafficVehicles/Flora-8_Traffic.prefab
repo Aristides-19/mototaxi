@@ -1026,7 +1026,7 @@ MonoBehaviour:
     wheelCircumference: 2.3678951
     raycastLength: 0.5652933
     maxSuspension: 0.18843113
-  maxSteer: 45
+  maxSteer: 50
   maxSuspension: 0
   springStiffness: 15
   sideLeaningFactor: 0.1
@@ -1034,8 +1034,8 @@ MonoBehaviour:
   vehicleType: 0
   minPossibleSpeed: 30
   maxPossibleSpeed: 110
-  accelerationTime: 4
-  brakeTime: 4
+  accelerationTime: 2
+  brakeTime: 2
   steeringTime: 1.5
   distanceToStop: 2
   triggerLength: 2

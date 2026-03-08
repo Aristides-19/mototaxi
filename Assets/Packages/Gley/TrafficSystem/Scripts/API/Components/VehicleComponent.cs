@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Gley.TrafficSystem.Internal;
@@ -630,12 +630,35 @@ namespace Gley.TrafficSystem
         }
 
 
+        private float _stuckTimer;
+        private const float MAX_STUCK_TIME = 10f;
+        private float _lastUpdateTime;
+
         public virtual void UpdateVehicleScripts(float volume, float realTimeSinceStartup, bool reverseLightsOn)
         {
             UpdateEngineSound(volume);
             UpdateLights(realTimeSinceStartup);
             UpdateColliderSize();
             SetReverseLights(reverseLightsOn);
+
+            // Stuck detection logic
+            float deltaTime = realTimeSinceStartup - _lastUpdateTime;
+            _lastUpdateTime = realTimeSinceStartup;
+
+            if (GetCurrentSpeedMS() < 0.1f)
+            {
+                _stuckTimer += deltaTime;
+                if (_stuckTimer > MAX_STUCK_TIME)
+                {
+                    _stuckTimer = 0;
+                    // TROLLEO HERMANO
+                    API.RemoveVehicle(_listIndex);
+                }
+            }
+            else
+            {
+                _stuckTimer = 0;
+            }
         }
 
 
