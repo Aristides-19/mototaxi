@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Mototaxi.Utils;
 using Mototaxi.Core;
 using TMPro;
 using UnityEngine;
@@ -11,7 +14,14 @@ namespace Mototaxi.HUD
         [Header("Score Display")]
         [SerializeField] TextMeshProUGUI scoreText;
         [SerializeField] TMPCanvasSc scoreChangeText;
-        [SerializeField] TMPCanvasSc scoreSourceText;
+
+        [Header("Score Source Scroll")]
+        [Tooltip("Container that will hold the score source items. It must configure itself with height and width according to prefab and visible sources.")]
+        [SerializeField] MaskContainerSc scoreSourceContainer;
+        [Tooltip("Prefab for score source items. It will be instantiated for each score source, and used for measure height movement.")]
+        [SerializeField] TMPCanvasSc scoreSourcePrefab;
+        [SerializeField] float scrollDuration = 0.2f;
+        [SerializeField] int maxVisibleSources = 3;
 
         [Header("Opacity Settings")]
         [SerializeField] float fadeDuration = 0.5f;
@@ -33,12 +43,17 @@ namespace Mototaxi.HUD
             UtilsSc.SetCanvasAlpha(scoreChangeText.canvasGroup, 0f);
 
             // Score Source
-            UtilsSc.SetCanvasAlpha(scoreSourceText.canvasGroup, 0f);
+            itemHeight = scoreSourcePrefab.rectTransform.sizeDelta.y;
+            UtilsSc.SetCanvasAlpha(scoreSourceContainer.canvasGroup, 0f);
+
+            // Init Pool
+            sourcePool = new ObjectPoolSc<TMPCanvasSc>(scoreSourcePrefab, scoreSourceContainer.rectTransform, maxVisibleSources, maxVisibleSources + 2);
 
             // Init score display with current score just in case
             HandleScore(ScoreManagerSc.CurrentScore, 0f, ScoreSource.None);
 
         }
+
         private void OnEnable() => ScoreManagerSc.OnScoreChanged += HandleScore;
         private void OnDisable() => ScoreManagerSc.OnScoreChanged -= HandleScore;
         #endregion
@@ -60,23 +75,115 @@ namespace Mototaxi.HUD
 
         #region Score Source
         private Coroutine fadeScoreSourceCoroutine;
+        private Coroutine scrollScoreSourceCoroutine;
+        private readonly List<TMPCanvasSc> activeSources = new();
+        private ObjectPoolSc<TMPCanvasSc> sourcePool;
+        private float itemHeight;
+        private ScoreSource lastSourceType = ScoreSource.None;
+        private float lastSourceValue = 0f;
+
         private void AddScoreSource(float change, ScoreSource source)
         {
-            if (change <= 0) return;
+            if (change <= 0 || source == ScoreSource.None) return;
 
-            float roundedChange = MathF.Round(change, 2);
-
-            scoreSourceText.tmp.text = source switch
+            // Batching
+            if (source == lastSourceType && activeSources.Count > 0)
             {
-                ScoreSource.Roce => $"+{roundedChange} ROCE",
-                ScoreSource.Wheelie => $"+{roundedChange} CABALLITO",
+                lastSourceValue += change;
+                UpdateSourceItem(activeSources[^1], lastSourceValue, source);
+                RefreshSourceFadeTimer();
+                return;
+            }
+
+            // Prep new item
+            lastSourceType = source;
+            lastSourceValue = change;
+
+            if (activeSources.Count >= maxVisibleSources)
+            {
+                sourcePool.Release(activeSources[0]);
+                activeSources.RemoveAt(0);
+            }
+
+            TMPCanvasSc newItem = sourcePool.Get();
+            UpdateSourceItem(newItem, lastSourceValue, source);
+
+            // Layout
+            newItem.rectTransform.pivot = new Vector2(0.5f, 1);
+            newItem.rectTransform.anchorMin = new Vector2(0.5f, 1);
+            newItem.rectTransform.anchorMax = new Vector2(0.5f, 1);
+            newItem.rectTransform.anchoredPosition = new Vector2(0, itemHeight);
+            activeSources.Add(newItem);
+
+            RefreshSourceFadeTimer();
+
+            if (scrollScoreSourceCoroutine != null) StopCoroutine(scrollScoreSourceCoroutine);
+            scrollScoreSourceCoroutine = StartCoroutine(ScrollItemsRoutine());
+        }
+
+        private void UpdateSourceItem(TMPCanvasSc item, float value, ScoreSource source)
+        {
+            string sourceTextString = source switch
+            {
+                ScoreSource.Roce => $"+{MathF.Round(value, 2)} ROCE",
+                ScoreSource.Wheelie => $"+{MathF.Round(value, 2)} CABALLITO",
                 _ => ""
             };
+            item.tmp.text = sourceTextString;
+        }
 
-            UtilsSc.SetCanvasAlpha(scoreSourceText.canvasGroup, maxAlpha);
-
+        private void RefreshSourceFadeTimer()
+        {
+            UtilsSc.SetCanvasAlpha(scoreSourceContainer.canvasGroup, maxAlpha);
             if (fadeScoreSourceCoroutine != null) StopCoroutine(fadeScoreSourceCoroutine);
-            fadeScoreSourceCoroutine = StartCoroutine(UtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreSourceText.canvasGroup, () => fadeScoreSourceCoroutine = null));
+            fadeScoreSourceCoroutine = StartCoroutine(UtilsSc.FadeRoutine(displayDuration, fadeDuration, maxAlpha, scoreSourceContainer.canvasGroup, () =>
+            {
+                ClearAllSources();
+                fadeScoreSourceCoroutine = null;
+            }));
+        }
+
+        private void ClearAllSources()
+        {
+            foreach (var item in activeSources) sourcePool.Release(item);
+            activeSources.Clear();
+            lastSourceType = ScoreSource.None;
+        }
+
+        private IEnumerator ScrollItemsRoutine()
+        {
+            float elapsed = 0f;
+            int count = activeSources.Count;
+            float[] startYs = new float[count];
+            float[] targetYs = new float[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                startYs[i] = activeSources[i].rectTransform.anchoredPosition.y;
+                // Calculate target Y based on index, with the newest item at the top (0) and older items below it
+                // It avoids loosing real Y target when this coroutine is restarted before finishing, allowing to keep the scroll movement fluid even with rapid score source additions
+                targetYs[i] = -(count - 1 - i) * itemHeight;
+            }
+
+            while (elapsed < scrollDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / scrollDuration;
+                float easedT = t * t * (3f - 2f * t);
+
+                for (int i = 0; i < activeSources.Count; i++)
+                {
+                    activeSources[i].rectTransform.anchoredPosition = new Vector2(0, Mathf.Lerp(startYs[i], targetYs[i], easedT));
+                }
+                yield return null;
+            }
+
+            for (int i = 0; i < activeSources.Count; i++)
+            {
+                activeSources[i].rectTransform.anchoredPosition = new Vector2(0, targetYs[i]);
+            }
+
+            scrollScoreSourceCoroutine = null;
         }
         #endregion
 
