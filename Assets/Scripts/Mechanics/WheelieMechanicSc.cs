@@ -24,11 +24,14 @@ namespace Mototaxi.Mechanics
             if (GameData == null) Debug.LogError("GameData reference is missing in WheelieMechanicSc.");
         }
 
-        void Update()
+        void OnEnable() => ArcadeBikeControllerPro.OnWheelieStateChange += OnWheelieStateChange;
+        void OnDisable() => ArcadeBikeControllerPro.OnWheelieStateChange -= OnWheelieStateChange;
+
+        void OnWheelieStateChange(bool isDoingWheelie)
         {
             float currentAngle = Mathf.DeltaAngle(0, wheelieTransform.localEulerAngles.x);
 
-            if (bikeController.isDoingWheelie &&
+            if (isDoingWheelie &&
                 rb.linearVelocity.magnitude > GameData.WheelieSettings.MinVelocity &&
                 currentAngle <= -GameData.WheelieSettings.MinInclineAngle)
             {

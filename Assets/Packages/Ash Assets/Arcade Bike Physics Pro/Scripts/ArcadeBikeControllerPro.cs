@@ -503,6 +503,7 @@ namespace ArcadeBP_Pro
         #region Variable Events
         public static event Action<Vector3> OnLocalVelocityChange;
         public static event Action<int> OnCurrentGearChange;
+        public static event Action<bool> OnWheelieStateChange;
 
         private void SetCurrentGear(int gear)
         {
@@ -514,6 +515,12 @@ namespace ArcadeBP_Pro
         {
             localBikeVelocity = velocity;
             OnLocalVelocityChange?.Invoke(velocity);
+        }
+
+        private void SetIsDoingWheelie(bool value)
+        {
+            isDoingWheelie = value;
+            OnWheelieStateChange?.Invoke(value);
         }
 
         #endregion
@@ -1071,7 +1078,7 @@ namespace ArcadeBP_Pro
             // If speed safe and not wheelie reset required and rear wheel is grounded and wheelie button is pressed, then do wheelie
             if (bikeInput.Wheelie > 0 && rearWheelIsGrounded && isSpeedSafe && !requireWheelieReset)
             {
-                isDoingWheelie = true;
+                SetIsDoingWheelie(true);
             }
 
             // If isDoingWheelie and speed is not safe, then require wheelie reset to prevent wheelie from happening again until player releases and presses the wheelie button again
@@ -1083,7 +1090,7 @@ namespace ArcadeBP_Pro
             // Just if front wheel is grounded, then isDoingWheelie can be false
             if (frontWheelIsGrounded && (!isSpeedSafe || !(bikeInput.Wheelie > 0)))
             {
-                isDoingWheelie = false;
+                SetIsDoingWheelie(false);
             }
 
             float surfaceAngle_rear = Vector3.Angle(groundNormal_rear, Vector3.up);
@@ -1096,7 +1103,7 @@ namespace ArcadeBP_Pro
             if (surfaceAngle > acceptableAngleForWheelie || surfaceAngle_front > acceptableAngleForWheelie || surfaceAngle_rear > acceptableAngleForWheelie)
             {
                 if (isDoingWheelie) { snapWheelie = true; }
-                isDoingWheelie = false;
+                SetIsDoingWheelie(false);
             }
 
             // above logic makes better wheelie but still not perfect
