@@ -30,7 +30,7 @@ namespace Mototaxi.Core
         public float MinVelocity = 4f;
     }
 
-    // NUEVA ESTRUCTURA PARA EL WHEELIE
+
     [Serializable]
     public class WheelieData
     {
