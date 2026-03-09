@@ -7482,7 +7482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 4438738763659191158}
-  dummyBikePrefab: {fileID: 24566160793819467, guid: dd9fcd6364a674c40ad7457eb3dadd7d, type: 3}
+  dummyBikePrefab: {fileID: 8402680626081032387, guid: def65d6fa5ab1de46bc875d3d00b4a1a, type: 3}
   characterRagdollPrefab: {fileID: 5862566900047247827, guid: 45bfcc4bdea4c2f42ba1ffe71b58a1f9, type: 3}
   characterAnimator: {fileID: 8443735916573532777}
   impactThreshold: 10
@@ -7531,10 +7531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb27d36a288364eaeb811e2b4e2ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Mechanics.WheelieMechanicSc
-  playerRigidbody: {fileID: 634073462167855606}
   GameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
-  wheelieText: {fileID: 0}
-  modeloVisualMoto: {fileID: 7957516654053495694}
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0

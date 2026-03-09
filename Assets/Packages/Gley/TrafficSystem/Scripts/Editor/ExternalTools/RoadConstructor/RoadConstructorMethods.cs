@@ -47,7 +47,7 @@ namespace Gley.TrafficSystem.Editor
             DestroyImmediate(GameObject.Find(RoadConstructorIntersectionHolder));
             DestroyImmediate(GameObject.Find(RoadConstructorConnectionsHolder));
 
-            var roadConstructor = FindObjectOfType<RoadConstructor>();
+            var roadConstructor = FindFirstObjectByType<RoadConstructor>();
 
 
 
