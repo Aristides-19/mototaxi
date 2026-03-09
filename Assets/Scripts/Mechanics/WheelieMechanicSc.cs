@@ -13,6 +13,7 @@ namespace Mototaxi.Mechanics
         private ArcadeBikeControllerPro bikeController;
         private Rigidbody rb;
         private Transform wheelieTransform;
+        private float wheelieTimer;
 
         void Awake()
         {
@@ -21,7 +22,6 @@ namespace Mototaxi.Mechanics
             wheelieTransform = bikeController.bikeReferences.WheelieTransform;
 
             if (GameData == null) Debug.LogError("GameData reference is missing in WheelieMechanicSc.");
-            if (wheelieTransform == null) Debug.LogError("Wheelie Transform reference is missing in ArcadeBikeControllerPro.");
         }
 
         void Update()
@@ -32,7 +32,16 @@ namespace Mototaxi.Mechanics
                 rb.linearVelocity.magnitude > GameData.WheelieSettings.MinVelocity &&
                 currentAngle <= -GameData.WheelieSettings.MinInclineAngle)
             {
-                ScoreManagerSc.AddScore(GameData.WheelieSettings.PointsPerSecond * Time.deltaTime, ScoreSource.Wheelie);
+                wheelieTimer += Time.deltaTime;
+                if (wheelieTimer >= GameData.WheelieSettings.IntervalToStartScoring)
+                {
+                    ScoreManagerSc.AddScore(GameData.WheelieSettings.PointsPerSecond * Time.deltaTime, ScoreSource.Wheelie);
+                    wheelieTimer = 0f;
+                }
+            }
+            else
+            {
+                wheelieTimer = 0f;
             }
         }
     }

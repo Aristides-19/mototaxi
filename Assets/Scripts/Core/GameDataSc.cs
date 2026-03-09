@@ -38,7 +38,9 @@ namespace Mototaxi.Core
         public float PointsPerSecond = 10f;
         [Tooltip("Minimum velocity required to register a wheelie in m/s")]
         public float MinVelocity = 5f;
-        [Tooltip("Minimum incline angle to start earning points (e.g., 20)")]
+        [Tooltip("Minimum incline angle to start earning points (e.g., 20°)")]
         public float MinInclineAngle = 20f;
+        [Tooltip("Interval in seconds to score points after starting a wheelie (or after sending points again)")]
+        public float IntervalToStartScoring = 0.5f;
     }
 }
