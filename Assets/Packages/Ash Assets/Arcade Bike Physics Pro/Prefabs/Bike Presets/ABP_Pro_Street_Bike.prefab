@@ -178,9 +178,11 @@ MonoBehaviour:
     SteeringLeft: 97
     SteeringRight: 100
     Wheelie: 48
+    Stoppie: 0
   bikeReferences:
     Rotator: {fileID: 3083259084124900594}
     WheelieTransform: {fileID: 8600630114077854017}
+    StoppieTransform: {fileID: 0}
     LeanTransform: {fileID: 211770790131211937}
     FrontWheelParent: {fileID: 3309782829400270986}
     RearWheelParent: {fileID: 4298434383136350365}
@@ -195,7 +197,6 @@ MonoBehaviour:
     collider: {fileID: 3755078267064125770}
     skidmarksPrefab: {fileID: 638696902895130807, guid: c97b90430b6ad034aa75552d4c8bc2a3, type: 3}
     tireSmokePrefab: {fileID: 7196279275021173178, guid: 93a5a70307461a5459e7b7ed2f9b9894, type: 3}
-    BikerAnimationTargets: {fileID: 5655373181199440766}
     ragdollActivator: {fileID: 4823126427261703629}
   bikeGeometry:
     FrontWheelRadius: 0.28215358
@@ -239,6 +240,12 @@ MonoBehaviour:
     wheelieAnimationSpeed: 3
     alignRotatorSpeed_Ground: 20
     alignRotatorSpeed_Air: 2
+    minWheelieSpeed: 2
+    maxWheelieSpeed: 20
+    maxStoppieAngle: 30
+    stoppieAnimationSpeed: 6
+    minStoppieSpeed: 8
+    stoppieBrakeRate: 1.2
   bikeCurves:
     AccelerationCurve:
       serializedVersion: 2
@@ -437,6 +444,9 @@ MonoBehaviour:
   frontWheelIsGrounded: 0
   rearWheelIsGrounded: 0
   isDoingWheelie: 0
+  requireWheelieReset: 0
+  isDoingStoppie: 0
+  requireStoppieReset: 0
   canAccelerate: 1
   canTurn: 1
 --- !u!114 &4823126427261703629
@@ -451,7 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98a3f7a7f78da1468f0c2f60f101cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bikeController: {fileID: 2431595530498582180}
   cameraController: {fileID: 6501626460632969172}
   dummyBikePrefab: {fileID: 1979589890313574885, guid: d9c43e32bd5cde146814e18eacfe1252, type: 3}
   characterRagdollPrefab: {fileID: 5862566900047247827, guid: 45bfcc4bdea4c2f42ba1ffe71b58a1f9, type: 3}
@@ -464,6 +473,7 @@ MonoBehaviour:
   onBikeReEnabled:
     m_PersistentCalls:
       m_Calls: []
+  bikeController: {fileID: 2431595530498582180}
 --- !u!114 &1642719406576042440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,19 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9148a99f2e8eab043b7e89385c58a976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arcadeBikeControllerPro: {fileID: 2431595530498582180}
-  AccelerateKey: 119
-  ReverseKey: 115
-  HandBrakeKey: 32
-  SteeringLeftKey: 97
-  SteeringRightKey: 100
-  WheelieKey: 304
-  AccelerateButton: {fileID: 0}
-  ReverseButton: {fileID: 0}
-  HandBrakeButton: {fileID: 0}
-  SteeringLeftButton: {fileID: 0}
-  SteeringRightButton: {fileID: 0}
-  WheelieButton: {fileID: 0}
+  input: {fileID: 0}
 --- !u!1 &596744317897459998
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,11 +4375,13 @@ MonoBehaviour:
   speedThresholdForShake: 50
   shakeAmplitude: 0.2
   shakeFrequency: 1
-  switchCameraKey: 99
-  switchCameraButton: {fileID: 0}
+  input: {fileID: 0}
   minFOV: 60
   maxFOV: 90
   FOV_smoother: 5
+  fppCameraIndex: 2
+  fppMinFOV: 80
+  fppMaxFOV: 95
 --- !u!1 &8517879300861663731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5249,25 +5249,7 @@ MonoBehaviour:
   rightHandTarget_rig: {fileID: 1245410485417050420}
   leftHandTarget_rig: {fileID: 8679915942620119729}
   headLookAtTarget_rig: {fileID: 2064150733587020884}
-  hipIdleTarget: {fileID: 2482885296907994121}
-  hipNormalSpeedTarget: {fileID: 2312477500392683736}
-  hipHighSpeedTarget: {fileID: 7666685600438939462}
-  hipInAirTarget: {fileID: 4169493430663939029}
-  hipReverseTarget: {fileID: 6116608756763843686}
-  spineIdleTarget: {fileID: 2791635165737592972}
-  spineNormalSpeedTarget: {fileID: 9223353010306232379}
-  spineHighSpeedTarget: {fileID: 7700103040408574288}
-  spineReverseTarget: {fileID: 7882322341438755276}
-  leftlegIdleTarget: {fileID: 465039011740072392}
-  leftlegInMotionTarget: {fileID: 9062802048133533463}
-  leftlegReverseTarget: {fileID: 7322011583221529027}
-  rightlegIdleTarget: {fileID: 484423772077410378}
-  rightlegInMotionTarget: {fileID: 7864765400337479118}
-  rightlegReverseTarget: {fileID: 1405428378281218140}
-  leftHandTarget: {fileID: 4472400535457198052}
-  rightHandTarget: {fileID: 9121907612467731428}
-  leftHandReverseTarget: {fileID: 7009752124012080400}
-  rightHandReverseTarget: {fileID: 9222693079983873338}
+  bikerAnimationTargets: {fileID: 5655373181199440766}
   currentSpeed: 0
   currentLeanAngle: 0
 --- !u!4 &5401058480021244670 stripped

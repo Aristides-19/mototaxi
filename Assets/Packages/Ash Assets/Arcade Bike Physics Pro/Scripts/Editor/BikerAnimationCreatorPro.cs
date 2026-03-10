@@ -203,31 +203,7 @@ namespace ArcadeBP_Pro
 
             //set up the animation targets
 
-            var bikerAnimationTargets = bikeController.bikeReferences.BikerAnimationTargets;
-
-            bikerAnimationController.hipIdleTarget = bikerAnimationTargets.hipIdleTarget;
-            bikerAnimationController.hipNormalSpeedTarget = bikerAnimationTargets.hipNormalSpeedTarget;
-            bikerAnimationController.hipHighSpeedTarget = bikerAnimationTargets.hipHighSpeedTarget;
-            bikerAnimationController.hipInAirTarget = bikerAnimationTargets.hipInAirTarget;
-            bikerAnimationController.hipReverseTarget = bikerAnimationTargets.hipReverseTarget;
-
-            bikerAnimationController.spineIdleTarget = bikerAnimationTargets.spineIdleTarget;
-            bikerAnimationController.spineNormalSpeedTarget = bikerAnimationTargets.spineNormalSpeedTarget;
-            bikerAnimationController.spineHighSpeedTarget = bikerAnimationTargets.spineHighSpeedTarget;
-            bikerAnimationController.spineReverseTarget = bikerAnimationTargets.spineReverseTarget;
-
-            bikerAnimationController.leftlegIdleTarget = bikerAnimationTargets.leftlegIdleTarget;
-            bikerAnimationController.leftlegInMotionTarget = bikerAnimationTargets.leftlegInMotionTarget;
-            bikerAnimationController.leftlegReverseTarget = bikerAnimationTargets.leftlegReverseTarget;
-
-            bikerAnimationController.rightlegIdleTarget = bikerAnimationTargets.rightlegIdleTarget;
-            bikerAnimationController.rightlegInMotionTarget = bikerAnimationTargets.rightlegInMotionTarget;
-            bikerAnimationController.rightlegReverseTarget = bikerAnimationTargets.rightlegReverseTarget;
-
-            bikerAnimationController.leftHandTarget = bikerAnimationTargets.leftHandTarget;
-            bikerAnimationController.rightHandTarget = bikerAnimationTargets.rightHandTarget;
-            bikerAnimationController.rightHandReverseTarget = bikerAnimationTargets.rightHandReverseTarget;
-            bikerAnimationController.leftHandReverseTarget = bikerAnimationTargets.leftHandReverseTarget;
+            bikerAnimationController.bikerAnimationTargets = bikeController.GetComponentInChildren<BikerAnimationTargets>();
 
 
             configureBikerAnimationController(bikerAnimationController, biker_rigs);

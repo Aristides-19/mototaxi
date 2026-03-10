@@ -94,9 +94,6 @@ namespace ArcadeBP_Pro
             [Tooltip("Prefab for the tire smoke.")]
             public GameObject tireSmokePrefab;
 
-            [Tooltip("Custom class for managing biker animations.")]
-            public BikerAnimationTargets BikerAnimationTargets;
-
             [Tooltip("ragdoll activator of the bike")]
             public RagdollActivator ragdollActivator;
         }

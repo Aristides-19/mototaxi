@@ -4389,7 +4389,6 @@ MonoBehaviour:
     collider: {fileID: 1254314124518239375}
     skidmarksPrefab: {fileID: 638696902895130807, guid: c97b90430b6ad034aa75552d4c8bc2a3, type: 3}
     tireSmokePrefab: {fileID: 7196279275021173178, guid: 93a5a70307461a5459e7b7ed2f9b9894, type: 3}
-    BikerAnimationTargets: {fileID: 5721302435718470319}
     ragdollActivator: {fileID: 4787404611810661704}
   bikeGeometry:
     FrontWheelRadius: 0.351445
@@ -5092,25 +5091,7 @@ MonoBehaviour:
   rightHandTarget_rig: {fileID: 1543844938533750576}
   leftHandTarget_rig: {fileID: 6166986160706580571}
   headLookAtTarget_rig: {fileID: 5190482995064822324}
-  hipIdleTarget: {fileID: 2580807145400590671}
-  hipNormalSpeedTarget: {fileID: 6292181034432740588}
-  hipHighSpeedTarget: {fileID: 9154667323087822140}
-  hipInAirTarget: {fileID: 538943577156531453}
-  hipReverseTarget: {fileID: 1777622665129619153}
-  spineIdleTarget: {fileID: 2051273892621887437}
-  spineNormalSpeedTarget: {fileID: 1604978652545889886}
-  spineHighSpeedTarget: {fileID: 4589741001928966001}
-  spineReverseTarget: {fileID: 5253016089744139991}
-  leftlegIdleTarget: {fileID: 2720396490640654026}
-  leftlegInMotionTarget: {fileID: 7282282341548704753}
-  leftlegReverseTarget: {fileID: 2430567564984762463}
-  rightlegIdleTarget: {fileID: 8536860271994777991}
-  rightlegInMotionTarget: {fileID: 863459841994113111}
-  rightlegReverseTarget: {fileID: 6219563158486711384}
-  leftHandTarget: {fileID: 4652638814376389280}
-  rightHandTarget: {fileID: 4905193276631580931}
-  leftHandReverseTarget: {fileID: 96501422456050744}
-  rightHandReverseTarget: {fileID: 4799885296543998848}
+  bikerAnimationTargets: {fileID: 5721302435718470319}
   currentSpeed: 0
   currentLeanAngle: 0
 --- !u!4 &1160961864793668575 stripped

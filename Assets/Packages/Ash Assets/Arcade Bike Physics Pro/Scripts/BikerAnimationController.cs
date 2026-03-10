@@ -82,66 +82,9 @@ namespace ArcadeBP_Pro
         [Tooltip("Reference to the head look-at target rig transform.")]
         public Transform headLookAtTarget_rig;
 
-        [Header("Hip Targets")]
-        [Tooltip("Hip will move and rotate to this transform when bike is idle.")]
-        public Transform hipIdleTarget;
-
-        [Tooltip("Hip will move and rotate to this transform when bike is at normal speed.")]
-        public Transform hipNormalSpeedTarget;
-
-        [Tooltip("Hip will move and rotate to this transform when bike is at high speed.")]
-        public Transform hipHighSpeedTarget;
-
-        [Tooltip("Hip will move and rotate to this transform when bike is in the air.")]
-        public Transform hipInAirTarget;
-
-        [Tooltip("Hip will move and rotate to this transform during reverse animation.")]
-        public Transform hipReverseTarget; // New reverse target
-
-        [Header("Spine Targets")]
-        [Tooltip("Spine will move and rotate to this transform when bike is idle.")]
-        public Transform spineIdleTarget;
-
-        [Tooltip("Spine will move and rotate to this transform when bike is at normal speed.")]
-        public Transform spineNormalSpeedTarget;
-
-        [Tooltip("Spine will move and rotate to this transform when bike is at high speed.")]
-        public Transform spineHighSpeedTarget;
-
-        [Tooltip("Spine will move and rotate to this transform during reverse animation.")]
-        public Transform spineReverseTarget; // New reverse target
-
-        [Header("Leg Targets")]
-        [Tooltip("Left leg will move and rotate to this transform when bike is idle.")]
-        public Transform leftlegIdleTarget;
-
-        [Tooltip("Left leg will move and rotate to this transform when bike is in motion.")]
-        public Transform leftlegInMotionTarget;
-
-        [Tooltip("Left leg will move and rotate to this transform during reverse animation.")]
-        public Transform leftlegReverseTarget; // New reverse target
-
-        [Tooltip("Right leg will move and rotate to this transform when bike is idle.")]
-        public Transform rightlegIdleTarget;
-
-        [Tooltip("Right leg will move and rotate to this transform when bike is in motion.")]
-        public Transform rightlegInMotionTarget;
-
-        [Tooltip("Right leg will move and rotate to this transform during reverse animation.")]
-        public Transform rightlegReverseTarget; // New reverse target
-
-        [Header("Hand Targets")]
-        [Tooltip("Left hand will move and rotate to this transform when holding the handlebar.")]
-        public Transform leftHandTarget;
-
-        [Tooltip("Right hand will move and rotate to this transform when holding the handlebar.")]
-        public Transform rightHandTarget;
-
-        [Tooltip("Left hand will move and rotate to this transform during reverse animation.")]
-        public Transform leftHandReverseTarget; // New reverse target
-
-        [Tooltip("Right hand will move and rotate to this transform during reverse animation.")]
-        public Transform rightHandReverseTarget; // New reverse target
+        [Header("Animation Targets")]
+        [Tooltip("Reference to the biker animation targets script.")]
+        public BikerAnimationTargets bikerAnimationTargets;
 
 
         [Header("Bike Data")]
@@ -166,20 +109,20 @@ namespace ArcadeBP_Pro
 
             InitializeRigTargets();
 
-            leftlegReverseTargetInitialPos = leftlegReverseTarget.localPosition;
-            rightlegReverseTargetInitialPos = rightlegReverseTarget.localPosition;
+            leftlegReverseTargetInitialPos = bikerAnimationTargets.leftlegReverseTarget.localPosition;
+            rightlegReverseTargetInitialPos = bikerAnimationTargets.rightlegReverseTarget.localPosition;
         }
 
         void InitializeRigTargets()
         {
-            hipTarget_rig.localPosition = hipIdleTarget.localPosition;
-            hipTarget_rig.localRotation = hipIdleTarget.localRotation;
+            hipTarget_rig.localPosition = bikerAnimationTargets.hipIdleTarget.localPosition;
+            hipTarget_rig.localRotation = bikerAnimationTargets.hipIdleTarget.localRotation;
 
-            spineRootTarget_rig.localRotation = spineIdleTarget.localRotation;
-            spineTipTarget_rig.localRotation = spineIdleTarget.localRotation;
+            spineRootTarget_rig.localRotation = bikerAnimationTargets.spineIdleTarget.localRotation;
+            spineTipTarget_rig.localRotation = bikerAnimationTargets.spineIdleTarget.localRotation;
 
-            rightLegTarget_rig.localPosition = rightlegIdleTarget.localPosition;
-            leftLegTarget_rig.localPosition = leftlegIdleTarget.localPosition;
+            rightLegTarget_rig.localPosition = bikerAnimationTargets.rightlegIdleTarget.localPosition;
+            leftLegTarget_rig.localPosition = bikerAnimationTargets.leftlegIdleTarget.localPosition;
         }
 
         void Update()
@@ -228,7 +171,7 @@ namespace ArcadeBP_Pro
         {
             if (!bikeController.bikeIsGrounded)
             {
-                TransitionToTarget(hipTarget_rig, hipInAirTarget, leanPosOffsetForHip, leanRotOffsetForHip);
+                TransitionToTarget(hipTarget_rig, bikerAnimationTargets.hipInAirTarget, leanPosOffsetForHip, leanRotOffsetForHip);
                 return;
             }
 
@@ -236,20 +179,20 @@ namespace ArcadeBP_Pro
             {
                 if (currentSpeed < -0.5f && !bikeController.isDoingBurnout && useReverseLegAnimation)
                 {
-                    TransitionToTarget(hipTarget_rig, hipReverseTarget, leanPosOffsetForHip, leanRotOffsetForHip);
+                    TransitionToTarget(hipTarget_rig, bikerAnimationTargets.hipReverseTarget, leanPosOffsetForHip, leanRotOffsetForHip);
                 }
                 else
                 {
-                    TransitionToTarget(hipTarget_rig, hipIdleTarget, leanPosOffsetForHip, leanRotOffsetForHip);
+                    TransitionToTarget(hipTarget_rig, bikerAnimationTargets.hipIdleTarget, leanPosOffsetForHip, leanRotOffsetForHip);
                 }
             }
             else if (currentSpeed < highSpeedThreshold)
             {
-                TransitionToTarget(hipTarget_rig, hipNormalSpeedTarget, leanPosOffsetForHip, leanRotOffsetForHip);
+                TransitionToTarget(hipTarget_rig, bikerAnimationTargets.hipNormalSpeedTarget, leanPosOffsetForHip, leanRotOffsetForHip);
             }
             else
             {
-                TransitionToTarget(hipTarget_rig, hipHighSpeedTarget, leanPosOffsetForHip, leanRotOffsetForHip);
+                TransitionToTarget(hipTarget_rig, bikerAnimationTargets.hipHighSpeedTarget, leanPosOffsetForHip, leanRotOffsetForHip);
             }
         }
 
@@ -259,24 +202,24 @@ namespace ArcadeBP_Pro
             {
                 if (currentSpeed < -0.5f && !bikeController.isDoingBurnout && useReverseLegAnimation)
                 {
-                    TransitionToTarget(spineRootTarget_rig, spineReverseTarget, Vector3.zero, leanRotOffsetForSpine);
-                    TransitionToTarget(spineTipTarget_rig, spineReverseTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
+                    TransitionToTarget(spineRootTarget_rig, bikerAnimationTargets.spineReverseTarget, Vector3.zero, leanRotOffsetForSpine);
+                    TransitionToTarget(spineTipTarget_rig, bikerAnimationTargets.spineReverseTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
                 }
                 else
                 {
-                    TransitionToTarget(spineRootTarget_rig, spineIdleTarget, Vector3.zero, leanRotOffsetForSpine);
-                    TransitionToTarget(spineTipTarget_rig, spineIdleTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
+                    TransitionToTarget(spineRootTarget_rig, bikerAnimationTargets.spineIdleTarget, Vector3.zero, leanRotOffsetForSpine);
+                    TransitionToTarget(spineTipTarget_rig, bikerAnimationTargets.spineIdleTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
                 }
             }
             else if (currentSpeed < highSpeedThreshold)
             {
-                TransitionToTarget(spineRootTarget_rig, spineNormalSpeedTarget, Vector3.zero, leanRotOffsetForSpine);
-                TransitionToTarget(spineTipTarget_rig, spineNormalSpeedTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
+                TransitionToTarget(spineRootTarget_rig, bikerAnimationTargets.spineNormalSpeedTarget, Vector3.zero, leanRotOffsetForSpine);
+                TransitionToTarget(spineTipTarget_rig, bikerAnimationTargets.spineNormalSpeedTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
             }
             else
             {
-                TransitionToTarget(spineRootTarget_rig, spineHighSpeedTarget, Vector3.zero, leanRotOffsetForSpine);
-                TransitionToTarget(spineTipTarget_rig, spineHighSpeedTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
+                TransitionToTarget(spineRootTarget_rig, bikerAnimationTargets.spineHighSpeedTarget, Vector3.zero, leanRotOffsetForSpine);
+                TransitionToTarget(spineTipTarget_rig, bikerAnimationTargets.spineHighSpeedTarget, Vector3.zero, new Vector3(spineTipOffset, 0, 0) + leanRotOffsetForSpine);
             }
         }
 
@@ -286,19 +229,19 @@ namespace ArcadeBP_Pro
             {
                 if (currentSpeed < -0.5f && !bikeController.isDoingBurnout && useReverseLegAnimation)
                 {
-                    TransitionToTarget(rightLegTarget_rig, rightlegReverseTarget, Vector3.zero, Vector3.zero);
-                    TransitionToTarget(leftLegTarget_rig, leftlegReverseTarget, Vector3.zero, Vector3.zero);
+                    TransitionToTarget(rightLegTarget_rig, bikerAnimationTargets.rightlegReverseTarget, Vector3.zero, Vector3.zero);
+                    TransitionToTarget(leftLegTarget_rig, bikerAnimationTargets.leftlegReverseTarget, Vector3.zero, Vector3.zero);
                 }
                 else
                 {
-                    TransitionToTarget(rightLegTarget_rig, rightlegIdleTarget, Vector3.zero, Vector3.zero);
-                    TransitionToTarget(leftLegTarget_rig, leftlegIdleTarget, Vector3.zero, Vector3.zero);
+                    TransitionToTarget(rightLegTarget_rig, bikerAnimationTargets.rightlegIdleTarget, Vector3.zero, Vector3.zero);
+                    TransitionToTarget(leftLegTarget_rig, bikerAnimationTargets.leftlegIdleTarget, Vector3.zero, Vector3.zero);
                 }
             }
             else
             {
-                TransitionToTarget(rightLegTarget_rig, rightlegInMotionTarget, Vector3.zero, Vector3.zero);
-                TransitionToTarget(leftLegTarget_rig, leftlegInMotionTarget, Vector3.zero, Vector3.zero);
+                TransitionToTarget(rightLegTarget_rig, bikerAnimationTargets.rightlegInMotionTarget, Vector3.zero, Vector3.zero);
+                TransitionToTarget(leftLegTarget_rig, bikerAnimationTargets.leftlegInMotionTarget, Vector3.zero, Vector3.zero);
             }
         }
 
@@ -312,8 +255,8 @@ namespace ArcadeBP_Pro
             float leftLegZ = leftlegReverseTargetInitialPos.z + Mathf.Cos(time) * reverseStepDistance;
             float rightLegZ = rightlegReverseTargetInitialPos.z + Mathf.Cos(time + Mathf.PI) * reverseStepDistance; // Opposite phase
 
-            leftlegReverseTarget.localPosition = new Vector3(leftlegReverseTargetInitialPos.x, leftLegY, leftLegZ);
-            rightlegReverseTarget.localPosition = new Vector3(rightlegReverseTargetInitialPos.x, rightLegY, rightLegZ);
+            bikerAnimationTargets.leftlegReverseTarget.localPosition = new Vector3(leftlegReverseTargetInitialPos.x, leftLegY, leftLegZ);
+            bikerAnimationTargets.rightlegReverseTarget.localPosition = new Vector3(rightlegReverseTargetInitialPos.x, rightLegY, rightLegZ);
         }
 
 
@@ -356,17 +299,17 @@ namespace ArcadeBP_Pro
         {
             if (currentSpeed < -0.5f && !bikeController.isDoingBurnout)
             {
-                rightHandTarget_rig.position = rightHandReverseTarget.position;
-                leftHandTarget_rig.position = leftHandReverseTarget.position;
-                rightHandTarget_rig.rotation = rightHandReverseTarget.rotation;
-                leftHandTarget_rig.rotation = leftHandReverseTarget.rotation;
+                rightHandTarget_rig.position = bikerAnimationTargets.rightHandReverseTarget.position;
+                leftHandTarget_rig.position = bikerAnimationTargets.leftHandReverseTarget.position;
+                rightHandTarget_rig.rotation = bikerAnimationTargets.rightHandReverseTarget.rotation;
+                leftHandTarget_rig.rotation = bikerAnimationTargets.leftHandReverseTarget.rotation;
             }
             else
             {
-                rightHandTarget_rig.position = rightHandTarget.position;
-                leftHandTarget_rig.position = leftHandTarget.position;
-                rightHandTarget_rig.rotation = rightHandTarget.rotation;
-                leftHandTarget_rig.rotation = leftHandTarget.rotation;
+                rightHandTarget_rig.position = bikerAnimationTargets.rightHandTarget.position;
+                leftHandTarget_rig.position = bikerAnimationTargets.leftHandTarget.position;
+                rightHandTarget_rig.rotation = bikerAnimationTargets.rightHandTarget.rotation;
+                leftHandTarget_rig.rotation = bikerAnimationTargets.leftHandTarget.rotation;
             }
         }
     }
