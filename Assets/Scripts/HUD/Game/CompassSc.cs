@@ -7,10 +7,10 @@ namespace Mototaxi.HUD
     {
         [Header("References")]
         [Tooltip("Transform of the player or object whose rotation will be used to update the compass")]
-        public Transform playerRotator;
+        [SerializeField] Transform playerRotator;
 
         [Tooltip("Compass RawImage component to update the UV rect")]
-        public RawImage compassTextureUV;
+        [SerializeField] RawImage compassTextureUV;
 
         void Awake()
         {

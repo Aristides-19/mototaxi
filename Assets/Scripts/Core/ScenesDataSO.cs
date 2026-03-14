@@ -15,7 +15,7 @@ namespace Mototaxi.Core
     public class ScenesDataSO : ScriptableObject
     {
         [SerializedDictionary("Scene Type", "Build Index")]
-        public SerializedDictionary<SceneType, int> SceneMap;
+        [SerializeField] private SerializedDictionary<SceneType, int> SceneMap;
 
         public int GetBuildIndex(SceneType type)
         {

@@ -97,7 +97,7 @@ namespace ArcadeBP_Pro
 
         private void HandleInput()
         {
-            if (input.switchCameraAction.action.WasPressedThisFrame())
+            if (input.SwitchCameraAction.action.WasPressedThisFrame())
             {
                 SwitchCamera();
             }

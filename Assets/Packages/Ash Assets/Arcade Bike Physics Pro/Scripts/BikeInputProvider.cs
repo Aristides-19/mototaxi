@@ -27,16 +27,16 @@ namespace ArcadeBP_Pro
 
         private void SetPlayerInput()
         {
-            float steering = input.steeringAction.action.ReadValue<float>();
+            float steering = input.SteeringAction.action.ReadValue<float>();
 
-            Accelerate = input.accelerateAction.action.IsPressed() ? 1f : 0f;
-            Reverse = input.brakeReverseAction.action.IsPressed() ? 1f : 0f;
+            Accelerate = input.AccelerateAction.action.IsPressed() ? 1f : 0f;
+            Reverse = input.BrakeReverseAction.action.IsPressed() ? 1f : 0f;
             SteeringLeft = (steering < 0) ? 1f : 0f;
             SteeringRight = (steering > 0) ? 1f : 0f;
 
-            HandBrake = input.brakeAction.action.IsPressed() ? 1f : 0f;
-            Wheelie = input.wheelieAction.action.IsPressed() ? 1f : 0f;
-            Stoppie = input.stoppieAction.action.IsPressed() ? 1f : 0f;
+            HandBrake = input.BrakeAction.action.IsPressed() ? 1f : 0f;
+            Wheelie = input.WheelieAction.action.IsPressed() ? 1f : 0f;
+            Stoppie = input.StoppieAction.action.IsPressed() ? 1f : 0f;
 
             // Note : You can also use your custom inputs above to provide inputs to the bike controller
             // provide inputs to the bike controller
