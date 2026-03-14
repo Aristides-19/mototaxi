@@ -1,4 +1,5 @@
 using Mototaxi.Core;
+using Mototaxi.Utils;
 using UnityEngine;
 
 namespace Mototaxi.Mechanics
@@ -23,7 +24,7 @@ namespace Mototaxi.Mechanics
         void OnTriggerEnter(Collider other)
         {
             // Avoid processing if the collided object is not in the TrafficLayer
-            if (((1 << other.gameObject.layer) & GameData.TrafficLayer) == 0) return;
+            if (!FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, GameData.TrafficLayer)) return;
 
             // Use the collider closest point for accuracy
             Vector3 closestPoint = other.ClosestPoint(transform.position);

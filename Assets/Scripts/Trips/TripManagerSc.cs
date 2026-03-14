@@ -2,6 +2,7 @@ using UnityEngine;
 using Mototaxi.Passenger;
 using Mototaxi.Core;
 using Mototaxi.Player;
+using Mototaxi.Utils;
 
 namespace Mototaxi.Trips
 {
@@ -17,7 +18,7 @@ namespace Mototaxi.Trips
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_isOnTrip && ((1 << other.gameObject.layer) & _gameData.PedestriansLayer) != 0)
+            if (!_isOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = other.GetComponentInParent<PassengerController>();
             }
@@ -25,7 +26,7 @@ namespace Mototaxi.Trips
 
         private void OnTriggerExit(Collider other)
         {
-            if (((1 << other.gameObject.layer) & _gameData.PedestriansLayer) != 0)
+            if (FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = null;
             }

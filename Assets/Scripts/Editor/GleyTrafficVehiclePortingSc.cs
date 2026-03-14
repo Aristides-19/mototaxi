@@ -5,6 +5,7 @@ using Gley.TrafficSystem.Internal;
 using System.Collections.Generic;
 using System.IO;
 using Gley.TrafficSystem.Editor;
+using Mototaxi.Utils;
 
 /// <summary>
 /// Editor tool to convert existing vehicle prefabs to be compatible with Gley Traffic System. <br/><br/>
@@ -201,7 +202,7 @@ public class GleyTrafficVehiclePortingSc : EditorWindow
 
         DestroyImmediate(wheelsRoot.gameObject);
 
-        SetLayerRecursively(instance, trafficLayer);
+        FunctionsSc.SetLayerRecursively(instance, trafficLayer);
 
         // Own settings for game
         vc.rb = rb;
@@ -225,14 +226,5 @@ public class GleyTrafficVehiclePortingSc : EditorWindow
         // Destroy temporary instance
         DestroyImmediate(instance);
         Debug.Log($"[GleyTrafficPorter] Success: {source.name} -> {finalPath}");
-    }
-
-    private void SetLayerRecursively(GameObject obj, int newLayer)
-    {
-        obj.layer = newLayer;
-        foreach (Transform child in obj.transform)
-        {
-            SetLayerRecursively(child.gameObject, newLayer);
-        }
     }
 }

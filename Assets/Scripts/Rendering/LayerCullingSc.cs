@@ -1,5 +1,6 @@
 using System;
 using Mototaxi.Core;
+using Mototaxi.Utils;
 using UnityEngine;
 
 namespace Mototaxi.Rendering
@@ -33,15 +34,15 @@ namespace Mototaxi.Rendering
             distances[0] = LayerDefaultDistance;
             distances[1] = LayerDefaultDistance;
             distances[2] = LayerDefaultDistance;
-            distances[(int)Math.Log(gameData.GroundLayer.value, 2)] = GroundDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.GroundLayer)] = GroundDistance;
             distances[4] = LayerDefaultDistance;
             distances[5] = LayerDefaultDistance;
-            distances[(int)Math.Log(gameData.MountainLayer.value, 2)] = MountainDistance;
-            distances[(int)Math.Log(gameData.RoadLayer.value, 2)] = RoadDistance;
-            distances[(int)Math.Log(gameData.TrafficLayer.value, 2)] = TrafficDistance;
-            distances[(int)Math.Log(gameData.BuildingsLayer.value, 2)] = BuildingsDistance;
-            distances[(int)Math.Log(gameData.ObstaclesLayer.value, 2)] = ObstaclesDistance;
-            distances[(int)Math.Log(gameData.PlayerLayer.value, 2)] = PlayerDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.MountainLayer)] = MountainDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.RoadLayer)] = RoadDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.TrafficLayer)] = TrafficDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.BuildingsLayer)] = BuildingsDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.ObstaclesLayer)] = ObstaclesDistance;
+            distances[FunctionsSc.GetLayerFromLayerMask(gameData.PlayerLayer)] = PlayerDistance;
 
             cam.layerCullDistances = distances;
         }
