@@ -18,6 +18,7 @@ namespace Mototaxi.Trips
         [NonSerialized]
         public bool isOccupied = false;
 
+        public string Name => gameObject.name;
         public Quaternion Rotation => transform.rotation;
         public Vector3 Position => transform.position;
 
