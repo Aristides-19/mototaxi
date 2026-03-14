@@ -20,12 +20,37 @@ namespace Mototaxi.Core
         public LayerMask ObstaclesLayer => _obstaclesLayer;
         [SerializeField] private LayerMask _playerLayer = 1 << 12;
         public LayerMask PlayerLayer => _playerLayer;
+        [SerializeField] private LayerMask _pedestriansLayer = 1 << 13;
+        public LayerMask PedestriansLayer => _pedestriansLayer;
 
         [SerializeField] private RoceData _roceSettings = new();
         public RoceData RoceSettings => _roceSettings;
 
         [SerializeField] private WheelieData _wheelieSettings = new();
         public WheelieData WheelieSettings => _wheelieSettings;
+
+        [SerializeField] private PassengerData _passengerSettings = new();
+        public PassengerData PassengerSettings => _passengerSettings;
+    }
+
+    [Serializable]
+    public class PassengerData
+    {
+        [Tooltip("How many passengers to spawn when the game starts.")]
+        [SerializeField] private int _initialPassengers = 10;
+        public int InitialPassengers => _initialPassengers;
+
+        [Tooltip("Maximum number of active passengers allowed in the world.")]
+        [SerializeField] private int _maxPassengers = 20;
+        public int MaxPassengers => _maxPassengers;
+
+        [Tooltip("Percentage of available spawn points to occupy initially (0 to 1).")]
+        [SerializeField, Range(0, 1)] private float _spawnDensity = 0.5f;
+        public float SpawnDensity => _spawnDensity;
+
+        [Tooltip("Minimum distance required between spawn and destination points.")]
+        [SerializeField] private float _minTripDistance = 100f;
+        public float MinTripDistance => _minTripDistance;
     }
 
     [Serializable]
