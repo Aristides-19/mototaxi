@@ -12,7 +12,7 @@ namespace Mototaxi.Trips
         [Header("Editor Tools")]
         [SerializeField] private bool _autoSnap = true;
         [SerializeField] private LayerMask _roadLayer = 1 << 8;
-        [SerializeField] private float _rayDistance = 25f;
+        [SerializeField] private float _rayDistance = 50f;
         [SerializeField] private float _offsetFromGround = 0.05f;
 
         [NonSerialized]
