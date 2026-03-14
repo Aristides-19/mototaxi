@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Mototaxi.Passenger
 {
-    public class PassengerAnimationControllerSc : MonoBehaviour
+    public class BikePassengerAnimSc : MonoBehaviour
     {
         [Tooltip("Reference to the bike controller script.")]
         [SerializeField] ArcadeBikeControllerPro bikeController;
 
         [Tooltip("Reference to the passenger animation targets.")]
-        [SerializeField] PassengerAnimationTargetsSc passengerTargets;
+        [SerializeField] BikePassengerAnimTargetsSc passengerTargets;
 
         [Header("Leaning Parameters")]
         [Tooltip("Maximum sideways offset for the passenger's hip.")]

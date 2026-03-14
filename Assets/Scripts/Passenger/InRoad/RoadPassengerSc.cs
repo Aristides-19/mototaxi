@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mototaxi.Passenger
 {
-    public class PassengerController : MonoBehaviour
+    public class RoadPassengerSc : MonoBehaviour
     {
         [SerializeField] private SkinnedMeshRenderer _meshRenderer;
         private PassengerPoolSO _pool;

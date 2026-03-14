@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Mototaxi.Passenger
 {
-    public class PassengerAnimationTargetsSc : MonoBehaviour
+    public class BikePassengerAnimTargetsSc : MonoBehaviour
     {
         [Header("Hip Target")]
         public Transform hipTarget;

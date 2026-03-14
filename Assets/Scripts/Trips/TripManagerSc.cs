@@ -13,14 +13,14 @@ namespace Mototaxi.Trips
         [SerializeField] private BikePassengerSc _bikePassenger;
         [SerializeField] private InputActionsSO _inputActions;
 
-        private PassengerController _currentNearbyPassenger;
+        private RoadPassengerSc _currentNearbyPassenger;
         private bool _isOnTrip = false;
 
         private void OnTriggerEnter(Collider other)
         {
             if (!_isOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
-                _currentNearbyPassenger = other.GetComponentInParent<PassengerController>();
+                _currentNearbyPassenger = other.GetComponentInParent<RoadPassengerSc>();
             }
         }
 
