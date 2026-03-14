@@ -22,5 +22,7 @@ namespace Mototaxi.Player
         public InputActionReference PauseAction => _pauseAction;
         [SerializeField] private InputActionReference _switchCameraAction;
         public InputActionReference SwitchCameraAction => _switchCameraAction;
+        [SerializeField] private InputActionReference _interactAction;
+        public InputActionReference InteractAction => _interactAction;
     }
 }
