@@ -5,14 +5,14 @@ using Mototaxi.Core;
 namespace Mototaxi.Editor
 {
 
-    [CustomEditor(typeof(ScenesDataSc))]
+    [CustomEditor(typeof(ScenesDataSO))]
     public class SceneDataEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            ScenesDataSc script = (ScenesDataSc)target;
+            ScenesDataSO script = (ScenesDataSO)target;
 
             GUILayout.Space(15);
             GUI.backgroundColor = Color.cyan;

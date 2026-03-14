@@ -12,7 +12,7 @@ namespace Mototaxi.HUD
     {
         [Header("Navigation Settings")]
         [SerializeField] AnimatedMenuSc mainMenu;
-        [SerializeField] ScenesDataSc scenesData;
+        [SerializeField] ScenesDataSO scenesData;
         private readonly Stack<AnimatedMenuSc> stack = new();
 
         [Header("Loading Settings")]

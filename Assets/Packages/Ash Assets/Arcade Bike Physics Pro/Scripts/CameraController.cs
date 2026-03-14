@@ -25,7 +25,7 @@ namespace ArcadeBP_Pro
         public float shakeFrequency = 2.0f;
 
         [Header("Controls")]
-        public InputActionsSc input;
+        public InputActionsSO input;
 
         [Header("Field of View")]
         public float minFOV = 60f;

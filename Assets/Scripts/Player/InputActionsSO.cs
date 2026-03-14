@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Mototaxi.Player
 {
     [CreateAssetMenu(fileName = "InputActions", menuName = "Mototaxi/Player/InputActions", order = 0)]
-    public class InputActionsSc : ScriptableObject
+    public class InputActionsSO : ScriptableObject
     {
         public InputActionReference accelerateAction;
         public InputActionReference brakeReverseAction;

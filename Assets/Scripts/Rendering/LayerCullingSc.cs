@@ -7,7 +7,7 @@ namespace Mototaxi.Rendering
     [RequireComponent(typeof(Camera))]
     public class LayerCullingSc : MonoBehaviour
     {
-        [SerializeField] GameDataSc gameData;
+        [SerializeField] GameDataSO gameData;
 
         [Header("Layer Distances")]
         [SerializeField] float GroundDistance = 200f;

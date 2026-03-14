@@ -8,7 +8,7 @@ namespace Mototaxi.Mechanics
     public class WheelieMechanicSc : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] GameDataSc GameData;
+        [SerializeField] GameDataSO GameData;
 
         private ArcadeBikeControllerPro bikeController;
         private Rigidbody rb;

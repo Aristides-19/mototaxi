@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 namespace Mototaxi.Core
 {
     [CreateAssetMenu(fileName = "ScenesData", menuName = "Mototaxi/Core/ScenesData", order = 1)]
-    public class ScenesDataSc : ScriptableObject
+    public class ScenesDataSO : ScriptableObject
     {
         [SerializedDictionary("Scene Type", "Build Index")]
         public SerializedDictionary<SceneType, int> SceneMap;

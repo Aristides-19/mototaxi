@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mototaxi.Core
 {
     [CreateAssetMenu(fileName = "GameData", menuName = "Mototaxi/Core/GameData", order = 0)]
-    public class GameDataSc : ScriptableObject
+    public class GameDataSO : ScriptableObject
     {
         public LayerMask GroundLayer = 1 << 3;
         public LayerMask MountainLayer = 1 << 7;

@@ -8,7 +8,7 @@ namespace ArcadeBP_Pro
     public class BikeInputProvider : MonoBehaviour
     {
         [Header("Player Actions")]
-        [SerializeField] InputActionsSc input;
+        [SerializeField] InputActionsSO input;
 
         private float Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie, Stoppie;
         private ArcadeBikeControllerPro arcadeBikeControllerPro;

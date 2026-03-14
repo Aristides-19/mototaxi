@@ -7,7 +7,7 @@ namespace Mototaxi.Mechanics
     public class RoceMechanicSc : MonoBehaviour
     {
         [SerializeField] Rigidbody playerRigidbody;
-        [SerializeField] GameDataSc GameData;
+        [SerializeField] GameDataSO GameData;
 
         void Awake()
         {
