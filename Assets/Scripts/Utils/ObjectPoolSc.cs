@@ -32,6 +32,15 @@ namespace Mototaxi.Utils
         public T Get() => pool.Get();
         public void Release(T item) => pool.Release(item);
 
+        public void PreWarm(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                T item = Get();
+                Release(item);
+            }
+        }
+
         private T CreatePooledItem()
         {
             T instance = Object.Instantiate(prefab, container);
