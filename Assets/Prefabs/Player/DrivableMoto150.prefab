@@ -6121,6 +6121,7 @@ GameObject:
   - component: {fileID: 8523729865026696651}
   - component: {fileID: 9093110284227515893}
   - component: {fileID: 3138388220551962839}
+  - component: {fileID: 2298338866322616709}
   m_Layer: 0
   m_Name: DrivableMoto150
   m_TagString: Untagged
@@ -6571,6 +6572,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1e1fec8065ed8418c4f8fcc0057130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gley.TrafficSystem.PlayerComponent
+--- !u!114 &2298338866322616709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8813148393069372615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ba7b96a5499bf48a6253dc67b36173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.TripManagerSc
+  _gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
+  _bikePassenger: {fileID: 1155985045757528845}
+  _inputActions: {fileID: 11400000, guid: 64aca7d54c0882348b7df677c33730fc, type: 2}
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0
@@ -7090,6 +7106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6686216617813497949}
+    - targetCorrespondingSourceObject: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1155985045757528845}
   m_SourcePrefab: {fileID: 100100000, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
 --- !u!4 &470812825915376886 stripped
 Transform:
@@ -7179,6 +7198,19 @@ MonoBehaviour:
   leftLegTarget_rig: {fileID: 3987992939492977062}
   rightHandTarget_rig: {fileID: 4131205031311887889}
   leftHandTarget_rig: {fileID: 3597146031520629224}
+--- !u!114 &1155985045757528845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271274363146848663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e152540ba3fcdaa4ca420b99ea1b2211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Passenger.BikePassengerSc
+  _meshRenderer: {fileID: 8922532069937409651}
 --- !u!4 &5774374706114515700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9048097786493273336, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
@@ -7217,5 +7249,10 @@ Transform:
 --- !u!4 &8526290682282334084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6620440983470571912, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+  m_PrefabInstance: {fileID: 3293257008422770188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8922532069937409651 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6224199432623929471, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
   m_PrefabInstance: {fileID: 3293257008422770188}
   m_PrefabAsset: {fileID: 0}
