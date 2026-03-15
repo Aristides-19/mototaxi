@@ -42,7 +42,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -189,6 +189,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5960761833286416197, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b6d1fc1ba9506864cba134bc88b1aeae, type: 2}
+    - target: {fileID: 5960761833286416197, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6246225582846228792, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
       propertyPath: m_Layer
       value: 13
@@ -223,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
       propertyPath: m_Name
-      value: Passenger_Base
+      value: RoadPassenger_Base
       objectReference: {fileID: 0}
     - target: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
       propertyPath: m_Layer
@@ -271,6 +279,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8992267987492402104}
+    - targetCorrespondingSourceObject: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7623436259171535547}
+    - targetCorrespondingSourceObject: {fileID: 7247606636593225627, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1279049247862125829}
   m_SourcePrefab: {fileID: 100100000, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
 --- !u!137 &2057536979270647442 stripped
 SkinnedMeshRenderer:
@@ -295,6 +309,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Passenger.PassengerController
   _meshRenderer: {fileID: 2057536979270647442}
+--- !u!114 &7623436259171535547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348902708860131702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5607078afefc1d44a8eb03cffaa1bd40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Passenger.RoadPassengerAnimSc
+  _gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
+--- !u!54 &-1279049247862125829
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348902708860131702}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &8429041990526022664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4473450585067303653, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
