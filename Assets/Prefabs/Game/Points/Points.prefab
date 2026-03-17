@@ -51,6 +51,108 @@ MonoBehaviour:
     m_Bits: 256
   _rayDistance: 50
   _offsetFromGround: 0
+--- !u!1 &404545363484323590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5167803436538908051}
+  - component: {fileID: 855210466113664129}
+  m_Layer: 0
+  m_Name: Barrrio_cerca
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5167803436538908051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404545363484323590}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9442736, z: -0, w: 0.3291616}
+  m_LocalPosition: {x: 561.3863, y: 2.8000002, z: -11.0712}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213934193067889420}
+  m_LocalEulerAnglesHint: {x: 0, y: -218.4, z: 0}
+--- !u!114 &855210466113664129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404545363484323590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c7de0faba9edc40a05daf9e9268253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.PointSc
+  _spawnPointType: 2
+  _autoSnap: 1
+  _roadLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _rayDistance: 50
+  _offsetFromGround: 0
+--- !u!1 &519039990491799742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416792702358655601}
+  - component: {fileID: 1009892311838503770}
+  m_Layer: 0
+  m_Name: 9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416792702358655601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519039990491799742}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000004851875, y: 0.96156, z: -0.000000009333656, w: 0.27459496}
+  m_LocalPosition: {x: 218.02, y: 7.3999996, z: 175.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213934193067889420}
+  m_LocalEulerAnglesHint: {x: 0, y: -218.4, z: 0}
+--- !u!114 &1009892311838503770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519039990491799742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c7de0faba9edc40a05daf9e9268253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.PointSc
+  _spawnPointType: 2
+  _autoSnap: 1
+  _roadLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _rayDistance: 50
+  _offsetFromGround: 0
 --- !u!1 &756403992808835869
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +332,7 @@ Transform:
   m_GameObject: {fileID: 1822055483775030356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9456654, z: -0, w: 0.3251415}
-  m_LocalPosition: {x: 84.55001, y: 8.4, z: 233.51}
+  m_LocalPosition: {x: 84.55001, y: 8.4, z: 233.50998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,6 +345,57 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822055483775030356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c7de0faba9edc40a05daf9e9268253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.PointSc
+  _spawnPointType: 2
+  _autoSnap: 1
+  _roadLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _rayDistance: 50
+  _offsetFromGround: 0
+--- !u!1 &2103053846279693835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5701096075757741801}
+  - component: {fileID: 4090848100064870593}
+  m_Layer: 0
+  m_Name: 10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5701096075757741801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103053846279693835}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9615054, z: -0, w: 0.274786}
+  m_LocalPosition: {x: 234.90001, y: 14.4, z: 485.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213934193067889420}
+  m_LocalEulerAnglesHint: {x: 0, y: -218.4, z: 0}
+--- !u!114 &4090848100064870593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103053846279693835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6c7de0faba9edc40a05daf9e9268253, type: 3}
@@ -408,6 +561,57 @@ MonoBehaviour:
     m_Bits: 256
   _rayDistance: 50
   _offsetFromGround: 0
+--- !u!1 &3631516741467726774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2503285605908258452}
+  - component: {fileID: 4652592272923001714}
+  m_Layer: 0
+  m_Name: 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2503285605908258452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631516741467726774}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.94426924, z: -0, w: 0.32917422}
+  m_LocalPosition: {x: 754.35, y: 3.3999999, z: 102.37001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213934193067889420}
+  m_LocalEulerAnglesHint: {x: 0, y: -218.4, z: 0}
+--- !u!114 &4652592272923001714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631516741467726774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c7de0faba9edc40a05daf9e9268253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.PointSc
+  _spawnPointType: 2
+  _autoSnap: 1
+  _roadLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _rayDistance: 50
+  _offsetFromGround: 0
 --- !u!1 &3655635971346404260
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3655635971346404260}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000013286302, y: 0.9971851, z: 0.000000002395567, w: -0.0749789}
+  m_LocalRotation: {x: -0.00000013286301, y: 0.9971852, z: 0.0000000023955664, w: -0.0749789}
   m_LocalPosition: {x: 23.69, y: 6.4000006, z: 21.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -969,6 +1173,57 @@ MonoBehaviour:
     m_Bits: 256
   _rayDistance: 50
   _offsetFromGround: 0
+--- !u!1 &6421586615958985864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6365859673298587087}
+  - component: {fileID: 989991847318418036}
+  m_Layer: 0
+  m_Name: 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6365859673298587087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421586615958985864}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.94425654, z: -0, w: 0.32921064}
+  m_LocalPosition: {x: 779.3, y: 0.4, z: -292.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213934193067889420}
+  m_LocalEulerAnglesHint: {x: 0, y: -218.4, z: 0}
+--- !u!114 &989991847318418036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421586615958985864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c7de0faba9edc40a05daf9e9268253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.PointSc
+  _spawnPointType: 2
+  _autoSnap: 1
+  _roadLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _rayDistance: 50
+  _offsetFromGround: 0
 --- !u!1 &8005729722925478890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,11 +1266,16 @@ Transform:
   - {fileID: 1036607352348157335}
   - {fileID: 2773919788401000396}
   - {fileID: 8281352118040677485}
+  - {fileID: 5167803436538908051}
+  - {fileID: 2503285605908258452}
+  - {fileID: 6365859673298587087}
   - {fileID: 3684028686165162839}
   - {fileID: 3497940705414484575}
   - {fileID: 1858099505403523757}
   - {fileID: 5398428510205819875}
   - {fileID: 5072016530739972888}
+  - {fileID: 5701096075757741801}
+  - {fileID: 416792702358655601}
   - {fileID: 6196589695464606792}
   - {fileID: 8616196525938607292}
   - {fileID: 7978704906215805531}
@@ -1046,11 +1306,16 @@ MonoBehaviour:
   - {fileID: 4593490627997050692}
   - {fileID: 2424713571324600638}
   - {fileID: 946034736611282519}
+  - {fileID: 855210466113664129}
+  - {fileID: 4652592272923001714}
+  - {fileID: 989991847318418036}
   - {fileID: 8101776949951922861}
   - {fileID: 3269133292393999726}
   - {fileID: 4964478620413350263}
   - {fileID: 2803198438609516836}
   - {fileID: 1719066902669515458}
+  - {fileID: 4090848100064870593}
+  - {fileID: 1009892311838503770}
   - {fileID: 8168225435390684075}
   - {fileID: 9155740811482069170}
   - {fileID: 6408476023963296186}
@@ -1067,11 +1332,16 @@ MonoBehaviour:
   - {fileID: 4593490627997050692}
   - {fileID: 2424713571324600638}
   - {fileID: 946034736611282519}
+  - {fileID: 855210466113664129}
+  - {fileID: 4652592272923001714}
+  - {fileID: 989991847318418036}
   - {fileID: 8101776949951922861}
   - {fileID: 3269133292393999726}
   - {fileID: 4964478620413350263}
   - {fileID: 2803198438609516836}
   - {fileID: 1719066902669515458}
+  - {fileID: 4090848100064870593}
+  - {fileID: 1009892311838503770}
   - {fileID: 8168225435390684075}
   - {fileID: 9155740811482069170}
   - {fileID: 6408476023963296186}
@@ -1088,11 +1358,16 @@ MonoBehaviour:
   - {fileID: 4593490627997050692}
   - {fileID: 2424713571324600638}
   - {fileID: 946034736611282519}
+  - {fileID: 855210466113664129}
+  - {fileID: 4652592272923001714}
+  - {fileID: 989991847318418036}
   - {fileID: 8101776949951922861}
   - {fileID: 3269133292393999726}
   - {fileID: 4964478620413350263}
   - {fileID: 2803198438609516836}
   - {fileID: 1719066902669515458}
+  - {fileID: 4090848100064870593}
+  - {fileID: 1009892311838503770}
   - {fileID: 8168225435390684075}
   - {fileID: 9155740811482069170}
   - {fileID: 6408476023963296186}
