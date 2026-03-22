@@ -3,7 +3,7 @@ using Mototaxi.Passenger;
 using Mototaxi.Core;
 using Mototaxi.Player;
 using Mototaxi.Utils;
-using Mototaxi.HUD; // Conexión a tu brújula
+using Mototaxi.HUD;
 
 namespace Mototaxi.Trips
 {
@@ -17,29 +17,36 @@ namespace Mototaxi.Trips
         [Header("UI & Navigation")]
         [SerializeField] private CompassSc _compass;
 
+        // --- NUEVAS REFERENCIAS PARA EL HALO ---
+        [Header("Mission Visuals")]
+        [Tooltip("El GameObject del Halo (Beacon) que aparecerá en el destino")]
+        [SerializeField] private GameObject missionHaloVisuals; // Arrastra tu prefab/objeto 'Mission_Beacon' aquí
+
         private RoadPassengerSc _currentNearbyPassenger;
         private bool _isOnTrip = false;
-
-        // Guardamos cuál es el punto al que tenemos que ir
         private PointSc _currentDestination;
+
+        private void Awake()
+        {
+            // --- NUEVO: Asegurarnos de que el Halo esté apagado al inicio del juego ---
+            if (missionHaloVisuals != null)
+            {
+                missionHaloVisuals.SetActive(false);
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            // 1. Detectar si nos acercamos a un pasajero en la calle
             if (!_isOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = other.GetComponentInParent<RoadPassengerSc>();
             }
 
-            // 2. LA MAGIA AUTOMÁTICA: Detectar si llegamos al punto de destino
             if (_isOnTrip && _currentDestination != null)
             {
                 PointSc puntoTocado = other.GetComponent<PointSc>();
-
-                // Si el Trigger que acabamos de tocar es exactamente nuestro destino...
                 if (puntoTocado != null && puntoTocado == _currentDestination)
                 {
-                    // ¡Completamos el viaje al instante, sin presionar nada!
                     CompleteTrip();
                 }
             }
@@ -47,7 +54,6 @@ namespace Mototaxi.Trips
 
         private void OnTriggerExit(Collider other)
         {
-            // Detectar si nos alejamos del pasajero de la calle sin recogerlo
             if (FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = null;
@@ -56,7 +62,6 @@ namespace Mototaxi.Trips
 
         private void Update()
         {
-            // Para INICIAR el viaje SÍ necesitamos presionar el botón de interactuar
             if (!_isOnTrip && _currentNearbyPassenger != null && _inputActions.InteractAction.action.WasPressedThisFrame())
             {
                 StartTrip();
@@ -71,10 +76,23 @@ namespace Mototaxi.Trips
 
             _bikePassenger.SetPassenger(_currentNearbyPassenger.CurrentData);
 
-            // Guardamos a dónde tenemos que ir
             _currentDestination = _currentNearbyPassenger.DestinationPoint;
 
-            // Le decimos a la brújula que nos guíe
+            // --- NUEVO: Activar y Teletransportar el Halo ---
+            if (missionHaloVisuals != null && _currentDestination != null)
+            {
+                // Teletransportamos el Halo a la posición exacta del punto de destino
+                // IMPORTANTE: Asegúrate de que el modelo del Halo en sí (su hijo) 
+                // esté posicionado de forma que la base del cilindro toque el suelo (Y=0 respecto al padre).
+                missionHaloVisuals.transform.position = _currentDestination.Position;
+
+                // Rotamos el halo para que coincida con la orientación del punto (por si acaso)
+                missionHaloVisuals.transform.rotation = _currentDestination.Rotation;
+
+                // Encendemos el Halo visual
+                missionHaloVisuals.SetActive(true);
+            }
+
             if (_compass != null && _currentDestination != null)
             {
                 _compass.SetDestination(_currentDestination.transform);
@@ -87,18 +105,22 @@ namespace Mototaxi.Trips
         public void CompleteTrip()
         {
             _isOnTrip = false;
-            _bikePassenger.Clear(); // Esto desaparece a la chica de la moto
+            _bikePassenger.Clear();
 
-            // Apagamos la brújula
             if (_compass != null)
             {
                 _compass.ClearDestination();
             }
 
-            // Borramos el destino actual para que estemos listos para otra carrera
+            // --- NUEVO: Apagar el Halo visual ---
+            if (missionHaloVisuals != null)
+            {
+                missionHaloVisuals.SetActive(false);
+            }
+
             _currentDestination = null;
 
-            Debug.Log("¡Llegaste! El pasajero se ha bajado automáticamente.");
+            Debug.Log("¡Viaje completado y Halo apagado!");
         }
     }
 }
