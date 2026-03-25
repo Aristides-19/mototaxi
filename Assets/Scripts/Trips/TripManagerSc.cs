@@ -13,14 +13,8 @@ namespace Mototaxi.Trips
         [SerializeField] private GameDataSO _gameData;
         [SerializeField] private BikePassengerSc _bikePassenger;
         [SerializeField] private InputActionsSO _inputActions;
-
-        [Header("UI & Navigation")]
         [SerializeField] private CompassSc _compass;
-
-        // --- NUEVAS REFERENCIAS PARA EL HALO ---
-        [Header("Mission Visuals")]
-        [Tooltip("El GameObject del Halo (Beacon) que aparecerá en el destino")]
-        [SerializeField] private GameObject missionHaloVisuals; // Arrastra tu prefab/objeto 'Mission_Beacon' aquí
+        [SerializeField] private GameObject _pointMarker;
 
         private RoadPassengerSc _currentNearbyPassenger;
         private bool _isOnTrip = false;
@@ -28,11 +22,7 @@ namespace Mototaxi.Trips
 
         private void Awake()
         {
-            // --- NUEVO: Asegurarnos de que el Halo esté apagado al inicio del juego ---
-            if (missionHaloVisuals != null)
-            {
-                missionHaloVisuals.SetActive(false);
-            }
+            _pointMarker.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -78,25 +68,10 @@ namespace Mototaxi.Trips
 
             _currentDestination = _currentNearbyPassenger.DestinationPoint;
 
-            // --- NUEVO: Activar y Teletransportar el Halo ---
-            if (missionHaloVisuals != null && _currentDestination != null)
-            {
-                // Teletransportamos el Halo a la posición exacta del punto de destino
-                // IMPORTANTE: Asegúrate de que el modelo del Halo en sí (su hijo) 
-                // esté posicionado de forma que la base del cilindro toque el suelo (Y=0 respecto al padre).
-                missionHaloVisuals.transform.position = _currentDestination.Position;
+            _pointMarker.transform.position = _currentDestination.Position;
+            _pointMarker.SetActive(true);
 
-                // Rotamos el halo para que coincida con la orientación del punto (por si acaso)
-                missionHaloVisuals.transform.rotation = _currentDestination.Rotation;
-
-                // Encendemos el Halo visual
-                missionHaloVisuals.SetActive(true);
-            }
-
-            if (_compass != null && _currentDestination != null)
-            {
-                _compass.SetDestination(_currentDestination.transform);
-            }
+            _compass.SetDestination(_currentDestination.transform);
 
             _currentNearbyPassenger.Despawn();
             _currentNearbyPassenger = null;
@@ -107,20 +82,10 @@ namespace Mototaxi.Trips
             _isOnTrip = false;
             _bikePassenger.Clear();
 
-            if (_compass != null)
-            {
-                _compass.ClearDestination();
-            }
-
-            // --- NUEVO: Apagar el Halo visual ---
-            if (missionHaloVisuals != null)
-            {
-                missionHaloVisuals.SetActive(false);
-            }
+            _compass.ClearDestination();
+            _pointMarker.SetActive(false);
 
             _currentDestination = null;
-
-            Debug.Log("¡Viaje completado y Halo apagado!");
         }
     }
 }

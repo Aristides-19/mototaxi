@@ -474,6 +474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BrujulaHUD
   playerRotator: {fileID: 0}
   compassTextureUV: {fileID: 1877394792538459537}
+  pointerTransform: {fileID: 3992741920626049674}
+  visibleFOV: 360
 --- !u!1 &8402373510475506999
 GameObject:
   m_ObjectHideFlags: 0
