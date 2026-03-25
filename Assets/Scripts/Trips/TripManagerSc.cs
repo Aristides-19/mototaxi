@@ -3,6 +3,7 @@ using Mototaxi.Passenger;
 using Mototaxi.Core;
 using Mototaxi.Player;
 using Mototaxi.Utils;
+using Mototaxi.HUD;
 
 namespace Mototaxi.Trips
 {
@@ -12,15 +13,32 @@ namespace Mototaxi.Trips
         [SerializeField] private GameDataSO _gameData;
         [SerializeField] private BikePassengerSc _bikePassenger;
         [SerializeField] private InputActionsSO _inputActions;
+        [SerializeField] private CompassSc _compass;
+        [SerializeField] private GameObject _pointMarker;
 
         private RoadPassengerSc _currentNearbyPassenger;
         private bool _isOnTrip = false;
+        private PointSc _currentDestination;
+
+        private void Awake()
+        {
+            _pointMarker.SetActive(false);
+        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!_isOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = other.GetComponentInParent<RoadPassengerSc>();
+            }
+
+            if (_isOnTrip && _currentDestination != null)
+            {
+                PointSc puntoTocado = other.GetComponent<PointSc>();
+                if (puntoTocado != null && puntoTocado == _currentDestination)
+                {
+                    CompleteTrip();
+                }
             }
         }
 
@@ -48,7 +66,12 @@ namespace Mototaxi.Trips
 
             _bikePassenger.SetPassenger(_currentNearbyPassenger.CurrentData);
 
-            PointSc destination = _currentNearbyPassenger.DestinationPoint;
+            _currentDestination = _currentNearbyPassenger.DestinationPoint;
+
+            _pointMarker.transform.position = _currentDestination.Position;
+            _pointMarker.SetActive(true);
+
+            _compass.SetDestination(_currentDestination.transform);
 
             _currentNearbyPassenger.Despawn();
             _currentNearbyPassenger = null;
@@ -58,6 +81,11 @@ namespace Mototaxi.Trips
         {
             _isOnTrip = false;
             _bikePassenger.Clear();
+
+            _compass.ClearDestination();
+            _pointMarker.SetActive(false);
+
+            _currentDestination = null;
         }
     }
 }
