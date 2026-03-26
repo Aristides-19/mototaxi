@@ -2,7 +2,6 @@ using Mototaxi.Core;
 using Mototaxi.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace Mototaxi.HUD
 {
@@ -52,8 +51,7 @@ namespace Mototaxi.HUD
             Time.timeScale = 0f;
             AudioListener.pause = true;
 
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            ActionsSc.ToggleCursor(true);
         }
 
         public void ResumeGame()
@@ -62,23 +60,24 @@ namespace Mototaxi.HUD
 
             ResetPauseState();
 
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            ActionsSc.ToggleCursor(false);
         }
 
         public void QuitToMainMenu()
         {
             ResetPauseState();
-            SceneManager.LoadScene(scenesData.GetBuildIndex(SceneType.Menu));
+            ActionsSc.QuitToMainMenu(scenesData);
         }
 
         public void QuitApplication()
         {
             ResetPauseState();
-            Application.Quit();
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif  
+            ActionsSc.QuitApplication();
+        }
+
+        public void RestrictPause()
+        {
+            inputActions.PauseAction.action.performed -= OnPausePerformed;
         }
 
         private void OnDestroy()

@@ -3,7 +3,6 @@ using ArcadeBP_Pro;
 using Mototaxi.Core;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Mototaxi.HUD
 {
@@ -13,6 +12,7 @@ namespace Mototaxi.HUD
         [Tooltip("Reference to the Game Over Canvas")]
         [SerializeField] Canvas gameOverCanvas;
         [SerializeField] TextMeshProUGUI statsText;
+        [SerializeField] PauseMenuSc pauseMenu;
 
         [Header("Settings")]
         [Tooltip("Time delay in seconds before showing the Game Over screen after a crash")]
@@ -51,27 +51,25 @@ namespace Mototaxi.HUD
 
         private void ShowGameOver()
         {
+            pauseMenu.RestrictPause();
+            pauseMenu.ResumeGame();
+
             TimeSpan t = TimeSpan.FromSeconds(TimeManagerSc.ElapsedTime);
             statsText.text = $"Bs. {ScoreManagerSc.CurrentScore} en {t.Minutes:D2}:{t.Seconds:D2}";
             gameOverCanvas.gameObject.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+
+            ActionsSc.ToggleCursor(true);
 
         }
 
         public void QuitToMainMenu()
         {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene(scenesData.GetBuildIndex(SceneType.Menu));
-            ScoreManagerSc.ResetScore();
+            ActionsSc.QuitToMainMenu(scenesData);
         }
 
         public void QuitApplication()
         {
-            Application.Quit();
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            ActionsSc.QuitApplication();
         }
     }
 }
