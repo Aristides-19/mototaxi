@@ -57,6 +57,7 @@ namespace Mototaxi.HUD
         private readonly WaitForSeconds wait = new(1f);
         private IEnumerator LoadAsync(SceneType scene)
         {
+            mainMenu.SetState(false, immediate: true);
             loadingPanel.SetActive(true);
             yield return null;
 
