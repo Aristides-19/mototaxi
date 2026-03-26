@@ -1,3 +1,5 @@
+using Gley.TrafficSystem.Internal;
+using Mototaxi.Core;
 using Mototaxi.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +25,18 @@ namespace ArcadeBP_Pro
                 Cursor.visible = false;
             }
         }
+
+        private void OnEnable()
+        {
+            TimeManagerSc.OnTimeUp += DisableControl;
+        }
+
+        private void OnDisable()
+        {
+            TimeManagerSc.OnTimeUp -= DisableControl;
+        }
+
+        private void DisableControl() => _inControl = false;
 
         private void Update()
         {

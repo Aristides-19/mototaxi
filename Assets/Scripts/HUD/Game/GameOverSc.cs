@@ -29,16 +29,19 @@ namespace Mototaxi.HUD
         {
             gameOverCanvas.gameObject.SetActive(false);
 
-            if (ragdollActivator != null)
-            {
-                ragdollActivator.OnRagdollActivated += HandleCrash;
-            }
-            else
-            {
-                Debug.LogWarning("GameEndSc: RagdollActivator reference is missing.");
-            }
+            if (ragdollActivator == null) Debug.LogWarning("GameOverSc: RagdollActivator reference is missing.");
+        }
 
+        private void OnEnable()
+        {
             TimeManagerSc.OnTimeUp += HandleCrash;
+            ragdollActivator.OnRagdollActivated += HandleCrash;
+        }
+
+        private void OnDisable()
+        {
+            TimeManagerSc.OnTimeUp -= HandleCrash;
+            ragdollActivator.OnRagdollActivated -= HandleCrash;
         }
 
         private void HandleCrash()

@@ -58,6 +58,8 @@ namespace Mototaxi.Core
         {
             OnSecondPassed = null;
             ElapsedTime = 0f;
+            _isTimeUp = false;
+            _timeAccumulator = 0f;
         }
     }
 }

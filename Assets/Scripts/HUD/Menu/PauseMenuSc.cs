@@ -84,6 +84,7 @@ namespace Mototaxi.HUD
         private void OnDestroy()
         {
             ResetPauseState();
+            inputActions.PauseAction.action.performed -= OnPausePerformed;
         }
 
         private void ResetPauseState()
