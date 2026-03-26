@@ -142,12 +142,40 @@ namespace Settings
 
         public void SetResolution(int resolutionIndex)
         {
+            if (resolutions == null || resolutions.Length == 0) return;
+            if (resolutionIndex < 0 || resolutionIndex >= resolutions.Length) return;
+
             Resolution resolution = resolutions[resolutionIndex];
-            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+            int refreshHz = Mathf.RoundToInt((float)resolution.refreshRateRatio.value);
+
+            // FullScreenWindow avoids monitor mode switches that can alter brightness/gamma on some laptops.
+            FullScreenMode mode = Screen.fullScreenMode == FullScreenMode.Windowed
+                ? FullScreenMode.Windowed
+                : FullScreenMode.FullScreenWindow;
+
+            if (mode == FullScreenMode.Windowed)
+            {
+                // In windowed mode, apply the requested client size directly.
+                Screen.SetResolution(resolution.width, resolution.height, mode, resolution.refreshRateRatio);
+                ScalableBufferManager.ResizeBuffers(1f, 1f);
+            }
+            else
+            {
+                // In fullscreen, keep native desktop output and only scale internal rendering.
+                int nativeWidth = Display.main != null ? Display.main.systemWidth : Screen.currentResolution.width;
+                int nativeHeight = Display.main != null ? Display.main.systemHeight : Screen.currentResolution.height;
+
+                Screen.SetResolution(nativeWidth, nativeHeight, FullScreenMode.FullScreenWindow, Screen.currentResolution.refreshRateRatio);
+
+                float widthScale = (float)resolution.width / nativeWidth;
+                float heightScale = (float)resolution.height / nativeHeight;
+                float renderScale = Mathf.Clamp(Mathf.Min(widthScale, heightScale), 0.5f, 1f);
+                ScalableBufferManager.ResizeBuffers(renderScale, renderScale);
+            }
 
             PlayerPrefs.SetInt(PREF_RES_WIDTH, resolution.width);
             PlayerPrefs.SetInt(PREF_RES_HEIGHT, resolution.height);
-            PlayerPrefs.SetInt(PREF_RES_REFRESH, (int)System.Math.Round(resolution.refreshRateRatio.value));
+            PlayerPrefs.SetInt(PREF_RES_REFRESH, refreshHz);
             PlayerPrefs.Save();
         }
 
@@ -194,7 +222,7 @@ namespace Settings
             // 1: Windowed
 
             bool isFullscreen = fullscreenIndex == 0;
-            Screen.fullScreen = isFullscreen;
+            Screen.fullScreenMode = isFullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
 
             PlayerPrefs.SetInt(PREF_FULLSCREEN, isFullscreen ? 1 : 0);
             PlayerPrefs.Save();
