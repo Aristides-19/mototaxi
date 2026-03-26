@@ -113,5 +113,10 @@ namespace Mototaxi.Trips
 
             _currentDestination = null;
         }
+
+        private void OnDestroy()
+        {
+            PlayerStateSc.EndTrip();
+        }
     }
 }
