@@ -5,12 +5,18 @@ namespace Mototaxi.Core
 {
     public class TimeManagerSc : MonoBehaviour
     {
+        [Header("Game Settings")]
+        [SerializeField] private GameDataSO gameData;
+
         public static float ElapsedTime { get; private set; }
         public static float TripStartTime { get; private set; }
+        public static event Action OnTimeUp;
+
         public static float CurrentTripDuration => Time.time - TripStartTime;
         public static event Action<float> OnSecondPassed;
 
         private float _timeAccumulator = 0f;
+        private bool _isTimeUp = false;
 
         public static void MarkTripStart()
         {
@@ -19,6 +25,8 @@ namespace Mototaxi.Core
 
         private void Update()
         {
+            if (_isTimeUp) return;
+
             float delta = Time.deltaTime;
             ElapsedTime += delta;
             _timeAccumulator += delta;
@@ -28,6 +36,17 @@ namespace Mototaxi.Core
                 _timeAccumulator -= 1f;
                 OnSecondPassed?.Invoke(ElapsedTime);
             }
+
+            if (ElapsedTime >= gameData.TripSettings.MaxGameDuration)
+            {
+                HandleTimeUp();
+            }
+        }
+
+        private void HandleTimeUp()
+        {
+            _isTimeUp = true;
+            OnTimeUp?.Invoke();
         }
 
         public static void ResetTimerStatic()
