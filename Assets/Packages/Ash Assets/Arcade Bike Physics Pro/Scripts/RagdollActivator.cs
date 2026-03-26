@@ -149,11 +149,15 @@ namespace ArcadeBP_Pro
                 rb.angularVelocity = bikeAngularVelocity;
             }
 
-            Rigidbody[] passengerRigidbodies = passengerRagdollInstance.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody rb in passengerRigidbodies)
+            if (passengerRagdollInstance != null)
             {
-                rb.linearVelocity = bikeVelocity;
-                rb.angularVelocity = bikeAngularVelocity;
+
+                Rigidbody[] passengerRigidbodies = passengerRagdollInstance.GetComponentsInChildren<Rigidbody>();
+                foreach (Rigidbody rb in passengerRigidbodies)
+                {
+                    rb.linearVelocity = bikeVelocity;
+                    rb.angularVelocity = bikeAngularVelocity;
+                }
             }
 
 
