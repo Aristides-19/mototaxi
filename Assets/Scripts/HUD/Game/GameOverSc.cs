@@ -63,7 +63,7 @@ namespace Mototaxi.HUD
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene(scenesData.GetBuildIndex(SceneType.Menu));
-
+            ScoreManagerSc.ResetScore();
         }
 
         public void QuitApplication()
