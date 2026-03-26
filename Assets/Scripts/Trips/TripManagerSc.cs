@@ -4,9 +4,11 @@ using Mototaxi.Core;
 using Mototaxi.Player;
 using Mototaxi.Utils;
 using Mototaxi.HUD;
+using ArcadeBP_Pro;
 
 namespace Mototaxi.Trips
 {
+    [RequireComponent(typeof(ArcadeBikeControllerPro))]
     public class TripManagerSc : MonoBehaviour
     {
         [Header("References")]
@@ -20,9 +22,12 @@ namespace Mototaxi.Trips
         private bool _isOnTrip = false;
         private PointSc _currentDestination;
 
+        private ArcadeBikeControllerPro _bikeController;
+
         private void Awake()
         {
             _pointMarker.SetActive(false);
+            _bikeController = GetComponent<ArcadeBikeControllerPro>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -63,22 +68,26 @@ namespace Mototaxi.Trips
             if (_currentNearbyPassenger == null) return;
 
             _isOnTrip = true;
-
             _bikePassenger.SetPassenger(_currentNearbyPassenger.CurrentData);
 
-            _currentDestination = _currentNearbyPassenger.DestinationPoint;
+            // Reduce player max speed based on passenger mass
+            _bikeController.bikeSettings.maxSpeed -= _currentNearbyPassenger.CurrentData.Mass * _gameData.PassengerSettings.MaxKmLossPerMassUnit;
 
+            // Destination
+            _currentDestination = _currentNearbyPassenger.DestinationPoint;
             _pointMarker.transform.position = _currentDestination.Position;
             _pointMarker.SetActive(true);
-
             _compass.SetDestination(_currentDestination.transform);
 
+            // Passenger InRoad
             _currentNearbyPassenger.Despawn();
             _currentNearbyPassenger = null;
         }
 
-        public void CompleteTrip()
+        private void CompleteTrip()
         {
+            _bikeController.bikeSettings.maxSpeed += _bikePassenger.CurrentData.Mass * _gameData.PassengerSettings.MaxKmLossPerMassUnit;
+
             _isOnTrip = false;
             _bikePassenger.Clear();
 

@@ -49,8 +49,12 @@ namespace Mototaxi.Core
         public float SpawnDensity => _spawnDensity;
 
         [Tooltip("Minimum distance required between spawn and destination points.")]
-        [SerializeField] private float _minTripDistance = 100f;
+        [SerializeField] private float _minTripDistance = 150f;
         public float MinTripDistance => _minTripDistance;
+
+        [Tooltip("Units to reduce player max speed per unit of passenger mass (e.g., 0.25 km/h per kg)")]
+        [SerializeField] private float _maxKmLossPerMassUnit = 0.25f;
+        public float MaxKmLossPerMassUnit => _maxKmLossPerMassUnit / 3.6f;
     }
 
     [Serializable]
