@@ -9,6 +9,7 @@ namespace ArcadeBP_Pro
     {
         [Header("Player Actions")]
         [SerializeField] InputActionsSO input;
+        [SerializeField] private bool _inControl = true;
 
         private float Accelerate, Reverse, HandBrake, SteeringLeft, SteeringRight, Wheelie, Stoppie;
         private ArcadeBikeControllerPro arcadeBikeControllerPro;
@@ -16,13 +17,17 @@ namespace ArcadeBP_Pro
         void Awake()
         {
             arcadeBikeControllerPro = GetComponent<ArcadeBikeControllerPro>();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            if (_inControl)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
 
         private void Update()
         {
-            SetPlayerInput();
+            if (_inControl) SetPlayerInput();
+            else arcadeBikeControllerPro.provideInput(0f, 0f, 1f, 0f, 0f, 0f, 0f);
         }
 
         private void SetPlayerInput()

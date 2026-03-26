@@ -2619,6 +2619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7551934300355877172}
+  - component: {fileID: 7552934459923370149}
   m_Layer: 0
   m_Name: Point_Marker
   m_TagString: Untagged
@@ -2642,3 +2643,19 @@ Transform:
   - {fileID: 2027194576232805337}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7552934459923370149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354620725160516768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e124b76bcb4d54891271432a09e6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Trips.PointMarkerAnimSc
+  _rotationSpeed: 100
+  _pulseSpeed: 2
+  _minScale: 0.8
+  _maxScale: 1.2

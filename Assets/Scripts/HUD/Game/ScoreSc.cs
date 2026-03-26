@@ -69,7 +69,12 @@ namespace Mototaxi.HUD
 
         private void UpdateScore(float score)
         {
-            scoreText.text = $"Bs. <size=+20>{MathF.Round(score, 2)}</size>";
+            int integerPart = (int)MathF.Truncate(score);
+            int decimalPart = (int)MathF.Round((score - integerPart) * 100);
+
+            string formattedDecimal = decimalPart > 0 ? $"<size=+10>.{decimalPart:D2}</size>" : "";
+
+            scoreText.text = $"Bs. <size=+20>{integerPart}</size>{formattedDecimal}";
         }
         #endregion
 
@@ -127,6 +132,9 @@ namespace Mototaxi.HUD
             {
                 ScoreSource.Roce => $"+{MathF.Round(value, 2)} ROCE",
                 ScoreSource.Wheelie => $"+{MathF.Round(value, 2)} CABALLITO",
+                ScoreSource.MaxSpeed => $"+{MathF.Round(value, 2)} VELOCIDAD",
+                ScoreSource.TripStart => $"+{MathF.Round(value, 2)} PASAJERO",
+                ScoreSource.TripEnd => $"+{MathF.Round(value, 2)} VIAJE",
                 _ => ""
             };
             item.tmp.text = sourceTextString;

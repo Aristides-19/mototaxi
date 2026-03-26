@@ -6,6 +6,10 @@ namespace Mototaxi.Passenger
     {
         [SerializeField] private SkinnedMeshRenderer _meshRenderer;
 
+        private PassengerDataSO _currentData;
+
+        public PassengerDataSO CurrentData => _currentData;
+
         private void Awake()
         {
             gameObject.SetActive(false);
@@ -22,6 +26,8 @@ namespace Mototaxi.Passenger
             {
                 Debug.LogWarning("[BikePassengerSc] Attempting to set a passenger without a valid Mesh.");
             }
+
+            _currentData = data;
         }
 
         public void Clear()

@@ -4323,7 +4323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4940446125198715819}
   m_Layer: 0
-  m_Name: FPP cam
+  m_Name: CineCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4337,8 +4337,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7005371287177882322}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: 0, y: 1.544, z: 0.012}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0.1, y: 1.9, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4359,7 +4359,7 @@ GameObject:
   - component: {fileID: 3250735022904053996}
   - component: {fileID: 4217711396681574429}
   m_Layer: 0
-  m_Name: CM First Person
+  m_Name: CM Cinema
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6122,6 +6122,7 @@ GameObject:
   - component: {fileID: 9093110284227515893}
   - component: {fileID: 3138388220551962839}
   - component: {fileID: 2298338866322616709}
+  - component: {fileID: 3183173574470895243}
   m_Layer: 0
   m_Name: DrivableMoto150
   m_TagString: Untagged
@@ -6525,14 +6526,10 @@ MonoBehaviour:
   dummyBikePrefab: {fileID: 8402680626081032387, guid: def65d6fa5ab1de46bc875d3d00b4a1a, type: 3}
   characterRagdollPrefab: {fileID: 1502751659757990857, guid: 3ec2eb551b9764a4db926f183d9d128a, type: 3}
   characterAnimator: {fileID: 4406343175024854651}
+  passengerRagdollPrefab: {fileID: 1687061390252497327, guid: 07ce91f62b96e83498e91137828ab4e5, type: 3}
+  passengerAnimator: {fileID: 9154444214252396873}
   impactThreshold: 10
   IgnoreBottomCollision: 1
-  onRagdollActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  onBikeReEnabled:
-    m_PersistentCalls:
-      m_Calls: []
   bikeController: {fileID: 4489940695865553839}
 --- !u!114 &8523729865026696651
 MonoBehaviour:
@@ -6547,6 +6544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 64aca7d54c0882348b7df677c33730fc, type: 2}
+  _inControl: 1
 --- !u!114 &9093110284227515893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6587,6 +6585,21 @@ MonoBehaviour:
   _gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
   _bikePassenger: {fileID: 1155985045757528845}
   _inputActions: {fileID: 11400000, guid: 64aca7d54c0882348b7df677c33730fc, type: 2}
+  _compass: {fileID: 0}
+  _pointMarker: {fileID: 0}
+--- !u!114 &3183173574470895243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8813148393069372615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b376caddb45cdc543979fed868a4a5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Mechanics.SpeedMechanicSc
+  _gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0
@@ -7254,5 +7267,10 @@ Transform:
 --- !u!137 &8922532069937409651 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6224199432623929471, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+  m_PrefabInstance: {fileID: 3293257008422770188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9154444214252396873 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5960761833286416197, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
   m_PrefabInstance: {fileID: 3293257008422770188}
   m_PrefabAsset: {fileID: 0}
