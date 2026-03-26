@@ -2932,6 +2932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.HUD.GameOverSc
   gameOverCanvas: {fileID: 7665561315127702729}
   statsText: {fileID: 3606004220352821052}
+  pauseMenu: {fileID: 8145215549556962103}
   gameOverDelay: 2
   scenesData: {fileID: 11400000, guid: 6191309926bd247458bd7be2278dbef8, type: 2}
   ragdollActivator: {fileID: 0}
