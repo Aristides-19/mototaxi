@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mototaxi.Core;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ namespace Mototaxi.HUD
         [Header("Navigation Settings")]
         [SerializeField] AnimatedMenuSc mainMenu;
         [SerializeField] ScenesDataSO scenesData;
+        [SerializeField] CinemachineCamera settingsCam;
         private readonly Stack<AnimatedMenuSc> stack = new();
 
         [Header("Loading Settings")]
@@ -44,6 +46,16 @@ namespace Mototaxi.HUD
         public void Quit()
         {
             ActionsSc.QuitApplication();
+        }
+
+        public void ChangeToSettingsCamera()
+        {
+            settingsCam.Priority = 20;
+        }
+
+        public void ChangeToMainCamera()
+        {
+            settingsCam.Priority = 0;
         }
 
         public void LoadGameScene()

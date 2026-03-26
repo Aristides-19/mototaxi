@@ -64,41 +64,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 828924716449276749, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716449276749, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Color.b
-      value: 0.1882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716449276749, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Color.g
-      value: 0.14901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716449276749, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Color.r
-      value: 0.10980392
-      objectReference: {fileID: 0}
     - target: {fileID: 828924716636667843, guid: 3395720b13d19164cb319589dcf58870, type: 3}
       propertyPath: m_Colors.m_FadeDuration
       value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716636667843, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Colors.m_NormalColor.a
-      value: 0.78431374
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716636667843, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Colors.m_NormalColor.b
-      value: 0.1882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716636667843, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Colors.m_NormalColor.g
-      value: 0.14901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 828924716636667843, guid: 3395720b13d19164cb319589dcf58870, type: 3}
-      propertyPath: m_Colors.m_NormalColor.r
-      value: 0.10980392
       objectReference: {fileID: 0}
     - target: {fileID: 828924716636667843, guid: 3395720b13d19164cb319589dcf58870, type: 3}
       propertyPath: m_Colors.m_PressedColor.a
@@ -430,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 828924717374037262, guid: 3395720b13d19164cb319589dcf58870, type: 3}
       propertyPath: m_Name
-      value: Dropdown Variant
+      value: Dropdown
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
