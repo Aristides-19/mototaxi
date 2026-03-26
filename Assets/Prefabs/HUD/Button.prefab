@@ -67,15 +67,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jugar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 66184f0fbbf99224f8b0f8e965e51b88, type: 2}
-  m_sharedMaterial: {fileID: 1256491745428130056, guid: 66184f0fbbf99224f8b0f8e965e51b88, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
+  m_sharedMaterial: {fileID: -8664028170207487569, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 2952790015
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.6862745}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,13 +92,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 56
+  m_fontSizeBase: 56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.78431374}
     m_HighlightedColor: {r: 0.99607843, g: 0.8039216, b: 0.16470589, a: 1}
-    m_PressedColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.78431374}
+    m_PressedColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.9019608}
     m_SelectedColor: {r: 0.10980392, g: 0.14901961, b: 0.1882353, a: 0.78431374}
     m_DisabledColor: {r: 0.10980393, g: 0.14901961, b: 0.18823531, a: 0.78431374}
     m_ColorMultiplier: 1
