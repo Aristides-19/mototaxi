@@ -49,9 +49,9 @@ namespace Mototaxi.HUD
 #endif
         }
 
-        public void LoadScene(SceneType scene)
+        public void LoadGameScene()
         {
-            StartCoroutine(LoadAsync(scene));
+            StartCoroutine(LoadAsync(SceneType.Road));
         }
 
         private readonly WaitForSeconds wait = new(1f);
