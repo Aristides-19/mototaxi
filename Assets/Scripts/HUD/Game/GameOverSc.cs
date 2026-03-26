@@ -25,7 +25,7 @@ namespace Mototaxi.HUD
         [Tooltip("Reference to the RagdollActivator component on the bike")]
         [SerializeField] RagdollActivator ragdollActivator;
 
-        private void Start()
+        private void Awake()
         {
             gameOverCanvas.gameObject.SetActive(false);
 
@@ -37,6 +37,8 @@ namespace Mototaxi.HUD
             {
                 Debug.LogWarning("GameEndSc: RagdollActivator reference is missing.");
             }
+
+            TimeManagerSc.OnTimeUp += HandleCrash;
         }
 
         private void HandleCrash()

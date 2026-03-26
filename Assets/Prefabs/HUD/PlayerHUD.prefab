@@ -2899,6 +2899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.HUD.HintSc
   hintText: {fileID: 5661535733492900339}
+  gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
   fadeDuration: 0.5
   displayDuration: 2.5
   maxAlpha: 1

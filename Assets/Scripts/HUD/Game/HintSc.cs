@@ -1,3 +1,4 @@
+using Mototaxi.Core;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace Mototaxi.HUD
         #region Inspector Settings
         [Header("Score Display")]
         [SerializeField] TMPCanvasSc hintText;
+
+        [Header("Game Data")]
+        [SerializeField] private GameDataSO gameData;
 
         [Header("Opacity Settings")]
         [SerializeField] float fadeDuration = 0.5f;
@@ -43,7 +47,7 @@ namespace Mototaxi.HUD
                 HintType.TripStart => "¡Viaje iniciado! El destino está marcado en la brújula",
                 HintType.TripEnd => "¡Viaje completado! Busca otro pasajero",
                 HintType.Start => "Recoge pasajeros y llévalos a su destino para ganar dinero",
-                HintType.StartTime => "¡Completa tantos viajes como puedas en 10 minutos!",
+                HintType.StartTime => GetTimeHintText(),
                 _ => ""
             };
 
@@ -63,6 +67,12 @@ namespace Mototaxi.HUD
         {
             if (_currentHintCoroutine != null) StopCoroutine(_currentHintCoroutine);
             _currentHintCoroutine = StartCoroutine(UtilsSc.FadeRoutine(0f, fadeDuration, hintText.canvasGroup.alpha, hintText.canvasGroup, null));
+        }
+
+        private string GetTimeHintText()
+        {
+            int minutes = Mathf.FloorToInt(gameData.TripSettings.MaxGameDuration / 60);
+            return $"¡Completa tantos viajes como puedas en {minutes} minutos!";
         }
     }
 

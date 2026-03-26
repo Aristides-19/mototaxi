@@ -54,6 +54,10 @@ namespace Mototaxi.Core
         [SerializeField] private float _timeBonusMultiplier = 100f;
         public float TimeBonusMultiplier => _timeBonusMultiplier;
 
+        [Tooltip("Maximum duration of the game session in seconds (e.g., 600 = 10 minutes)")]
+        [SerializeField] private float _maxGameDuration = 600f;
+        public float MaxGameDuration => _maxGameDuration;
+
     }
 
     [Serializable]
