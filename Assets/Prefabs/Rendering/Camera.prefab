@@ -386,7 +386,7 @@ MonoBehaviour:
   RoadDistance: 150
   TrafficDistance: 150
   BuildingsDistance: 150
-  ObstaclesDistance: 150
+  ObstaclesDistance: 100
   PlayerDistance: 200
   LayerDefaultDistance: 150
 --- !u!1 &7715108354049452534
