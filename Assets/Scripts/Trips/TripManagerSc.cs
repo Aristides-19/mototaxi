@@ -34,6 +34,7 @@ namespace Mototaxi.Trips
             if (!PlayerStateSc.IsOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = other.GetComponentInParent<RoadPassengerSc>();
+                HintManagerSc.TriggerHint(HintType.PickUpPassenger, -1);
             }
 
             if (PlayerStateSc.IsOnTrip && _currentDestination != null)
@@ -51,6 +52,8 @@ namespace Mototaxi.Trips
             if (FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = null;
+                if (!PlayerStateSc.IsOnTrip) HintManagerSc.HideHint();
+
             }
         }
 
@@ -68,6 +71,8 @@ namespace Mototaxi.Trips
 
             PlayerStateSc.StartTrip();
             TimeManagerSc.MarkTripStart();
+
+            HintManagerSc.TriggerHint(HintType.TripStart);
 
             // Score Logic
             float pickupScore = _gameData.TripSettings.BasePickupScore * _currentNearbyPassenger.CurrentData.FareMultiplier;
@@ -100,6 +105,8 @@ namespace Mototaxi.Trips
 
             PlayerStateSc.EndTrip();
             _bikePassenger.Clear();
+
+            HintManagerSc.TriggerHint(HintType.TripEnd);
 
             _compass.ClearDestination();
             _pointMarker.SetActive(false);

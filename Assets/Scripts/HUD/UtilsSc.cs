@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 namespace Mototaxi.HUD
@@ -26,6 +25,7 @@ namespace Mototaxi.HUD
                 yield return null;
             }
 
+            SetCanvasAlpha(canvas, 0f);
             onComplete?.Invoke();
         }
 
