@@ -6526,14 +6526,10 @@ MonoBehaviour:
   dummyBikePrefab: {fileID: 8402680626081032387, guid: def65d6fa5ab1de46bc875d3d00b4a1a, type: 3}
   characterRagdollPrefab: {fileID: 1502751659757990857, guid: 3ec2eb551b9764a4db926f183d9d128a, type: 3}
   characterAnimator: {fileID: 4406343175024854651}
+  passengerRagdollPrefab: {fileID: 1687061390252497327, guid: 07ce91f62b96e83498e91137828ab4e5, type: 3}
+  passengerAnimator: {fileID: 9154444214252396873}
   impactThreshold: 10
   IgnoreBottomCollision: 1
-  onRagdollActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  onBikeReEnabled:
-    m_PersistentCalls:
-      m_Calls: []
   bikeController: {fileID: 4489940695865553839}
 --- !u!114 &8523729865026696651
 MonoBehaviour:
@@ -6548,6 +6544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 64aca7d54c0882348b7df677c33730fc, type: 2}
+  _inControl: 1
 --- !u!114 &9093110284227515893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7270,5 +7267,10 @@ Transform:
 --- !u!137 &8922532069937409651 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6224199432623929471, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
+  m_PrefabInstance: {fileID: 3293257008422770188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9154444214252396873 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5960761833286416197, guid: 20fffe9753d8d5f4fa342b3bfc9a77f8, type: 3}
   m_PrefabInstance: {fileID: 3293257008422770188}
   m_PrefabAsset: {fileID: 0}

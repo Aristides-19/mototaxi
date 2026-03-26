@@ -1,5 +1,6 @@
+using System;
+using Mototaxi.Passenger;
 using UnityEngine;
-using UnityEngine.Events;
 
 
 namespace ArcadeBP_Pro
@@ -19,23 +20,29 @@ namespace ArcadeBP_Pro
         [Tooltip("Animator component of the animated character.")]
         public Animator characterAnimator;
 
+        [Header("Passenger Settings")]
+        [Tooltip("Prefab for the passenger ragdoll (optional).")]
+        public BikePassengerSc passengerRagdollPrefab;
+
+        [Tooltip("Animator component of the animated passenger (optional).")]
+        public Animator passengerAnimator;
+
         [Tooltip("Threshold of impact force to activate ragdoll.")]
         public float impactThreshold = 10f;
 
         [Tooltip("Ignore collisions with the bottom part of the bike collider.")]
         public bool IgnoreBottomCollision = true;
 
-        [Tooltip("Event triggered when the ragdoll is activated.")]
-        public UnityEvent onRagdollActivated;
-
-        [Tooltip("Event triggered when the bike is re-enabled.")]
-        public UnityEvent onBikeReEnabled;
+        // C# Events
+        public event Action OnRagdollActivated;
+        public event Action OnBikeReEnabled;
 
 
         private Rigidbody bikeRigidbody;
         private bool isRagdollActivated = false;
         private GameObject bikeRagdollInstance;
         public GameObject characterRagdollInstance { get; private set; }
+        public GameObject passengerRagdollInstance { get; private set; }
         private Transform hipTransform;
         private Collider bikeCollider;
         public ArcadeBikeControllerPro bikeController;
@@ -46,19 +53,8 @@ namespace ArcadeBP_Pro
             bikeRigidbody = GetComponent<Rigidbody>();
             bikeCollider = bikeController.bikeReferences.collider;
 
-            if (onRagdollActivated == null)
-            {
-                onRagdollActivated = new UnityEvent();
-            }
-
-            if (onBikeReEnabled == null)
-            {
-                onBikeReEnabled = new UnityEvent();
-            }
-
-
-            onRagdollActivated.AddListener(setCameraTargetToRagdoll);
-            onBikeReEnabled.AddListener(resetCameratoBike);
+            OnRagdollActivated += setCameraTargetToRagdoll;
+            OnBikeReEnabled += resetCameratoBike;
         }
 
         void OnCollisionEnter(Collision collision)
@@ -99,6 +95,26 @@ namespace ArcadeBP_Pro
             bikeRagdollInstance = Instantiate(dummyBikePrefab, bikeTransform.position, bikeTransform.rotation);
             characterRagdollInstance = Instantiate(characterRagdollPrefab, bikeTransform.position, bikeTransform.rotation);
 
+            if (passengerAnimator.gameObject.activeInHierarchy)
+            {
+                passengerRagdollInstance = Instantiate(passengerRagdollPrefab.gameObject, bikeTransform.position, bikeTransform.rotation);
+                passengerRagdollInstance.GetComponent<BikePassengerSc>().SetPassenger(passengerAnimator.GetComponent<BikePassengerSc>().CurrentData);
+
+                Animator passengerRagdollAnimator = passengerRagdollInstance.GetComponent<Animator>();
+                foreach (HumanBodyBones bone in (HumanBodyBones[])System.Enum.GetValues(typeof(HumanBodyBones)))
+                {
+                    if (bone == HumanBodyBones.LastBone) continue;
+
+                    Transform characterBoneTransform = passengerAnimator.GetBoneTransform(bone);
+                    Transform ragdollBoneTransform = passengerRagdollAnimator.GetBoneTransform(bone);
+
+                    if (characterBoneTransform != null && ragdollBoneTransform != null)
+                    {
+                        ragdollBoneTransform.rotation = characterBoneTransform.rotation;
+                    }
+                }
+            }
+
             // Match the ragdoll bones' rotations to the character's bones
             Animator ragdollAnimator = characterRagdollInstance.GetComponent<Animator>();
             foreach (HumanBodyBones bone in (HumanBodyBones[])System.Enum.GetValues(typeof(HumanBodyBones)))
@@ -133,11 +149,17 @@ namespace ArcadeBP_Pro
                 rb.angularVelocity = bikeAngularVelocity;
             }
 
+            Rigidbody[] passengerRigidbodies = passengerRagdollInstance.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in passengerRigidbodies)
+            {
+                rb.linearVelocity = bikeVelocity;
+                rb.angularVelocity = bikeAngularVelocity;
+            }
+
+
             // Deactivate the original bike
             gameObject.SetActive(false);
-
-            // Invoke the event
-            onRagdollActivated.Invoke();
+            OnRagdollActivated?.Invoke();
         }
 
         public void ReEnableBike()
@@ -147,6 +169,7 @@ namespace ArcadeBP_Pro
             // Destroy the ragdoll instances
             Destroy(bikeRagdollInstance);
             Destroy(characterRagdollInstance);
+            Destroy(passengerRagdollInstance);
 
             // Re-enable the original bike
             gameObject.SetActive(true);
@@ -159,7 +182,7 @@ namespace ArcadeBP_Pro
             isRagdollActivated = false;
 
             // Invoke the event
-            onBikeReEnabled.Invoke();
+            OnBikeReEnabled?.Invoke();
         }
 
         public void setCameraTargetToRagdoll()
