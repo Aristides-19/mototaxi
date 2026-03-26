@@ -34,6 +34,26 @@ namespace Mototaxi.Core
 
         [SerializeField] private SpeedData _speedSettings = new();
         public SpeedData SpeedSettings => _speedSettings;
+
+        [SerializeField] private TripData _tripSettings = new();
+        public TripData TripSettings => _tripSettings;
+    }
+
+    [Serializable]
+    public class TripData
+    {
+        [Tooltip("Base score for picking up a passenger")]
+        [SerializeField] private float _basePickupScore = 50f;
+        public float BasePickupScore => _basePickupScore;
+
+        [Tooltip("Base score for successfully delivering a passenger")]
+        [SerializeField] private float _baseDropOffScore = 100f;
+        public float BaseDropOffScore => _baseDropOffScore;
+
+        [Tooltip("Multiplier for time bonus. Formula: Base * (TimeMultiplier / Duration)")]
+        [SerializeField] private float _timeBonusMultiplier = 60f;
+        public float TimeBonusMultiplier => _timeBonusMultiplier;
+
     }
 
     [Serializable]

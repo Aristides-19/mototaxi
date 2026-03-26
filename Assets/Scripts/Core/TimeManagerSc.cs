@@ -6,9 +6,16 @@ namespace Mototaxi.Core
     public class TimeManagerSc : MonoBehaviour
     {
         public static float ElapsedTime { get; private set; }
+        public static float TripStartTime { get; private set; }
+        public static float CurrentTripDuration => Time.time - TripStartTime;
         public static event Action<float> OnSecondPassed;
 
         private float _timeAccumulator = 0f;
+
+        public static void MarkTripStart()
+        {
+            TripStartTime = Time.time;
+        }
 
         private void Update()
         {

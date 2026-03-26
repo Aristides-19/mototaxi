@@ -67,6 +67,12 @@ namespace Mototaxi.Trips
             if (_currentNearbyPassenger == null) return;
 
             PlayerStateSc.StartTrip();
+            TimeManagerSc.MarkTripStart();
+
+            // Score Logic
+            float pickupScore = _gameData.TripSettings.BasePickupScore * _currentNearbyPassenger.CurrentData.FareMultiplier;
+            ScoreManagerSc.AddScore(pickupScore, ScoreSource.TripStart);
+
             _bikePassenger.SetPassenger(_currentNearbyPassenger.CurrentData);
 
             // Reduce player max speed based on passenger mass
@@ -86,6 +92,11 @@ namespace Mototaxi.Trips
         private void CompleteTrip()
         {
             _bikeController.bikeSettings.maxSpeed += _bikePassenger.CurrentData.Mass * _gameData.PassengerSettings.MaxKmLossPerMassUnit;
+
+            float tripDuration = TimeManagerSc.CurrentTripDuration;
+            // Trip Score Logic: (Base + (Bonus / Duration)) * FareMultiplier
+            float timeBonus = tripDuration > 0 ? _gameData.TripSettings.TimeBonusMultiplier / tripDuration : 0;
+            ScoreManagerSc.AddScore((_gameData.TripSettings.BaseDropOffScore + timeBonus) * _bikePassenger.CurrentData.FareMultiplier, ScoreSource.TripEnd);
 
             PlayerStateSc.EndTrip();
             _bikePassenger.Clear();
