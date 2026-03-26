@@ -19,7 +19,6 @@ namespace Mototaxi.Trips
         [SerializeField] private GameObject _pointMarker;
 
         private RoadPassengerSc _currentNearbyPassenger;
-        private bool _isOnTrip = false;
         private PointSc _currentDestination;
 
         private ArcadeBikeControllerPro _bikeController;
@@ -32,12 +31,12 @@ namespace Mototaxi.Trips
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_isOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
+            if (!PlayerStateSc.IsOnTrip && FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, _gameData.PedestriansLayer))
             {
                 _currentNearbyPassenger = other.GetComponentInParent<RoadPassengerSc>();
             }
 
-            if (_isOnTrip && _currentDestination != null)
+            if (PlayerStateSc.IsOnTrip && _currentDestination != null)
             {
                 PointSc puntoTocado = other.GetComponent<PointSc>();
                 if (puntoTocado != null && puntoTocado == _currentDestination)
@@ -57,7 +56,7 @@ namespace Mototaxi.Trips
 
         private void Update()
         {
-            if (!_isOnTrip && _currentNearbyPassenger != null && _inputActions.InteractAction.action.WasPressedThisFrame())
+            if (!PlayerStateSc.IsOnTrip && _currentNearbyPassenger != null && _inputActions.InteractAction.action.WasPressedThisFrame())
             {
                 StartTrip();
             }
@@ -67,7 +66,7 @@ namespace Mototaxi.Trips
         {
             if (_currentNearbyPassenger == null) return;
 
-            _isOnTrip = true;
+            PlayerStateSc.StartTrip();
             _bikePassenger.SetPassenger(_currentNearbyPassenger.CurrentData);
 
             // Reduce player max speed based on passenger mass
@@ -88,7 +87,7 @@ namespace Mototaxi.Trips
         {
             _bikeController.bikeSettings.maxSpeed += _bikePassenger.CurrentData.Mass * _gameData.PassengerSettings.MaxKmLossPerMassUnit;
 
-            _isOnTrip = false;
+            PlayerStateSc.EndTrip();
             _bikePassenger.Clear();
 
             _compass.ClearDestination();

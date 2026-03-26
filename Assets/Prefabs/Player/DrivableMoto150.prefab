@@ -6122,6 +6122,7 @@ GameObject:
   - component: {fileID: 9093110284227515893}
   - component: {fileID: 3138388220551962839}
   - component: {fileID: 2298338866322616709}
+  - component: {fileID: 3183173574470895243}
   m_Layer: 0
   m_Name: DrivableMoto150
   m_TagString: Untagged
@@ -6587,6 +6588,21 @@ MonoBehaviour:
   _gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
   _bikePassenger: {fileID: 1155985045757528845}
   _inputActions: {fileID: 11400000, guid: 64aca7d54c0882348b7df677c33730fc, type: 2}
+  _compass: {fileID: 0}
+  _pointMarker: {fileID: 0}
+--- !u!114 &3183173574470895243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8813148393069372615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b376caddb45cdc543979fed868a4a5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mototaxi.Mechanics.SpeedMechanicSc
+  _gameData: {fileID: 11400000, guid: e499c8007610c8748976b52dff532f99, type: 2}
 --- !u!1 &8852984484448740169
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using Mototaxi.Core;
 using UnityEngine;
 using ArcadeBP_Pro;
+using Mototaxi.Player;
 
 namespace Mototaxi.Mechanics
 {
@@ -29,6 +30,8 @@ namespace Mototaxi.Mechanics
 
         void OnWheelieStateChange(bool isDoingWheelie)
         {
+            if (!PlayerStateSc.IsOnTrip) return;
+
             float currentAngle = Mathf.DeltaAngle(0, wheelieTransform.localEulerAngles.x);
 
             if (isDoingWheelie &&

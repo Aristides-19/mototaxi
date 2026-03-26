@@ -29,6 +29,7 @@ namespace Mototaxi.Core
     {
         Roce,
         Wheelie,
+        MaxSpeed,
         None
     }
 }

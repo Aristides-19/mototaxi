@@ -31,6 +31,26 @@ namespace Mototaxi.Core
 
         [SerializeField] private PassengerData _passengerSettings = new();
         public PassengerData PassengerSettings => _passengerSettings;
+
+        [SerializeField] private SpeedData _speedSettings = new();
+        public SpeedData SpeedSettings => _speedSettings;
+    }
+
+    [Serializable]
+    public class SpeedData
+    {
+        [Tooltip("Percentage of max speed required to start scoring (0.0 to 1.0)")]
+        [Range(0f, 1f)]
+        [SerializeField] private float _speedThresholdPercentage = 0.975f;
+        public float SpeedThresholdPercentage => _speedThresholdPercentage;
+
+        [Tooltip("Score added per second while above threshold")]
+        [SerializeField] private float _scoreMultiplier = 7.5f;
+        public float ScoreMultiplier => _scoreMultiplier;
+
+        [Tooltip("Interval in seconds to score points after being above threshold (or after sending points again)")]
+        [SerializeField] private float _intervalToStartScoring = 0.5f;
+        public float IntervalToStartScoring => _intervalToStartScoring;
     }
 
     [Serializable]
@@ -53,7 +73,7 @@ namespace Mototaxi.Core
         public float MinTripDistance => _minTripDistance;
 
         [Tooltip("Units to reduce player max speed per unit of passenger mass (e.g., 0.25 km/h per kg)")]
-        [SerializeField] private float _maxKmLossPerMassUnit = 0.25f;
+        [SerializeField] private float _maxKmLossPerMassUnit = 0.35f;
         public float MaxKmLossPerMassUnit => _maxKmLossPerMassUnit / 3.6f;
     }
 

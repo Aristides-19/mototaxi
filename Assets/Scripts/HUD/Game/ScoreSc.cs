@@ -127,6 +127,7 @@ namespace Mototaxi.HUD
             {
                 ScoreSource.Roce => $"+{MathF.Round(value, 2)} ROCE",
                 ScoreSource.Wheelie => $"+{MathF.Round(value, 2)} CABALLITO",
+                ScoreSource.MaxSpeed => $"+{MathF.Round(value, 2)} VELOCIDAD",
                 _ => ""
             };
             item.tmp.text = sourceTextString;

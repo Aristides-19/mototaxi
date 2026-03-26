@@ -1,4 +1,5 @@
 using Mototaxi.Core;
+using Mototaxi.Player;
 using Mototaxi.Utils;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace Mototaxi.Mechanics
 
         void OnTriggerEnter(Collider other)
         {
+            if (!PlayerStateSc.IsOnTrip) return;
+
             // Avoid processing if the collided object is not in the TrafficLayer
             if (!FunctionsSc.IsLayerInLayerMask(other.gameObject.layer, GameData.TrafficLayer)) return;
 
