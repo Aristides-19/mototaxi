@@ -249,9 +249,9 @@ RectTransform:
   m_Father: {fileID: 7284222166726791744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7480804543065877630
 Canvas:
@@ -734,10 +734,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 154000227222656384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4567551582536263161
 CanvasRenderer:
@@ -878,10 +878,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8342532626422355559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8966649100623119272
 CanvasRenderer:
@@ -2270,8 +2270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75}
-  m_SizeDelta: {x: 500, y: 100}
+  m_AnchoredPosition: {x: 0, y: 110}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &773496109529106405
 CanvasRenderer:
@@ -2301,7 +2301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xA1GAME OVER!"
+  m_text: "\xA1TERMIN\xD3 EL JUEGO!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
   m_sharedMaterial: {fileID: -8664028170207487569, guid: 61c2a3d6012581b45aafaabee82c6e41, type: 2}
@@ -2626,9 +2626,9 @@ RectTransform:
   m_Father: {fileID: 7284222166726791744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7665561315127702729
 Canvas:
