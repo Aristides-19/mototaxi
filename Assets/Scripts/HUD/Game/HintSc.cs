@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Mototaxi.HUD
@@ -41,6 +42,8 @@ namespace Mototaxi.HUD
                 HintType.PickUpPassenger => "Presiona 'E' para recoger al pasajero",
                 HintType.TripStart => "¡Viaje iniciado! El destino está marcado en la brújula",
                 HintType.TripEnd => "¡Viaje completado! Busca otro pasajero",
+                HintType.Start => "Recoge pasajeros y llévalos a su destino para ganar dinero",
+                HintType.StartTime => "¡Completa tantos viajes como puedas en 10 minutos!",
                 _ => ""
             };
 
@@ -87,6 +90,8 @@ namespace Mototaxi.HUD
         None,
         PickUpPassenger,
         TripStart,
-        TripEnd
+        TripEnd,
+        Start,
+        StartTime
     }
 }
